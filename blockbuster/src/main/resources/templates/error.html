@@ -1,5 +1,6 @@
 <html>
 <style>
+  /* text style */
   * {
     padding: 0px;
     margin: 0px;
@@ -127,6 +128,9 @@
       opacity: 0;
     }
   }
+
+
+  /* Button style */
   @import url("https://fonts.googleapis.com/css?family=Raleway");
 
 :root {
@@ -140,22 +144,21 @@
 }
 
 html,
-body {
-  height: 100%;
+body2 {
   width: 100%;
   overflow: hidden;
 }
 
-body {
-  min-height: 100vh;
+body2 {
+  min-height: 400px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   background: black;
 }
 
 .glowing-btn {
-  position: fixed;
+  position: relative;
   color: var(--glow-color);
   cursor: pointer;
   padding: 0.35em 1em;
@@ -403,15 +406,16 @@ body {
       </g>
     </svg>
 
+
     <div class="message">
       ! Que hiciste Manin ¡
     </div>
   </div>
 </body>
-<body>
-  <button class='glowing-btn'>
-    <span class='glowing-txt'>H<span class='faulty-letter'>O</span>ME</span>
-  </button>
-</body>
 
+<body2>
+  <a href="/home" class='glowing-btn'>
+    <span class='glowing-txt'>H<span class='faulty-letter'>O</span>ME</span>
+  </a>
+</body2>
 </html>

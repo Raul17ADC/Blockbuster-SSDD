@@ -1,113 +1,417 @@
-<!DOCTYPE html>
-<html style="font-size: 16px;" lang="es">
+<html>
+<style>
+  * {
+    padding: 0px;
+    margin: 0px;
+  }
+
+  body {
+    background: black;
+  }
+
+  .st0 {
+    font-family: 'FootlightMTLight';
+  }
+
+  .st1 {
+    font-size: 83.0285px;
+  }
+
+  .st2 {
+    fill: gray;
+  }
+
+  svg {
+    width: 500px;
+    height: 400px;
+    text-align: center;
+    fill: #16a085;
+  }
+
+  path#XMLID_5_ {
+
+    fill: #16a085;
+    filter: url(#blurFilter4);
+  }
+
+  path#XMLID_11_,
+  path#XMLID_2_ {
+    fill: #16a085;
+  }
+
+  .circle {
+    animation: out 2s infinite ease-out;
+    fill: #16a085;
+  }
+
+  #container {
+    text-align: center;
+  }
+
+  .message {
+    color: #16a085;
+  }
+
+  .message:after {
+    content: "]";
+  }
+
+  .message:before {
+    content: "[";
+  }
+
+  .message:after,
+  .message:before {
+
+    color: #16a085;
+    font-size: 20px;
+    -webkit-animation-name: opacity;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: opacity;
+    animation-name: opacity;
+    -webkit-animation-duration: 2s;
+    animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    margin: 0 50px;
+  }
+
+  @-webkit-keyframes opacity {
+
+    0%,
+    100% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes opacity {
+
+    0%,
+    100% {
+      opacity: 0;
+    }
+
+    50% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes out {
+    0% {
+      r: 1;
+      opacity: 0.9;
+    }
+
+    25% {
+      r: 5;
+      opacity: 0.3;
+    }
+
+    50% {
+      r: 10;
+      opacity: 0.2;
+    }
+
+    75% {
+      r: 15;
+      opacity: 0.1;
+    }
+
+    100% {
+      r: 20;
+      opacity: 0;
+    }
+  }
+  @import url("https://fonts.googleapis.com/css?family=Raleway");
+
+:root {
+  --glow-color: hsl(165, 80%, 31%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: black;
+}
+
+.glowing-btn {
+  position: fixed;
+  color: var(--glow-color);
+  cursor: pointer;
+  padding: 0.35em 1em;
+  border: 0.15em solid var(--glow-color);
+  border-radius: 0.45em;
+  background: none;
+  perspective: 2em;
+  font-family: "Raleway", sans-serif;
+  font-size: 2em;
+  font-weight: 900;
+  letter-spacing: 1em;
+
+  -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
+    0px 0px 0.5em 0px var(--glow-color);
+  animation: border-flicker 2s linear infinite;
+}
+
+.glowing-txt {
+  float: left;
+  margin-right: -0.8em;
+  -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+  -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+    0 0 0.45em var(--glow-color);
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+  animation: text-flicker 3s linear infinite;
+}
+
+.faulty-letter {
+  opacity: 0.5;
+  animation: faulty-flicker 2s linear infinite;
+}
+
+.glowing-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  opacity: 0.7;
+  filter: blur(1em);
+  transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
+  background: var(--glow-color);
+  pointer-events: none;
+}
+
+.glowing-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  z-index: -1;
+  background-color: var(--glow-color);
+  box-shadow: 0 0 2em 0.2em var(--glow-color);
+  transition: opacity 100ms linear;
+}
+
+.glowing-btn:hover {
+  color: rgba(0, 0, 0, 0.8);
+  text-shadow: none;
+  animation: none;
+}
+
+.glowing-btn:hover .glowing-txt {
+  animation: none;
+}
+
+.glowing-btn:hover .faulty-letter {
+  animation: none;
+  text-shadow: none;
+  opacity: 1;
+}
+
+.glowing-btn:hover:before {
+  filter: blur(1.5em);
+  opacity: 1;
+}
+
+.glowing-btn:hover:after {
+  opacity: 1;
+}
+
+@keyframes faulty-flicker {
+  0% {
+    opacity: 0.1;
+  }
+  2% {
+    opacity: 0.1;
+  }
+  4% {
+    opacity: 0.5;
+  }
+  19% {
+    opacity: 0.5;
+  }
+  21% {
+    opacity: 0.1;
+  }
+  23% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0.5;
+  }
+  83% {
+    opacity: 0.4;
+  }
+
+  87% {
+    opacity: 1;
+  }
+}
+
+@keyframes text-flicker {
+  0% {
+    opacity: 0.1;
+  }
+
+  2% {
+    opacity: 1;
+  }
+
+  8% {
+    opacity: 0.1;
+  }
+
+  9% {
+    opacity: 1;
+  }
+
+  12% {
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 0.3;
+  }
+  30% {
+    opacity: 1;
+  }
+
+  70% {
+    opacity: 0.7;
+  }
+  72% {
+    opacity: 0.2;
+  }
+
+  77% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes border-flicker {
+  0% {
+    opacity: 0.1;
+  }
+  2% {
+    opacity: 1;
+  }
+  4% {
+    opacity: 0.1;
+  }
+
+  8% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .glowing-btn{
+    font-size: 1em;
+  }
+}
+</style>
+
+
 
 <head>
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" href="css/futuriste.css">
+  <title>404 pages</title>
 </head>
 
-<body data-home-page="Casa.html" data-home-page-title="Casa" class="u-body u-xl-mode" data-lang="es">
-  <header class="u-clearfix u-header u-header" id="sec-9b60">
-    <div class="u-clearfix u-sheet u-valign-middle u-sheet-1">
-      <a href="https://nicepage.com" class="u-image u-logo u-image-1">
-        <img src="images/default-logo.png" class="u-logo-image u-logo-image-1">
-      </a>
-      <nav class="u-menu u-menu-dropdown u-offcanvas u-menu-1">
-        <div class="menu-collapse" style="font-size: 1rem; letter-spacing: 0px;">
-          <a class="u-button-style u-custom-left-right-menu-spacing u-custom-padding-bottom u-custom-top-bottom-menu-spacing u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-            href="#">
-            <svg class="u-svg-link" viewBox="0 0 24 24">
-              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#menu-hamburger"></use>
-            </svg>
-            <svg class="u-svg-content" version="1.1" id="menu-hamburger" viewBox="0 0 16 16" x="0px" y="0px"
-              xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
-              <g>
-                <rect y="1" width="16" height="2"></rect>
-                <rect y="7" width="16" height="2"></rect>
-                <rect y="13" width="16" height="2"></rect>
-              </g>
-            </svg>
-          </a>
-        </div>
-        <div class="u-nav-container">
-          <ul class="u-nav u-unstyled u-nav-1">
-            <li class="u-nav-item"><a
-                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                href="Casa.html" style="padding: 10px 20px;">Casa</a>
-            </li>
-            <li class="u-nav-item"><a
-                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                href="Acerca-de.html" style="padding: 10px 20px;">Acerca de</a>
-            </li>
-            <li class="u-nav-item"><a
-                class="u-button-style u-nav-link u-text-active-palette-1-base u-text-hover-palette-2-base"
-                href="Contacto.html" style="padding: 10px 20px;">Contacto</a>
-            </li>
-          </ul>
-        </div>
-        <div class="u-nav-container-collapse">
-          <div class="u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
-            <div class="u-inner-container-layout u-sidenav-overflow">
-              <div class="u-menu-close"></div>
-              <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2">
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Casa.html">Casa</a>
-                </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Acerca-de.html">Acerca de</a>
-                </li>
-                <li class="u-nav-item"><a class="u-button-style u-nav-link" href="Contacto.html">Contacto</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
-        </div>
-      </nav>
-    </div>
-  </header>
-  <section class="u-align-center u-clearfix u-valign-middle-sm u-valign-middle-xs u-white u-section-1"
-    id="carousel_1eb9">
-    <div class="u-clearfix u-expanded-width u-layout-wrap u-layout-wrap-1">
-      <div class="u-layout">
-        <div class="u-layout-col">
-          <div class="u-align-center u-container-style u-layout-cell u-size-30 u-layout-cell-1">
-            <div class="u-container-layout u-container-layout-1">
-              <h1 class="u-custom-font u-font-oswald u-text u-text-grey-15 u-text-1">Error</h1>
-            </div>
-          </div>
-          <div class="u-align-center u-container-style u-grey-15 u-layout-cell u-size-30 u-layout-cell-2">
-            <div class="u-container-layout u-valign-top u-container-layout-2">
-              <h1 class="u-custom-font u-font-montserrat u-text u-text-grey-60 u-text-2">Sorry, Manin que fue lo que
-                hiciste</h1>
-              <p class="u-custom-font u-font-montserrat u-text u-text-grey-70 u-text-3">The page you requested could not
-                be found</p>
-              <a href="mailto:hi@freedesigner.com"
-                class="u-active-white u-btn u-btn-round u-button-style u-grey-70 u-hover-white u-radius-50 u-text-active-grey-70 u-text-body-alt-color u-text-hover-grey-70 u-btn-1">Go
-                Back Home</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+<body>
 
 
-  <footer class="u-align-center u-clearfix u-footer u-grey-80 u-footer" id="sec-6231">
-    <div class="u-clearfix u-sheet u-sheet-1">
-      <p class="u-small-text u-text u-text-variant u-text-1">Texto de muestra. Haz click para seleccionar el elemento de
-        Texto.</p>
-    </div>
-  </footer>
-  <section class="u-backlink u-clearfix u-grey-80">
-    <a class="u-link" href="https://nicepage.com/website-templates" target="_blank">
-      <span>Website Templates</span>
-    </a>
-    <p class="u-text">
-      <span>created with</span>
-    </p>
-    <a class="u-link" href="" target="_blank">
-      <span>Website Builder Software</span>
-    </a>.
-  </section>
+  <div id="container">
 
+    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+      viewBox="0 0 200 82.7" style="enable-background:new 0 0 200 82.7;" xml:space="preserve">
+
+      <g id="Calque_1">
+        <text id="XMLID_3_" transform="matrix(1.2187 0 0 1 13 75.6393)" class="st0 st1">4</text>
+        <text id="XMLID_4_" transform="matrix(1.2187 0 0 1 133.0003 73.6393)" class="st0 st1">4</text>
+      </g>
+      <g id="Calque_2">
+        <g>
+          <path id="XMLID_11_" d="M81.8,29.2c4.1-5.7,10.7-9.4,18.3-9.4c6.3,0,12.1,2.7,16.1,6.9c0.6-0.4,1.1-0.7,1.7-1.1
+		c-4.4-4.8-10.8-7.9-17.8-7.9c-8.3,0-15.6,4.2-20,10.6C80.7,28.5,81.3,28.8,81.8,29.2z" />
+          <path id="XMLID_2_" d="M118.1,53.7c-4,5.7-10.7,9.5-18.2,9.5c-6.3,0-12.1-2.6-16.2-6.8c-0.6,0.4-1.1,0.7-1.7,1.1
+		c4.4,4.8,10.8,7.8,17.9,7.8c8.3,0,15.6-4.3,19.9-10.7C119.2,54.5,118.6,54.1,118.1,53.7z" />
+          <animateTransform attributeName="transform" type="rotate" from="360 100 41.3" to="0 100 41.3" dur="10s"
+            repeatCount="indefinite" />
+        </g>
+        <g id="XMLID_6_">
+          <g id="XMLID_18_">
+
+
+
+            <circle class="circle" cx="100" cy="41" r="1"></circle>
+          </g>
+        </g>
+        <defs>
+          <filter id="blurFilter4" x="-20" y="-20" width="200" height="200">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="2" />
+          </filter>
+        </defs>
+        <path id="XMLID_5_" class="st2" d="M103.8,16.7c0.1,0.3,0.1,0.6,0.1,0.9c11.6,1.9,20.4,11.9,20.4,24.1c0,13.5-10.9,24.4-24.4,24.4S75.6,55.1,75.6,41.7c0-3.2,0.6-6.3,1.7-9.1c-0.3-0.2-0.5-0.3-0.7-0.5c-1.2,3-1.9,6.2-1.9,9.6c0,14,11.3,25.3,25.3,25.3
+  s25.3-11.3,25.3-25.3C125.3,29,115.9,18.5,103.8,16.7z" />
+
+
+
+      </g>
+    </svg>
+
+    <div class="message">
+      ! Que hiciste Manin ¡
+    </div>
+  </div>
+</body>
+<body>
+  <button class='glowing-btn'>
+    <span class='glowing-txt'>H<span class='faulty-letter'>O</span>ME</span>
+  </button>
 </body>
 
 </html>

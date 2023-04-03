@@ -20,6 +20,12 @@ public class GreetingController {
         return "peliculas_template";
     }
 
+    @GetMapping("/error")
+    public String error(Model model) {        
+        return "error";
+    }
+
+
     
 
 }

@@ -8,10 +8,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 public class GreetingController {
     @GetMapping("/home")
-    public String greeting(Model model) {
-        model.addAttribute("name", "Blockbuster");
+    public String greeting(Model model) {        
         return "home_template";
     }
+    @GetMapping("/series")
+    public String greeting_series(Model model) {        
+        return "series_template";
+    }
+    @GetMapping("/peliculas")
+    public String greeting_peliculas(Model model) {        
+        return "peliculas_template";
+    }
+
     
 
 }

@@ -1,3 +1,5 @@
+// not work should go into the java folder and work ass a service
+
 class Pelicula {
     constructor(Portada, Titulo, Director, Guionista, Trailer, Valoracion) {
         this.Portada = Portada;

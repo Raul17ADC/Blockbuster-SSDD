@@ -31,11 +31,15 @@ public class GreetingController {
 
     @GetMapping("/error")
     public String error(Model model) {        
-        return "/static/error.html";
+        return "error";
     }
 
     @GetMapping("/pelicula")
     public String pelicula(Model model) {        
         return "pelicula_template";
+    }
+    @GetMapping("/prueba")
+    public String prueba(Model model) {        
+        return "prueba";
     }
 }

@@ -21,6 +21,6 @@ function add_actor(pelicula, actor) {
     pelicula.actor.push(this.actor);
 }
 
-var oso = new pelicula('src\main\resources\static\Oso_vicioso.jpg','Oso Vicioso','Elizabeth Banks','Jimmy Warden','https://www.youtube.com/watch?v=CvYGl5BESEI&ab_channel=UniversalSpain',6.0);
+var oso = new pelicula('Oso_vicioso.jpg','Oso Vicioso','Elizabeth Banks','Jimmy Warden','https://www.youtube.com/watch?v=CvYGl5BESEI&ab_channel=UniversalSpain',6.0);
 document.write('hola');
 console.log('hola');

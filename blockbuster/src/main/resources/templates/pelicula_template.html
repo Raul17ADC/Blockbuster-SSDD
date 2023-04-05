@@ -54,11 +54,10 @@
                             width="400" height="800">
                     </figure>
                     <div class="container-fluid">
-                        <figure class="d-flex justify-content-center "><img src="Estrella.png"class="img-fluid mx-1" 
-                            width="60" height="40">
-                        <p class="d-flex fs-1  my-2 justify-content-center"
-                            style="color: white;">
-                            6.0 / 10</p>
+                        <figure class="d-flex justify-content-center "><img src="Estrella.png" class="img-fluid mx-1"
+                                width="60" height="40">
+                            <p class="d-flex fs-1  my-2 justify-content-center" style="color: white;">
+                                6.0 / 10</p>
                     </div>
                 </div>
                 <div class="container-fluid"><iframe width="1020" height="630"
@@ -106,6 +105,31 @@
                         </ul>
                     </li>
                 </ul>
+            </div>
+            <div class="container-fluid">
+                <div id="comment-section">
+                    <h3>Comments:</h3>
+                    <div id="comments-container"></div>
+                </div>
+
+                <div>
+                    <h3>Leave a comment:</h3>
+                    <textarea id="comment-input"></textarea><br>
+                    <button id="submit-button">Submit</button>
+                </div>
+                <script>
+                    const submitButton = document.getElementById("submit-button");
+                    const commentInput = document.getElementById("comment-input");
+                    const commentsContainer = document.getElementById("comments-container");
+
+                    submitButton.addEventListener("click", function () {
+                        const comment = commentInput.value;
+                        const commentElement = document.createElement("div");
+                        commentElement.innerHTML = comment;
+                        commentsContainer.appendChild(commentElement);
+                        commentInput.value = "";
+                    });
+                </script>
             </div>
         </div>
     </div>

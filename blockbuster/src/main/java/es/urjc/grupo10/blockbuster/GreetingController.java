@@ -19,6 +19,12 @@ public class GreetingController {
     public String greeting_peliculas(Model model) {        
         return "peliculas_template";
     }
+    @GetMapping("/registro")
+    public String greeting_resgistro(Model model) {        
+        model.addAttribute("includeCSS", "registro.css"); // Agrega esta línea para incluir el archivo CSS
+        model.addAttribute("includeJS", "registro.js");
+        return "registro.html";
+    }
 
     @GetMapping("/error")
     public String error(Model model) {        
@@ -29,8 +35,4 @@ public class GreetingController {
     public String pelicula(Model model) {        
         return "pelicula_template";
     }
-
-
-    
-
 }

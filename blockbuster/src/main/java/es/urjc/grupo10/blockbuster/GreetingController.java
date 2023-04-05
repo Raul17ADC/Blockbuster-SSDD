@@ -31,7 +31,7 @@ public class GreetingController {
 
     @GetMapping("/error")
     public String error(Model model) {        
-        return "error";
+        return "/static/error.html";
     }
 
     @GetMapping("/pelicula")

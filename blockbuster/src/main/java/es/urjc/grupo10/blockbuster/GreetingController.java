@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
     @Controller
 
 public class GreetingController {
-    @GetMapping("/homa")
+    @GetMapping("/home")
     public String greeting(Model model) {        
         return "home_template";
     }
@@ -31,7 +31,7 @@ public class GreetingController {
 
     @GetMapping("/error")
     public String error(Model model) {        
-        return "error.html";
+        return "error";
     }
 
     @GetMapping("/pelicula")

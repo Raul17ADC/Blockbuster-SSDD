@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
     @Controller
 
 public class GreetingController {
-    @GetMapping("/home")
+    @GetMapping("/homa")
     public String greeting(Model model) {        
         return "home_template";
     }

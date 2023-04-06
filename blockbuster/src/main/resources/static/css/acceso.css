@@ -1,0 +1,67 @@
+body {
+    background-color: rgb(14, 15, 110);
+  }
+  
+  .form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 50px;
+    background-color: rgb(42, 80, 160);
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(15, 3, 3, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  #confirm-message {
+    margin-top: 10px;
+    color: rgb(0, 0, 0);
+    font-size: 25px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #0b486b;
+    font-size: 16px;
+  }
+  
+  button[id="login-button"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #39c534;
+    color: rgb(11, 10, 22);
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  a#go-home {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background-color: #ece037;
+    color: rgb(11, 10, 22);
+    border: none;
+    border-radius: 30px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  

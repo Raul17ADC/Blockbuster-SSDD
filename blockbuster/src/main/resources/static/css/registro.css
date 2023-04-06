@@ -26,8 +26,9 @@ label {
 }
 
 #confirm-message {
-  margin-top: 20px;
+  margin-top: 10px;
   color: rgb(0, 0, 0);
+  font-size: 25px;
   font-weight: bold;
 }
 
@@ -53,7 +54,7 @@ button[id="register-button"] {
   cursor: pointer;
 }
 
-button[id="go-home"] {
+a#go-home {
   display: block;
   width: 100%;
   padding: 15px;

@@ -108,27 +108,20 @@
             </div>
             <div class="container-fluid">
                 <div id="comment-section">
-                    <h3>Comments:</h3>
-                    <div id="comments-container"></div>
+                    <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Comentarios:</p>
+                    <div class="container-fluid d-flex justify-content-center my-2 " style="color: aliceblue;">
+                        <div id="comments-container"></div>
+                    </div>
                 </div>
+                <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Escribe tu reseña:</p>
 
-                <div>
-                    <h3>Leave a comment:</h3>
-                    <textarea id="comment-input"></textarea><br>
-                    <button id="submit-button">Submit</button>
+                <div class="input-field">
+                    <textarea class="form-control" rows="10" id="comment-input"></textarea><br>
                 </div>
-                <script>
-                    const submitButton = document.getElementById("submit-button");
-                    const commentInput = document.getElementById("comment-input");
-                    const commentsContainer = document.getElementById("comments-container");
-
-                    submitButton.addEventListener("click", function () {
-                        const comment = commentInput.value;
-                        const commentElement = document.createElement("div");
-                        commentElement.innerHTML = comment;
-                        commentsContainer.appendChild(commentElement);
-                        commentInput.value = "";
-                    });
+                <div class="container-fluid d-flex justify-content-center mb-3"> <button type="submit"
+                        class="btn btn-primary " id="submit-button">Enviar
+                        comentario</button></div>
+                <script src="/json/pelicula.js">
                 </script>
             </div>
         </div>

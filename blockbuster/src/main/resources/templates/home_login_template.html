@@ -11,48 +11,50 @@
       rel="stylesheet"
       integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
       crossorigin="anonymous"
-      
     />
-    <link rel="stylesheet" type="text/css" href="/json/home_login.css">
-    <script src="/css/home_login.js"></script>
-
+    <link rel="stylesheet"  href="/css/home_login.css" />
+    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
     <title>Pagina inicio</title>
   </head>
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(41, 82, 172)">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/home">
-            <img src="https://bendblockbuster.com/wp-content/themes/blockbuster/assets/images/blockbuster-logo.svg" width="300" height="50" />
-          </a>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item me-md-4">
-                <a class="nav-link active fs-2 text-decoration-underline" aria-current="page" href="/home" style="color: white">Home</a>
-              </li>
-              <li class="nav-item me-md-4">
-                <a class="nav-link fs-2" href="/series" style="color: white">Series</a>
-              </li>
-              <li class="nav-item me-md-4">
-                <a class="nav-link fs-2" href="/peliculas" style="color: white">Peliculas</a>
-              </li>
-            </ul>
-            <div class="d-flex">
-              <div class="profile-icon-wrapper">
-                <img src="Oso_vicioso.jpg" class="rounded-circle me-3 profile-icon" width="50" height="50" alt="Imagendeperfil"/>
-                <div class="profile-menu" id="dropdown-menu">
-                  <ul>
-                    <li><a href="#">Perfil de usuario</a></li>
-                    <li><a href="#" id="logout-button">Cerrar sesión</a></li>
-                  </ul>
-                </div>
-              </div>
-            </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/home"
+          ><img
+            src="https://bendblockbuster.com/wp-content/themes/blockbuster/assets/images/blockbuster-logo.svg"
+            width="300"
+            height="50"
+          />
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item me-md-4">
+              <a class="nav-link active fs-2 text-decoration-underline" aria-current="page" href="/home" style="color: white" >Home </a>
+            </li>
+            <li class="nav-item me-md-4">
+              <a class="nav-link fs-2" href="/series" style="color: white">Series</a>
+            </li>
+            <li class="nav-item me-md-4">
+              <a class="nav-link fs-2" href="/peliculas" style="color: white">Peliculas</a>
+            </li>
+          </ul>
+          <nav>
+            <input id="toggle" type="checkbox" checked>
+           <h2>Drop Down Menu</h2>
+          <ul>
+           <li><a href="#chapter1">Chapter 01</a></li>
+           <li><a href="#chapter2">Chapter 02</a></li>
+           <li><a href="#chapter3">Chapter 03</a></li>
+           <li><a href="#chapter4">Chapter 04</a></li>
+          </ul>
+      </nav>
           </div>
+        </div>
       </div>
     </nav>
     <div style="background-color: rgb(14, 15, 110); height: 100vh">
       <script src="peliculas_class.js"></script>
     </div>
- </body>
+  </body>
 </html>

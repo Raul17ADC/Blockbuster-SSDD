@@ -12,6 +12,10 @@ public class GreetingController {
     public String greeting(Model model) {
         return "home_template";
     }
+    @GetMapping("/home_login")
+    public String greeting_login(Model model) {
+        return "home_login_template";
+    }
 
     @GetMapping("/series")
     public String greeting_series(Model model) {

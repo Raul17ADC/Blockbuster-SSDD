@@ -1,110 +1,92 @@
 package es.urjc.grupo10.blockbuster;
 
 import java.util.ArrayList;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
 
 public class Pelicula {
-  private String portada;
-  private String titulo;
-  private String director;
-  private String guionista;
-  private ArrayList<String> actores;
-  private ArrayList<String> generos;
-  private String trailer;
-  private double valoracion;
 
-  public Pelicula(String portada, String titulo, String director, String guionista, String trailer, double valoracion) {
-    this.portada = portada;
-    this.titulo = titulo;
-    this.director = director;
-    this.guionista = guionista;
-    this.actores = new ArrayList<String>();
-    this.generos = new ArrayList<String>();
-    this.trailer = trailer;
-    this.valoracion = valoracion;
-  }
+    private Long id;
+    private String titulo;
+    private String director;
+    private String guionista;
+    private String trailer;
+    private double calificacion;
+    private List<String> actores = new ArrayList<>();
+    private List<String> generos = new ArrayList<>();
 
-  // Getters and Setters
-  public String getPortada() {
-    return portada;
-  }
+    public Pelicula() {
+    }
 
-  public void setPortada(String portada) {
-    this.portada = portada;
-  }
+    public Pelicula(Long id, String titulo, String director, String guionista, String trailer, double calificacion) {
+        this.id = id;
+        this.titulo = titulo;
+        this.director = director;
+        this.guionista = guionista;
+        this.trailer = trailer;
+        this.calificacion = calificacion;
+    }
 
-  public String getTitulo() {
-    return titulo;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setTitulo(String titulo) {
-    this.titulo = titulo;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public String getDirector() {
-    return director;
-  }
+    public String getTitulo() {
+        return titulo;
+    }
 
-  public void setDirector(String director) {
-    this.director = director;
-  }
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
+    }
 
-  public String getGuionista() {
-    return guionista;
-  }
+    public String getDirector() {
+        return director;
+    }
 
-  public void setGuionista(String guionista) {
-    this.guionista = guionista;
-  }
+    public void setDirector(String director) {
+        this.director = director;
+    }
 
-  public ArrayList<String> getActores() {
-    return actores;
-  }
+    public String getGuionista() {
+        return guionista;
+    }
 
-  public void setActores(ArrayList<String> actores) {
-    this.actores = actores;
-  }
+    public void setGuionista(String guionista) {
+        this.guionista = guionista;
+    }
 
-  public ArrayList<String> getGeneros() {
-    return generos;
-  }
+    public String getTrailer() {
+        return trailer;
+    }
 
-  public void setGeneros(ArrayList<String> generos) {
-    this.generos = generos;
-  }
+    public void setTrailer(String trailer) {
+        this.trailer = trailer;
+    }
 
-  public String getTrailer() {
-    return trailer;
-  }
+    public double getCalificacion() {
+        return calificacion;
+    }
 
-  public void setTrailer(String trailer) {
-    this.trailer = trailer;
-  }
+    public void setCalificacion(double calificacion) {
+        this.calificacion = calificacion;
+    }
 
-  public double getValoracion() {
-    return valoracion;
-  }
+    public List<String> getActores() {
+        return actores;
+    }
 
-  public void setValoracion(double valoracion) {
-    this.valoracion = valoracion;
-  }
+    public void setActores(List<String> actores) {
+        this.actores = actores;
+    }
 
-  // Methods
-  public void addActor(String actor) {
-    this.actores.add(actor);
-  }
+    public List<String> getGeneros() {
+        return generos;
+    }
 
-  public void removeActor(String actor) {
-    this.actores.remove(actor);
-  }
-
-  public void addGenero(String genero) {
-    this.generos.add(genero);
-  }
-
-  public void removeGenero(String genero) {
-    this.generos.remove(genero);
-  }
+    public void setGeneros(List<String> generos) {
+        this.generos = generos;
+    }
 }

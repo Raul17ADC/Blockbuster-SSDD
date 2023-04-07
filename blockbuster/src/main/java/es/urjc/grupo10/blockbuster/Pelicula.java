@@ -13,6 +13,7 @@ public class Pelicula {
     private double calificacion;
     private List<String> actores = new ArrayList<>();
     private List<String> generos = new ArrayList<>();
+    private List<String> reviews = new ArrayList<>();
 
     public Pelicula() {
     }
@@ -26,6 +27,7 @@ public class Pelicula {
         this.calificacion = calificacion;
     }
 
+    // Getters y setters
     public Long getId() {
         return id;
     }
@@ -88,5 +90,21 @@ public class Pelicula {
 
     public void setGeneros(List<String> generos) {
         this.generos = generos;
+    }
+
+    public List<String> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<String> reviews) {
+        this.reviews = reviews;
+    }
+
+    // Métodos
+    @Override
+    public String toString() {
+        return "Pelicula [id=" + id + ", titulo=" + titulo + ", director=" + director + ", guionista=" + guionista
+                + ", trailer=" + trailer + ", calificacion=" + calificacion + ", actores=" + actores + ", generos="
+                + generos + ", reviews=" + reviews + "]";
     }
 }

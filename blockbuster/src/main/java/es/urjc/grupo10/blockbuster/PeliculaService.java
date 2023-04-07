@@ -1,4 +1,5 @@
 package es.urjc.grupo10.blockbuster;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,4 @@ public class PeliculaService {
         peliculaHashMap.put(tem, pelicula);
         return pelicula;
     }
-
 }

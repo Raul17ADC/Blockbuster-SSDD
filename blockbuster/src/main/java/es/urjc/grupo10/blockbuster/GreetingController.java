@@ -14,6 +14,7 @@ public class GreetingController {
     }
     @GetMapping("/home_login")
     public String greeting_login(Model model) {
+        model.addAttribute("name", "Jorge");
         return "home_login_template";
     }
 

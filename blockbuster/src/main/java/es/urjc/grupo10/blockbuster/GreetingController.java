@@ -13,9 +13,9 @@ public class GreetingController {
         return "home_template";
     }
 
-    @GetMapping("/home_login")
-    public String greeting_login(Model model) {
-        model.addAttribute("name", "Jorge");
+    @PostMapping("/home_login")
+    public String greeting_login(Model model, @RequestParam String username) {
+        model.addAttribute("name", username);
         return "home_login_template";
     }
 

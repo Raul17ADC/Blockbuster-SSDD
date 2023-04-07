@@ -1,4 +1,4 @@
-package es.urjc.grupo10.blockbuster;
+
 
 import java.util.ArrayList;
 import org.springframework.stereotype.Controller;
@@ -14,8 +14,10 @@ public class Pelicula {
   private ArrayList<String> generos;
   private String trailer;
   private double valoracion;
+  private Long id;
 
-  public Pelicula(String portada, String titulo, String director, String guionista, String trailer, double valoracion) {
+  public Pelicula( long id,String portada, String titulo, String director, String guionista, String trailer, double valoracion) {
+    this.id = id;
     this.portada = portada;
     this.titulo = titulo;
     this.director = director;
@@ -107,4 +109,9 @@ public class Pelicula {
   public void removeGenero(String genero) {
     this.generos.remove(genero);
   }
+  
+  public void setId(Long id) {
+    this.id = id;
+}
+
 }

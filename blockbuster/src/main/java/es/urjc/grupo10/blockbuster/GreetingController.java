@@ -12,6 +12,7 @@ public class GreetingController {
     public String greeting(Model model) {
         return "home_template";
     }
+
     @GetMapping("/home_login")
     public String greeting_login(Model model) {
         model.addAttribute("name", "Jorge");
@@ -34,6 +35,7 @@ public class GreetingController {
         model.addAttribute("includeJS", "registro.js");
         return "registro.html";
     }
+
     @GetMapping("/acceso")
     public String greeting_acceso(Model model) {
         model.addAttribute("includeCSS", "acceso.css"); // Agrega esta línea para incluir el archivo CSS
@@ -50,5 +52,4 @@ public class GreetingController {
     public String pelicula(Model model) {
         return "pelicula_template";
     }
-
 }

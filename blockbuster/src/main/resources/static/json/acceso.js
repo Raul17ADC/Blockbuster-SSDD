@@ -14,7 +14,6 @@ form.addEventListener("submit", (event) => {
 
   console.log(`Nombre de Usuario: ${username}`);
   console.log(`Contraseña: ${password}`);
-
 });
 
 const registerForm = document.getElementById("register-form");

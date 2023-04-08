@@ -7,6 +7,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -32,6 +33,16 @@ public class FilmRestController {
     @GetMapping("/{id}")
     public Pelicula getFilmById(@PathVariable Long id) {
         return peliculaService.getFilmById(id);
+    }
+
+    @PostMapping("/{id}/reviews")
+    public ResponseEntity<Object> addReview(@PathVariable Long id, @RequestBody Review review) {
+        Pelicula pelicula = peliculaService.getFilmById(id);
+        if (pelicula == null) {
+            return ResponseEntity.notFound().build();
+        }
+        pelicula.getReviews().add(review.toString());
+        return ResponseEntity.status(HttpStatus.CREATED).body(pelicula);
     }
 
 }

@@ -20,9 +20,15 @@ public class GreetingController {
     }
 
     @GetMapping("/series_login")
-    public String greeting_series_login(@RequestParam(required=false, defaultValue="") String name,Model model) {
+    public String series_login(@RequestParam(required=false, defaultValue="") String name,Model model) {
         model.addAttribute("name", name);
         return "series_login_template";
+    }
+
+    @GetMapping("/peliculas_login")
+    public String peliculas_login(@RequestParam(required=false, defaultValue="") String name,Model model) {
+        model.addAttribute("name", name);
+        return "peliculas_login_template";
     }
 
     @GetMapping("/series")

@@ -26,6 +26,11 @@ public class PeliculaService {
         return peliculaHashMap.values();
     }
 
+    public Pelicula getFilmById(Long id) {
+        return peliculaHashMap.get(id);
+    }
+    
+
     public Pelicula createPelicula(Pelicula pelicula) {
         long tem = id.incrementAndGet();
         pelicula.setId(tem);

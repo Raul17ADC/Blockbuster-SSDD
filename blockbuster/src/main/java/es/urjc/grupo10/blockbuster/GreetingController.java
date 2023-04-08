@@ -6,8 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+
 @Controller
 public class GreetingController {
+
+    @Autowired
+    private PeliculaService peliculaService;
+
     @GetMapping("/home")
     public String greeting(Model model) {
         return "home_template";
@@ -19,14 +24,23 @@ public class GreetingController {
         return "home_login_template";
     }
 
+    @GetMapping("/home_login/{id}")
+    public String mostrarPelicula(@PathVariable Long id,
+            @RequestParam(required = false, defaultValue = "") String username, Model model) {
+        Pelicula pelicula = peliculaService.getFilmById(id);
+        model.addAttribute("name", username);
+        model.addAttribute("pelicula", pelicula);
+        return "pelicula_template";
+    }
+
     @GetMapping("/series_login")
-    public String series_login(@RequestParam(required=false, defaultValue="") String name,Model model) {
+    public String series_login(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", name);
         return "series_login_template";
     }
 
     @GetMapping("/peliculas_login")
-    public String peliculas_login(@RequestParam(required=false, defaultValue="") String name,Model model) {
+    public String peliculas_login(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", name);
         return "peliculas_login_template";
     }
@@ -64,6 +78,7 @@ public class GreetingController {
     public String pelicula(Model model) {
         return "pelicula_template";
     }
+
     @GetMapping("/prueba")
     public String prueba(Model model) {
         return "prueba";

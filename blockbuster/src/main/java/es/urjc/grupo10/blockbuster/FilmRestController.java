@@ -29,4 +29,9 @@ public class FilmRestController {
         return peliculaService.getAll();
     }
 
+    @GetMapping("/{id}")
+    public Pelicula getFilmById(@PathVariable Long id) {
+        return peliculaService.getFilmById(id);
+    }
+
 }

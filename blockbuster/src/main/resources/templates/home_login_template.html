@@ -42,13 +42,11 @@
             <img class="profile-image" src="profile_picture.png" alt="profile-image">
             {{name}}
           </button>
-
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" href="#"><span class="glyphicon glyphicon-pencil"></span> Perfil</a></li>
-            <li><a class="dropdown-item" href="#"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a>
-            </li>
+            <li><a class="dropdown-item" href="/home" onclick="return confirm('¿Estás seguro de que quieres cerrar sesión? Volverás a la página principal.')"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
           </ul>
-        </div>
+        </div>        
       </div>
     </div>
   </nav>

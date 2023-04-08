@@ -16,7 +16,7 @@ public class PeliculaService {
 
     public PeliculaService() {
         long tem = id.incrementAndGet();
-        Pelicula pelicula = new Pelicula(null, "Pelicula1", "Director1", "Guionista1", "Trailer1", 5.0);
+        Pelicula pelicula = new Pelicula(null, "Pelicula1", "Director1", "Guionista1", "Trailer1", "Descripcion1",5.0);
         pelicula.setActores(new ArrayList<String>(Arrays.asList("Actor1", "Actor2")));
         pelicula.setGeneros(new ArrayList<String>(Arrays.asList("Genero1", "Genero2")));
         peliculaHashMap.put(tem, pelicula);

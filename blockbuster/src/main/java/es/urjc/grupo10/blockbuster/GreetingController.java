@@ -64,4 +64,8 @@ public class GreetingController {
     public String pelicula(Model model) {
         return "pelicula_template";
     }
+    @GetMapping("/prueba")
+    public String prueba(Model model) {
+        return "prueba";
+    }
 }

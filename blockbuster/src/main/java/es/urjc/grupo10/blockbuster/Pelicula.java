@@ -74,7 +74,7 @@ public class Pelicula {
         return descripcion;
     }
 
-    public void setDescripcion(String calificacion) {
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 

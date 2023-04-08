@@ -18,22 +18,27 @@
 <body>
   <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(41, 82, 172)">
     <div class="container-fluid">
-      <a class="navbar-brand" href="/home"><img
-          src="https://bendblockbuster.com/wp-content/themes/blockbuster/assets/images/blockbuster-logo.svg" width="300"
-          height="50" />
+      <a class="navbar-brand" href="/home_login"
+        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <img src="https://bendblockbuster.com/wp-content/themes/blockbuster/assets/images/blockbuster-logo.svg"
+          width="300" height="50" />
       </a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item me-md-4">
-            <a class="nav-link active fs-2 text-decoration-underline" aria-current="page" href="/home"
-              style="color: white">Home
-            </a>
-          </li>
+          <form method="post" action="/home_login">
+            <input type="hidden" name="username" value="{{name}}" />
+            <li class="nav-item me-md-4">
+              <button type="submit" class="btn btn-link nav-link active fs-2 text-decoration-underline"
+                style="color: white">
+                Home
+              </button>
+            </li>
+          </form>
           <li class="nav-item me-md-4">
             <a class="nav-link fs-2" href="/series" style="color: white">Series</a>
           </li>
           <li class="nav-item me-md-4">
-            <a class="nav-link fs-2" href="/peliculas" style="color: white">Peliculas</a>
+            <a class="nav-link fs-2" href="/peliculas" style="color: white">Películas</a>
           </li>
         </ul>
         <div class="dropdown">
@@ -44,9 +49,16 @@
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
             <li><a class="dropdown-item" href="#"><span class="glyphicon glyphicon-pencil"></span> Perfil</a></li>
-            <li><a class="dropdown-item" href="/home" onclick="return confirm('¿Estás seguro de que quieres cerrar sesión? Volverás a la página principal.')"><span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
+            <li><a class="dropdown-item" href="/home"
+                onclick="return confirm('¿Estás seguro de que quieres cerrar sesión? Volverás a la página principal.')"><span
+                  class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
+            <form id="logout-form" action="/home_login" method="POST" style="display: none;">
+              <input type="hidden" name="_method" value="POST">
+              <input type="hidden" name="username" value="{{name}}">
+              @csrf
+            </form>
           </ul>
-        </div>        
+        </div>
       </div>
     </div>
   </nav>

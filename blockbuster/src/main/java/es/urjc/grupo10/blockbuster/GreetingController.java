@@ -83,4 +83,8 @@ public class GreetingController {
     public String prueba(Model model) {
         return "prueba";
     }
+    @GetMapping("/pagina_usuario")
+    public String greetinglogueado(Model model) {
+        return "pagina_usuario";
+    }
 }

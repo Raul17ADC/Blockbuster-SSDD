@@ -11,6 +11,7 @@ public class Pelicula {
     private String guionista;
     private String trailer;
     private String descripcion;
+    private String imagen;
     private double calificacion;
     private List<String> actores = new ArrayList<>();
     private List<String> generos = new ArrayList<>();
@@ -19,13 +20,14 @@ public class Pelicula {
     public Pelicula() {
     }
 
-    public Pelicula(Long id, String titulo, String director, String guionista , String trailer, String descripcion, double calificacion) {
+    public Pelicula(Long id, String titulo, String director, String guionista , String trailer, String descripcion, String imagen,double calificacion) {
         this.id = id;
         this.titulo = titulo;
         this.director = director;
         this.guionista = guionista;
         this.trailer = trailer;
         this.descripcion = descripcion;
+        this.imagen = imagen;
         this.calificacion = calificacion;
     }
 
@@ -77,7 +79,13 @@ public class Pelicula {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+    public String getImagen() {
+        return imagen;
+    }
 
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
+    }
 
     public double getCalificacion() {
         return calificacion;

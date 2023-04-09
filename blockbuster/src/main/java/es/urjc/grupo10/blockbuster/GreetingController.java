@@ -52,6 +52,7 @@ public class GreetingController {
 
     @GetMapping("/peliculas")
     public String greeting_peliculas(Model model) {
+        model.addAttribute("peliculas", peliculaService.getAll());
         return "peliculas_template";
     }
 

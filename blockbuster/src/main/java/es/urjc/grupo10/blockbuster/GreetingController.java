@@ -79,10 +79,7 @@ public class GreetingController {
         return "pelicula_template";
     }
 
-    @GetMapping("/prueba")
-    public String prueba(Model model) {
-        return "prueba";
-    }
+    
     @GetMapping("/pagina_usuario")
     public String paginaUsuario(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", name);

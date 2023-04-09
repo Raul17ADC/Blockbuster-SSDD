@@ -51,10 +51,10 @@
                 {{pelicula.titulo}}</p>
             <div class=" d-flex container-fluid justify-content-evenly justify-content-lg-center my-4">
                 <div class="container-fluid " width="600" height="900">
-                    <figure class="d-flex justify-content-center"><img src="https://pics.filmaffinity.com/Oso_vicioso-995826451-large.jpg" width="500" height="700">
+                    <figure class="d-flex justify-content-center"><img src= {{pelicula.imagen}} width="500" height="700">
                     </figure>
                     <div class="container-fluid">
-                        <figure class="d-flex justify-content-center "><img src="HKhEeuqm&ust=1BEQjRxqFwoTCNCdgPOmnf4CFQAAAAAdAAAAABAE" class="img-fluid mx-1"
+                        <figure class="d-flex justify-content-center "><img src="https://e7.pngegg.com/pngimages/166/644/png-clipart-star-star-thumbnail.png" class="img-fluid mx-1"
                                 width="60" height="40">
                             <p class="d-flex fs-1  my-2 justify-content-center" style="color: white;">
                                 {{pelicula.calificacion}} / 10</p>
@@ -95,12 +95,12 @@
                     style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;"
                     style="display: inline-flex;">Generos :
                     <ul class="list-group  list-group-horizontal">
-                        {{#pelicula.actores}}
+                        {{#pelicula.generos}}
                         <li class="list-group-item fs-3"
                             style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">
                             {{.}}
                         </li>
-                        {{/pelicula.actores}}
+                        {{/pelicula.generos}}
                     </ul>
                 </li>
             </ul>

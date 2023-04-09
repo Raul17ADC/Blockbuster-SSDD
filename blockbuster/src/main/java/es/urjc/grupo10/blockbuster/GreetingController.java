@@ -2,6 +2,7 @@ package es.urjc.grupo10.blockbuster;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,29 +58,24 @@ public class GreetingController {
     }
 
     @GetMapping("/peliculas/{id}")
-    public ModelAndView mostrarPelicula(@PathVariable("id") String id,Model model) {
-        // Aquí debes obtener la película correspondiente al id de la película
-        model.addAttribute("peliculas", peliculaService.getAll());
-        Pelicula pelicula = model.getFilmById(id);
-        // Creas un nuevo objeto ModelAndView para la nueva página HTML
-        ModelAndView modelAndView = new ModelAndView("nueva_plantilla");
-        // Agregas la película al objeto ModelAndView para que esté disponible en la
-        // plantilla
-        modelAndView.addObject("pelicula", pelicula);
-
-        return modelAndView;
+    public String mostrarPelicula(@PathVariable("id") Long id,Model model) {
+        Pelicula pelicula = peliculaService.getFilmById(id);
+        model.addAttribute("pelicula", pelicula);       
+        return "pelicula_template.html";
+    
+        
     }
 
     @GetMapping("/registro")
     public String greeting_resgistro(Model model) {
-        model.addAttribute("includeCSS", "registro.css"); // Agrega esta línea para incluir el archivo CSS
+        model.addAttribute("includeCSS", "registro.css"); 
         model.addAttribute("includeJS", "registro.js");
         return "registro.html";
     }
 
     @GetMapping("/acceso")
     public String greeting_acceso(Model model) {
-        model.addAttribute("includeCSS", "acceso.css"); // Agrega esta línea para incluir el archivo CSS
+        model.addAttribute("includeCSS", "acceso.css"); 
         model.addAttribute("includeJS", "acceso.js");
         return "acceso.html";
     }
@@ -89,11 +85,7 @@ public class GreetingController {
         return "error";
     }
 
-    @GetMapping("/pelicula")
-    public String pelicula(Model model) {
-        return "pelicula_template";
-    }
-
+    
     @GetMapping("/pagina_usuario")
     public String paginaUsuario(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", name);

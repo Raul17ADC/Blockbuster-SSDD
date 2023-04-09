@@ -22,7 +22,7 @@ public class PeliculaService {
         peliculaHashMap.put(tem, pelicula);
         
         Pelicula pelicula2 = new Pelicula(null, "John Wick 3", "Chad Stahelski", "Derek Kolstad", "https://www.youtube.com/embed/30R7Io_DmyU", "John Wick huye tras matar a un miembro del gremio internacional de asesinos, y con un precio de 14 millones de dólares por su cabeza, es el objetivo de sicarios de todo el mundo.","john_wick_3.webp",7.4);
-        pelicula2.setActores(new ArrayList<String>(Arrays.asList("Keanu Reeves", "Halle Berry","Ian McShane" , "Anjelica Huston", "Mark Dacascos", "Laurence Fishburne", "Lance Reddick", "Asia Kate Dillon", "Jason Mantzoukas", "Yayan Ruhian")));
+        pelicula2.setActores(new ArrayList<String>(Arrays.asList("Keanu Reeves", "Halle Berry","Ian McShane" , "Anjelica Huston", "Mark Dacascos", "Laurence Fishburne", "Lance Reddick")));
         pelicula2.setGeneros(new ArrayList<String>(Arrays.asList("Accion", "Crimen", "Suspense")));
         createPelicula(pelicula2);
 

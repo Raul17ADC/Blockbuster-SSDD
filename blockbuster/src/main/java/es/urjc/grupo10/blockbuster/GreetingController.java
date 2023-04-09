@@ -81,7 +81,8 @@ public class GreetingController {
 
     
     @GetMapping("/pagina_usuario")
-    public String greetinglogueado(Model model) {
+    public String paginaUsuario(@RequestParam(required = false, defaultValue = "") String name, Model model) {
+        model.addAttribute("name", name);
         return "pagina_usuario";
     }
 }

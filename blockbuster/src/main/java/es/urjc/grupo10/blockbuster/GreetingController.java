@@ -61,7 +61,7 @@ public class GreetingController {
     public String mostrarPelicula(@PathVariable("id") Long id,Model model) {
         Pelicula pelicula = peliculaService.getFilmById(id);
         model.addAttribute("pelicula", pelicula);       
-        return "pelicula_template.html";
+        return "pelicula_template";
     
         
     }

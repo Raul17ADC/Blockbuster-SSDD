@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class GreetingController {
@@ -56,6 +56,20 @@ public class GreetingController {
         return "peliculas_template";
     }
 
+    @GetMapping("/peliculas/{id}")
+    public ModelAndView mostrarPelicula(@PathVariable("id") String id,Model model) {
+        // Aquí debes obtener la película correspondiente al id de la película
+        model.addAttribute("peliculas", peliculaService.getAll());
+        Pelicula pelicula = model.getFilmById(id);
+        // Creas un nuevo objeto ModelAndView para la nueva página HTML
+        ModelAndView modelAndView = new ModelAndView("nueva_plantilla");
+        // Agregas la película al objeto ModelAndView para que esté disponible en la
+        // plantilla
+        modelAndView.addObject("pelicula", pelicula);
+
+        return modelAndView;
+    }
+
     @GetMapping("/registro")
     public String greeting_resgistro(Model model) {
         model.addAttribute("includeCSS", "registro.css"); // Agrega esta línea para incluir el archivo CSS
@@ -80,7 +94,6 @@ public class GreetingController {
         return "pelicula_template";
     }
 
-    
     @GetMapping("/pagina_usuario")
     public String paginaUsuario(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", name);

@@ -27,12 +27,11 @@ public class GreetingController {
     }
 
     @GetMapping("/home_login/{id}")
-    public String mostrarPelicula(@PathVariable Long id,
-            @RequestParam(required = false, defaultValue = "") String username, Model model) {
+    public String mostrarPelicula(@PathVariable Long id,@RequestParam(required = false, defaultValue = "") String username, Model model) {
         Pelicula pelicula = peliculaService.getFilmById(id);
         model.addAttribute("name", username);
         model.addAttribute("pelicula", pelicula );
-        return "pelicula_template";
+        return "pelicula_login_template";
     }
 
     @GetMapping("/peliculas_login")

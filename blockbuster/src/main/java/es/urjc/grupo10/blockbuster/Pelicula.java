@@ -115,6 +115,17 @@ public class Pelicula {
         return reviews;
     }
 
+    /*public String getReviewById(Long reviewId) {
+        for (String review : reviews) {
+            String[] parts = review.split(":");
+            int id = Integer.parseInt(parts[0].trim());
+            if (id == reviewId) {
+                return parts[1].trim();
+            }
+        }
+        return null;
+    }    */
+
     public void setReviews(List<String> reviews) {
         this.reviews = reviews;
     }

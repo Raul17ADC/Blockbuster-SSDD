@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="/css/cards.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
   <title>Pagina inicio</title>
 </head>
 
@@ -36,7 +37,7 @@
               </button>
             </li>
           </form>
-          
+
           <li class="nav-item me-md-4">
             <a class="nav-link fs-2" href="/peliculas_login?name={{name}}" style="color: white">Películas</a>
           </li>
@@ -48,10 +49,11 @@
             {{name}}
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="/pagina_usuario?name={{name}}"><span class="glyphicon glyphicon-pencil"></span>Perfil</a></li>
+            <li><a class="dropdown-item" href="/pagina_usuario?name={{name}}"><span
+                  class="fas fa-pencil-alt"></span>Perfil</a></li>
             <li><a class="dropdown-item" href="/home"
                 onclick="return confirm('¿Estás seguro de que quieres cerrar sesión? Volverás a la página principal.')"><span
-                  class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
+                  class="fas fa-door-open"></span> Cerrar Sesión</a></li>
             <form id="logout-form" action="/home_login" method="POST" style="display: none;">
               <input type="hidden" name="_method" value="POST">
               <input type="hidden" name="username" value="{{name}}">
@@ -122,29 +124,31 @@
       </div>
     </div>
     <div class="container-fluid">
-      <p class= "d-flex fs-1  mx-6 my-2" style="color: white;" >Recomendaciones:</p>
+      <p class="d-flex fs-1  mx-6 my-2" style="color: white;">Recomendaciones:</p>
       <div class="container-fluid d-flex justify-content-center">
         <div class="wrapper">
-          <div class="card " style="flex-direction: row;" >
+          <div class="card " style="flex-direction: row;">
             <img src="Oso_vicioso.jpg" id="card">
             <div class="descriptions">
               <h1>Oso vicioso</h1>
               <p>
-                Cuenta la historia de un narcotraficante cuyo avión se estrella con un cargamento de cocaína que es encontrada por un oso negro, quien se la come.
+                Cuenta la historia de un narcotraficante cuyo avión se estrella con un cargamento de cocaína que es
+                encontrada por un oso negro, quien se la come.
               </p>
-              <button >
+              <button>
                 <i class="fab fa-youtube"></i>
                 Play trailer on YouTube
               </button>
               <a href="/home_login/{id}?username={username}" class="btn btn-primary">Ver película</a>
             </div>
           </div>
-          <div class="card " style="flex-direction: row;" >
+          <div class="card " style="flex-direction: row;">
             <img src="John_wick_3.webp" id="card">
             <div class="descriptions">
               <h1>John Wick 3</h1>
               <p>
-                John Wick huye tras matar a un miembro del gremio internacional de asesinos, y con un precio de 14 millones de dólares por su cabeza, es el objetivo de sicarios de todo el mundo.
+                John Wick huye tras matar a un miembro del gremio internacional de asesinos, y con un precio de 14
+                millones de dólares por su cabeza, es el objetivo de sicarios de todo el mundo.
               </p>
               <button>
                 <i class="fab fa-youtube"></i>
@@ -157,20 +161,22 @@
             <div class="descriptions">
               <h1>Karate a muerte en Torremolinos</h1>
               <p>
-                Para impedir que el doctor Maldedades invoque a Jocántaro y de paso salvar a su novia, Jess y la Hermandad de Surferos Católicos deberán enfrentarse con kárate a magia negra y ninjas zombi.
+                Para impedir que el doctor Maldedades invoque a Jocántaro y de paso salvar a su novia, Jess y la
+                Hermandad de Surferos Católicos deberán enfrentarse con kárate a magia negra y ninjas zombi.
               </p>
               <button>
                 <i class="fab fa-youtube"></i>
                 Play trailer on YouTube
               </button>
             </div>
-          </div>          
+          </div>
           <div class="card" style="flex-direction: row;">
             <img src="resacon.jpg" id="card">
             <div class="descriptions">
               <h1>Resacon en las Vegas</h1>
               <p>
-                Tres amigos se despiertan en Las Vegas después de una despedida de soltero sin memoria alguna de la noche anterior y habiendo perdido al novio. Recorren la ciudad para encontrarle antes de su boda.
+                Tres amigos se despiertan en Las Vegas después de una despedida de soltero sin memoria alguna de la
+                noche anterior y habiendo perdido al novio. Recorren la ciudad para encontrarle antes de su boda.
               </p>
               <button>
                 <i class="fab fa-youtube"></i>
@@ -183,7 +189,8 @@
             <div class="descriptions">
               <h1>Equalizer 2</h1>
               <p>
-                Robert McCall imparte una justicia inquebrantable a los explotados y oprimidos, pero eso podría cambiar cuando se trata de un ser amado. </p>
+                Robert McCall imparte una justicia inquebrantable a los explotados y oprimidos, pero eso podría cambiar
+                cuando se trata de un ser amado. </p>
               <button>
                 <i class="fab fa-youtube"></i>
                 Play trailer on YouTube

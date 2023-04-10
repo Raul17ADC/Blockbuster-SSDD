@@ -1,14 +1,22 @@
-.greeting{
-    color:white;
+.greeting {
+    color: white;
 }
 
 .profile-image {
     width: 30px;
     height: 30px;
     border-radius: 50%;
-}  
+}
 
-.dropdown{
+.dropdown {
     margin-left: 20px;
 }
-  
+
+.dropdown-item .fas.fa-pencil-alt {
+    margin-right: 10px;
+}
+
+.fas.fa-door-open:before {
+    content: "\f52b";
+    margin-right: 10px;
+}

@@ -119,7 +119,6 @@
             <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
               integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
               crossorigin="anonymous"></script>
-
           </div>
         </div>
       </div>
@@ -128,85 +127,33 @@
       <p class="d-flex fs-1  mx-6 my-2" style="color: white;">Recomendaciones:</p>
       <div class="container-fluid d-flex justify-content-center">
         <div class="wrapper">
+          {{#peliculas}}
+
           <div class="card " style="flex-direction: row;">
-            <img src="Oso_vicioso.jpg" id="card">
+            <img src={{imagen}} id="card">
             <div class="descriptions">
-              <h1>Oso vicioso</h1>
+              <h1>{{titulo}} </h1>
               <p>
-                Cuenta la historia de un narcotraficante cuyo avión se estrella con un cargamento de cocaína que es
-                encontrada por un oso negro, quien se la come.
+                {{descripcion}}
               </p>
-              <button>
-                <i class="fab fa-youtube"></i>
-                Play trailer on YouTube
-              </button>
-              <a href="/home_login/{id}?username={username}" class="btn btn-primary">Ver película</a>
+              <a href="/peliculas_login/{{id}}?name={{name}}" class="btn btn-primary">Ver película</a>
             </div>
           </div>
-          <div class="card " style="flex-direction: row;">
-            <img src="John_wick_3.webp" id="card">
-            <div class="descriptions">
-              <h1>John Wick 3</h1>
-              <p>
-                John Wick huye tras matar a un miembro del gremio internacional de asesinos, y con un precio de 14
-                millones de dólares por su cabeza, es el objetivo de sicarios de todo el mundo.
-              </p>
-              <button>
-                <i class="fab fa-youtube"></i>
-                Play trailer on YouTube
-              </button>
-            </div>
-          </div>
-          <div class="card" style="flex-direction: row;">
-            <img src="Karate.jpg" id="card">
-            <div class="descriptions">
-              <h1>Karate a muerte en Torremolinos</h1>
-              <p>
-                Para impedir que el doctor Maldedades invoque a Jocántaro y de paso salvar a su novia, Jess y la
-                Hermandad de Surferos Católicos deberán enfrentarse con kárate a magia negra y ninjas zombi.
-              </p>
-              <button>
-                <i class="fab fa-youtube"></i>
-                Play trailer on YouTube
-              </button>
-            </div>
-          </div>
-          <div class="card" style="flex-direction: row;">
-            <img src="resacon.jpg" id="card">
-            <div class="descriptions">
-              <h1>Resacon en las Vegas</h1>
-              <p>
-                Tres amigos se despiertan en Las Vegas después de una despedida de soltero sin memoria alguna de la
-                noche anterior y habiendo perdido al novio. Recorren la ciudad para encontrarle antes de su boda.
-              </p>
-              <button>
-                <i class="fab fa-youtube"></i>
-                Play trailer on YouTube
-              </button>
-            </div>
-          </div>
-          <div class="card" style="flex-direction: row;">
-            <img src="equalizer_2.webp" id="card">
-            <div class="descriptions">
-              <h1>Equalizer 2</h1>
-              <p>
-                Robert McCall imparte una justicia inquebrantable a los explotados y oprimidos, pero eso podría cambiar
-                cuando se trata de un ser amado. </p>
-              <button>
-                <i class="fab fa-youtube"></i>
-                Play trailer on YouTube
-              </button>
-            </div>
-          </div>
+
+          {{/peliculas}}
         </div>
+        
       </div>
     </div>
   </div>
   <div class="social-media">
     <h2>Nuestras redes sociales</h2>
-    <a href="https://www.instagram.com/blockbuster_sd/?igshid=YmMyMTA2M2Y%3D" target="_blank"><img src="logo_instagram.png" alt="Red social 1"></a>
-    <a href="https://twitter.com/blockbuster_sd?s=11" target="_blank"><img src="logo_twitter.png" alt="Red social 2"></a>
-    <a href="https://www.tiktok.com/@blockbusterdistri?is_from_webapp=1&sender_device=pc" target="_blank"><img src="logo_tiktok.png" alt="Red social 3"></a>
+    <a href="https://www.instagram.com/blockbuster_sd/?igshid=YmMyMTA2M2Y%3D" target="_blank"><img
+        src="logo_instagram.png" alt="Red social 1"></a>
+    <a href="https://twitter.com/blockbuster_sd?s=11" target="_blank"><img src="logo_twitter.png"
+        alt="Red social 2"></a>
+    <a href="https://www.tiktok.com/@blockbusterdistri?is_from_webapp=1&sender_device=pc" target="_blank"><img
+        src="logo_tiktok.png" alt="Red social 3"></a>
   </div>
 </body>
 

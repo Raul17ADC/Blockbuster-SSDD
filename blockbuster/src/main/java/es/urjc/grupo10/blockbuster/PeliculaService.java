@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
+import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -82,6 +83,12 @@ public class PeliculaService {
         pelicula6.setReviews(new ArrayList<String>(Arrays.asList("Me encanta")));
         createPelicula(pelicula6);
 
+    }
+    public Collection<Pelicula> getRecomendada(int i) {
+        return peliculaHashMap.values()
+                .stream()
+                .limit(i)
+                .collect(Collectors.toList());
     }
 
     public Collection<Pelicula> getAll() {

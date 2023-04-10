@@ -14,7 +14,7 @@ public class GreetingController {
     @Autowired
     private PeliculaService peliculaService;
 
-    @GetMapping("/home")
+    @GetMapping("/homa")
     public String greeting(Model model) {
         return "home_template";
     }

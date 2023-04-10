@@ -62,7 +62,7 @@
           </div>
         </div>
       </nav>
-      <div style="background-color: rgb(14, 15, 110); height: 100vh;">
+      <div >
         <div class="container-fluid" style="background-color: rgb(14, 15, 110);">
             <p class="d-flex fs-1 text-decoration-underline mx-6 my-2 justify-content-center" style="color: white;">
                 {{pelicula.titulo}}</p>
@@ -86,7 +86,66 @@
                 </div>
             </div>
         </div>
-        
+        <div class="container-fluid">
+            <ul class="list-group list-group-flush mx-2 ">
+                <li class="list-group-item fs-3"
+                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Director
+                    : {{pelicula.director}} </li>
+                <li class="list-group-item fs-3"
+                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Guionista
+                    : {{pelicula.guionista}}</li>
+                <li class="list-group-item fs-3"
+                    style="background-color: rgb(14, 15, 110); color: white;  border-color: cadetblue ;"
+                    style="display: inline-flex;">Actores :
+
+                    <ul class="list-group  list-group-horizontal">
+                        {{#pelicula.actores}}
+                        <li class="list-group-item fs-3"
+                            style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">
+                            {{.}}</li>
+                        {{/pelicula.actores}}
+                    </ul>
+
+                </li>
+                <li class="list-group-item fs-3"
+                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;"
+                    style="display: inline-flex;">Generos :
+                    <ul class="list-group  list-group-horizontal">
+                        {{#pelicula.generos}}
+                        <li class="list-group-item fs-3"
+                            style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">
+                            {{.}}
+                        </li>
+                        {{/pelicula.generos}}
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="container-fluid">
+            <div id="comment-section">
+                <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Reseñas:</p>
+                <div class="container-fluid d-flex justify-content-center my-2 " style="color: rgb(255, 255, 255);">
+
+                    <div id="comments-container">
+                        {{#pelicula.reviews}}
+                        <p>{{.}}</p>
+                        {{/pelicula.reviews}}
+                    </div>
+                </div>
+            </div>
+            <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Escribe tu reseña:</p>
+
+            <div class="input-field">
+                <textarea class="form-control" rows="10" id="comment-input"></textarea><br>
+            </div>
+            <div class="container-fluid d-flex justify-content-center mb-3"> <button type="submit"
+                    class="btn btn-primary " id="submit-button">Enviar
+                    reseña</button></div>
+            <script src="/json/pelicula.js">
+            </script>
+        </div>
+    </div>
+    </div>
     
 
 </body>

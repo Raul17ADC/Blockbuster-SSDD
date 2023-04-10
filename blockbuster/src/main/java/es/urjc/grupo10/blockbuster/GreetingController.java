@@ -43,9 +43,10 @@ public class GreetingController {
     }
 
     @GetMapping("/peliculas_login/{id}")
-    public String mostrarPelicula(@RequestParam(required = false, defaultValue = "") String name, Model model) {
+    public String mostrarPeliculaPeliculas(@PathVariable Long id,@RequestParam(required = false, defaultValue = "") String name, Model model) {
+        Pelicula pelicula = peliculaService.getFilmById(id);
         model.addAttribute("name", name);
-        model.addAttribute("peliculas", peliculaService.getAll());
+        model.addAttribute("pelicula", pelicula);
         return "pelicula_login_template";
     }
 

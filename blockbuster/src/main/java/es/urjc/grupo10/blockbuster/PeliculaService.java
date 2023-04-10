@@ -16,7 +16,7 @@ public class PeliculaService {
 
     public PeliculaService() {
         long tem = id.incrementAndGet();
-        Pelicula pelicula = new Pelicula(tem, "Oso vicioso", "Elizabeth Banks", "Jimmy Warden", "https://www.youtube.com/embed/CvYGl5BESEI", "Cuenta la historia de un narcotraficante cuyo avión se estrella con un cargamento de cocaína que es encontrada por un oso negro, quien se la come.","https://pics.filmaffinity.com/Oso_vicioso-995826451-large.jpg",6.0);
+        Pelicula pelicula = new Pelicula(tem, "Oso vicioso", "Elizabeth Banks", "Jimmy Warden", "https://www.youtube.com/embed/CvYGl5BESEI", "Cuenta la historia de un narcotraficante cuyo avión se estrella con un cargamento de cocaína que es encontrada por un oso negro, quien se la come.","https://www.lahiguera.net/cinemania/pelicula/10524/oso_vicioso-cartel-10824.jpg",6.0);
         pelicula.setActores(new ArrayList<String>(Arrays.asList("Keri Russell", "Alden Ehrenreich","O'Shea Jackson Jr")));
         pelicula.setGeneros(new ArrayList<String>(Arrays.asList("Comedia", "Suspense")));
         peliculaHashMap.put(tem, pelicula);
@@ -31,7 +31,7 @@ public class PeliculaService {
         pelicula3.setGeneros(new ArrayList<String>(Arrays.asList("Accion", "Comedia", "Fantasia")));
         createPelicula(pelicula3);
 
-        Pelicula pelicula4 = new Pelicula(null, "The Equalizer 2", "Antoine Fuqua",  "Richard Wenk", "https://www.youtube.com/embed/IibsmbB6PXQ", "Robert McCall imparte una justicia inquebrantable a los explotados y oprimidos, pero eso podría cambiar cuando se trata de un ser amado.","https://pics.filmaffinity.com/The_Equalizer_2-467654738-large.jpg",6.7);
+        Pelicula pelicula4 = new Pelicula(null, "The Equalizer 2", "Antoine Fuqua",  "Richard Wenk", "https://www.youtube.com/embed/IibsmbB6PXQ", "Robert McCall imparte una justicia inquebrantable a los explotados y oprimidos, pero eso podría cambiar cuando se trata de un ser amado.","https://m.media-amazon.com/images/M/MV5BMTU2OTYzODQyMF5BMl5BanBnXkFtZTgwNjU3Njk5NTM@._V1_FMjpg_UX1000_.jpg",6.7);
         pelicula4.setActores(new ArrayList<String>(Arrays.asList("Denzel Washington", "Pedro Pascal", "Bill Pullman", "Melissa Leo", "Ashton Sanders", "Jonathan Scarfe")));
         pelicula4.setGeneros(new ArrayList<String>(Arrays.asList("Accion", "Crimen", "Suspense")));
         createPelicula(pelicula4);

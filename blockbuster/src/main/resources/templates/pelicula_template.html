@@ -106,9 +106,13 @@
         <div class="container-fluid">
             <div id="comment-section">
                 <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Reseñas:</p>
-
                 <div class="container-fluid d-flex justify-content-center my-2 " style="color: rgb(255, 255, 255);">
-                    <div id="comments-container"></div>
+                    
+                    <div id="comments-container">
+                        {{#pelicula.reviews}}
+                        <p>{{.}}</p>
+                    {{/pelicula.reviews}}
+                </div>
                 </div>
             </div>
             <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Escribe tu reseña:</p>

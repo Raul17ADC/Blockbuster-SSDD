@@ -4,8 +4,9 @@ const commentsContainer = document.getElementById("comments-container");
 
 submitButton.addEventListener("click", function () {
   const comment = commentInput.value;
-  const commentElement = document.createElement("div");
+  const commentElement = document.createElement("div"); 
   commentElement.innerHTML = comment;
   commentsContainer.appendChild(commentElement);
   commentInput.value = "";
+  
 });

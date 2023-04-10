@@ -34,15 +34,11 @@ public class GreetingController {
         return "pelicula_template";
     }
 
-    
-
     @GetMapping("/peliculas_login")
     public String peliculas_login(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", name);
         return "peliculas_login_template";
     }
-
-   
 
     @GetMapping("/peliculas")
     public String greeting_peliculas(Model model) {
@@ -51,24 +47,23 @@ public class GreetingController {
     }
 
     @GetMapping("/peliculas/{id}")
-    public String mostrarPelicula(@PathVariable("id") Long id,Model model) {
+    public String mostrarPelicula(@PathVariable("id") Long id, Model model) {
         Pelicula pelicula = peliculaService.getFilmById(id);
-        model.addAttribute("pelicula", pelicula);       
+        model.addAttribute("pelicula", pelicula);
         return "pelicula_template";
-    
-        
+
     }
 
     @GetMapping("/registro")
     public String greeting_resgistro(Model model) {
-        model.addAttribute("includeCSS", "registro.css"); 
+        model.addAttribute("includeCSS", "registro.css");
         model.addAttribute("includeJS", "registro.js");
         return "registro.html";
     }
 
     @GetMapping("/acceso")
     public String greeting_acceso(Model model) {
-        model.addAttribute("includeCSS", "acceso.css"); 
+        model.addAttribute("includeCSS", "acceso.css");
         model.addAttribute("includeJS", "acceso.js");
         return "acceso.html";
     }
@@ -78,7 +73,6 @@ public class GreetingController {
         return "error";
     }
 
-    
     @GetMapping("/pagina_usuario")
     public String paginaUsuario(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", name);

@@ -58,14 +58,14 @@ public class GreetingController {
     public String greeting_resgistro(Model model) {
         model.addAttribute("includeCSS", "registro.css");
         model.addAttribute("includeJS", "registro.js");
-        return "registro.html";
+        return "registro";
     }
 
     @GetMapping("/acceso")
     public String greeting_acceso(Model model) {
         model.addAttribute("includeCSS", "acceso.css");
         model.addAttribute("includeJS", "acceso.js");
-        return "acceso.html";
+        return "acceso";
     }
 
     @GetMapping("/error")

@@ -11,7 +11,7 @@ form.addEventListener("submit", (event) => {
   const username = usernameInput.value;
   const password = passwordInput.value;
 
-  // TODO: Enviar datos del formulario al servidor para registrar el usuario
+  // ALL: Send form data to server to register user
 
   console.log(`Email: ${email}`);
   console.log(`Nombre de Usuario: ${username}`);

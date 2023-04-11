@@ -1,16 +1,16 @@
 .social-media {
-    text-align: center;
-    margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
 }
 
 .social-media h2 {
-    margin-top: 0;
-    color: #ffffff;
+  margin-top: 0;
+  color: #ffffff;
 }
 
 .social-media img {
-    width: 40px;
-    height: 40px;
-    margin: 5px;
-    cursor: pointer;
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  cursor: pointer;
 }

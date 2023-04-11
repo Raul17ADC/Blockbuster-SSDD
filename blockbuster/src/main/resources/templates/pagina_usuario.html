@@ -14,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="/css/social_media.css" />
-    <title>Pagina Pelicula</title>
+    <title>Página Película</title>
 </head>
 
 <body style="background-color: rgb(14, 15, 110);">
@@ -40,7 +40,7 @@
                     </form>
 
                     <li class="nav-item me-md-4">
-                        <a class="nav-link fs-2" href="/peliculas_login?name={{name}}"
+                        <a class="nav-link fs-2" href="/films_login?name={{name}}"
                             style="color: white">Películas</a>
                     </li>
                 </ul>
@@ -78,20 +78,20 @@
         <div class="container-fluid">
             <ul class="list-group list-group-flush mx-2 ">
                 <li class="list-group-item fs-3"
-                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Carrito:{{name}} </li>
+                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Carrito de {{name}}:</li>
 
-                {{#peliculas}}
+                {{#films}}
                 <li class="list-group-item fs-3"
                     style="background-color: rgb(51, 54, 199); color: white; border-color: cadetblue;">
                     <div class="container-fluid">
-                        <p class="d-flex ">{{titulo}}<div class=" d-flex justify-content-end "><a type="submit" href="/pagina_usuario/delete/{{id}}?name={{name}}"
-                                class="btn btn-primary btn-lg " style="background-color: rgb(206, 26, 26);">Borrar </a>
+                        <p class="d-flex ">{{title}}<div class=" d-flex justify-content-end "><a type="submit" href="/pagina_usuario/delete/{{id}}?name={{name}}"
+                                class="btn btn-primary btn-lg " style="background-color: rgb(206, 26, 26);">Borrar</a>
                         </div></p>
                         
                     </div>
 
                 </li>
-                {{/peliculas}}
+                {{/films}}
                 </li>
             </ul>
         </div>
@@ -99,5 +99,4 @@
     </div>
     
 </body>
-
 </html>

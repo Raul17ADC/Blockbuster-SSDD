@@ -49,7 +49,9 @@ public class CarritoService {
         return peliculasByGenre;
     }
 
-    
+    public Pelicula deletePeliculaById(Long id) {
+        return peliculaHashMap.remove(id);
+    }
 
     public Pelicula createPelicula(Pelicula pelicula) {
     Optional<Pelicula> optionalPelicula = peliculaHashMap.values()

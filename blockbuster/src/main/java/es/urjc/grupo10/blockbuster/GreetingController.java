@@ -109,4 +109,11 @@ public class GreetingController {
         model.addAttribute("name", name);
         return "pagina_usuario";
     }
+    @GetMapping("/pagina_usuario/delete/{id}")
+    public String paginaUsuario( @RequestParam(required = false, defaultValue = "") String name,@PathVariable("id") Long id, Model model) {
+        carritoservice.deletePeliculaById(id);
+        model.addAttribute("peliculas", carritoservice.getAll());
+        model.addAttribute("name", name);
+        return "pagina_usuario";
+    }
 }

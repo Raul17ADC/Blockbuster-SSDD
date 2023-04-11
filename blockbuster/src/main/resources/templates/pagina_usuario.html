@@ -47,7 +47,7 @@
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="profile-image" src="profile_picture.png" alt="profile-image">
+                        <img class="profile-image" src="https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg" alt="profile-image">
                         {{name}}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -64,12 +64,12 @@
             </div>
         </div>
     </nav>
-    <div style="background-color: rgb(14, 15, 110); height: 100vh;">
-        <div class="container-fluid" style="background-color: rgb(14, 15, 110);">
-            <h3 class="d-flex fs-1 justify-content-center" style="color:white">{{name}}</h3>
+    <div >
+        <div >
+            <p class="d-flex fs-1 justify-content-center" style="color:white">{{name}}</p>
             <div class=" d-flex container-fluid justify-content-evenly justify-content-lg-center my-4">
                 <div class="container-fluid " width="600" height="900">
-                    <figure class="d-flex justify-content-center"><img src="profile_picture.png"
+                    <figure class="d-flex justify-content-center"><img src="https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg"
                             class="img-fluid mx-5 my-2" width="400" height="800">
                     </figure>
                 </div>
@@ -78,25 +78,26 @@
         <div class="container-fluid">
             <ul class="list-group list-group-flush mx-2 ">
                 <li class="list-group-item fs-3"
-                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Carrito: </li>
+                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Carrito:{{name}} </li>
+
+                {{#peliculas}}
                 <li class="list-group-item fs-3"
-                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Películas:
-                    {{#peliculas}}
-                    <li class="list-group-item fs-3"
-                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">
-                    {{titulo}} </li>
-                    {{/peliculas}}                
+                    style="background-color: rgb(51, 54, 199); color: white; border-color: cadetblue;">
+                    <div class="container-fluid">
+                        <p class="d-flex ">{{titulo}}<div class=" d-flex justify-content-end "><a type="submit" href="/pagina_usuario/delete/{{id}}?name={{name}}"
+                                class="btn btn-primary btn-lg " style="background-color: rgb(206, 26, 26);">Borrar </a>
+                        </div></p>
+                        
+                    </div>
+
+                </li>
+                {{/peliculas}}
                 </li>
             </ul>
         </div>
     </div>
     </div>
-    <div class="social-media">
-        <h2>Nuestras redes sociales</h2>
-        <a href="https://www.instagram.com/blockbuster_sd/?igshid=YmMyMTA2M2Y%3D" target="_blank"><img src="logo_instagram.png" alt="Red social 1"></a>
-        <a href="https://twitter.com/blockbuster_sd?s=11" target="_blank"><img src="logo_twitter.png" alt="Red social 2"></a>
-        <a href="https://www.tiktok.com/@blockbusterdistri?is_from_webapp=1&sender_device=pc" target="_blank"><img src="logo_tiktok.png" alt="Red social 3"></a>
-      </div>
+    
 </body>
 
 </html>

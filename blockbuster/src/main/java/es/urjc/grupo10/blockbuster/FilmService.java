@@ -101,21 +101,6 @@ public class FilmService {
                 return filmHashMap.get(id);
         }
 
-        /*
-         * public Optional<String> getReviewById(Long filmId, Long reviewId) {
-         * Film film = filmHashMap.get(filmId);
-         * if (film != null) {
-         * List<String> reviews = film.getReviews();
-         * for (String review : reviews) {
-         * if (review.startsWith(reviewId.toString())) {
-         * return Optional.of(review);
-         * }
-         * }
-         * }
-         * return Optional.empty();
-         * }
-         */
-
         public Collection<Film> getFilmsByGenre(String genero) {
                 Collection<Film> films = getAll();
                 Collection<Film> filmsByGenre = new ArrayList<>();
@@ -126,19 +111,6 @@ public class FilmService {
                 }
                 return filmsByGenre;
         }
-
-        /*
-         * public boolean deleteReview(Film film, Long reviewId) {
-         * List<String> reviews = film.getReviews();
-         * boolean removed = reviews.removeIf(review ->
-         * review.equals(reviewId.toString()));
-         * if (removed) {
-         * film.setReviews(reviews);
-         * filmHashMap.replace(film.getId(), film);
-         * }
-         * return removed;
-         * }
-         */
 
         public Film createFilm(Film film) {
                 long tem = id.incrementAndGet();

@@ -78,6 +78,7 @@ path#XMLID_2_ {
 }
 
 @-webkit-keyframes opacity {
+
   0%,
   100% {
     opacity: 0;
@@ -89,6 +90,7 @@ path#XMLID_2_ {
 }
 
 @keyframes opacity {
+
   0%,
   100% {
     opacity: 0;

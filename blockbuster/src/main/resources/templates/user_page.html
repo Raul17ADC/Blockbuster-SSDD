@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -40,14 +40,15 @@
                     </form>
 
                     <li class="nav-item me-md-4">
-                        <a class="nav-link fs-2" href="/films_login?name={{name}}"
-                            style="color: white">Películas</a>
+                        <a class="nav-link fs-2" href="/films_login?name={{name}}" style="color: white">Películas</a>
                     </li>
                 </ul>
                 <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
-                        <img class="profile-image" src="https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg" alt="profile-image">
+                        <img class="profile-image"
+                            src="https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg"
+                            alt="profile-image">
                         {{name}}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -64,12 +65,13 @@
             </div>
         </div>
     </nav>
-    <div >
-        <div >
+    <div>
+        <div>
             <p class="d-flex fs-1 justify-content-center" style="color:white">{{name}}</p>
             <div class=" d-flex container-fluid justify-content-evenly justify-content-lg-center my-4">
                 <div class="container-fluid " width="600" height="900">
-                    <figure class="d-flex justify-content-center"><img src="https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg"
+                    <figure class="d-flex justify-content-center"><img
+                            src="https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg"
                             class="img-fluid mx-5 my-2" width="400" height="800">
                     </figure>
                 </div>
@@ -78,16 +80,20 @@
         <div class="container-fluid">
             <ul class="list-group list-group-flush mx-2 ">
                 <li class="list-group-item fs-3"
-                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Carrito de {{name}}:</li>
+                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Carrito de
+                    {{name}}:</li>
 
                 {{#films}}
                 <li class="list-group-item fs-3"
                     style="background-color: rgb(51, 54, 199); color: white; border-color: cadetblue;">
                     <div class="container-fluid">
-                        <p class="d-flex ">{{title}}<div class=" d-flex justify-content-end "><a type="submit" href="/user_page/delete/{{id}}?name={{name}}"
-                                class="btn btn-primary btn-lg " style="background-color: rgb(206, 26, 26);">Borrar</a>
-                        </div></p>
-                        
+                        <p class="d-flex ">{{title}}
+                        <div class=" d-flex justify-content-end "><a type="submit"
+                                href="/user_page/delete/{{id}}?name={{name}}" class="btn btn-primary btn-lg "
+                                style="background-color: rgb(206, 26, 26);">Borrar</a>
+                        </div>
+                        </p>
+
                     </div>
 
                 </li>
@@ -97,6 +103,7 @@
         </div>
     </div>
     </div>
-    
+
 </body>
+
 </html>

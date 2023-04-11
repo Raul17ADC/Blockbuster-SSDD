@@ -21,11 +21,6 @@ public class FilmRestController {
     @Autowired
     private FilmService filmService;
 
-    /*
-     * @Autowired
-     * private ReviewService reviewService
-     */
-
     @GetMapping("/")
     public Collection<Film> getFilms() {
         return filmService.getAll();
@@ -59,36 +54,4 @@ public class FilmRestController {
         film.getReviews().add(review.toStringReview());
         return ResponseEntity.ok(film);
     }
-
-    /*
-     * @DeleteMapping("/{id}/reviews/{reviewId}")
-     * public ResponseEntity<Film> deleteReview(@PathVariable("id") Long id,
-     * 
-     * @PathVariable("reviewId") Long reviewId) {
-     * Film film = filmService.getFilmById(id);
-     * if (film == null) {
-     * return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-     * }
-     * boolean result = filmService.deleteReview(film, reviewId);
-     * if (result) {
-     * return new ResponseEntity<>(film, HttpStatus.OK);
-     * } else {
-     * return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-     * }
-     * }
-     * 
-     * @GetMapping("/{id}/reviews/{reviewId}")
-     * public ResponseEntity<String> getReview(@PathVariable Long id, @PathVariable
-     * Long reviewId) {
-     * Film film = filmService.getFilmById(id);
-     * if (film == null) {
-     * return ResponseEntity.notFound().build();
-     * }
-     * String review = film.getReviewById(reviewId);
-     * if (review == null) {
-     * return ResponseEntity.notFound().build();
-     * }
-     * return ResponseEntity.ok(review);
-     * }
-     */
 }

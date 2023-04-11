@@ -53,9 +53,11 @@ public class ApplicationController {
         model.addAttribute("film", film);
         return "film_login_template";
     }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/films_login/{id}/")
-    public String Postcomment(@PathVariable("id") Long id,@RequestParam(required = false, defaultValue = "") String name, Model model, String comment) {
+    public String Postcomment(@PathVariable("id") Long id,
+            @RequestParam(required = false, defaultValue = "") String name, Model model, String comment) {
         Film film = filmService.getFilmById(id);
         film.getReviews().add(comment);
         model.addAttribute("name", name);
@@ -86,6 +88,7 @@ public class ApplicationController {
         return "film_template";
 
     }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/films/{id}/")
     public String Postcomment(@PathVariable("id") Long id, Model model, String comment) {

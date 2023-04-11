@@ -29,7 +29,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/home_login/{id}")
-    public String mostrarFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String username,
+    public String showFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String username,
             Model model) {
         Film film = filmService.getFilmById(id);
         model.addAttribute("name", username);
@@ -45,7 +45,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/films_login/{id}")
-    public String mostrarFilmFilms(@PathVariable Long id,
+    public String showFilmFilms(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model) {
         Film film = filmService.getFilmById(id);
         model.addAttribute("name", name);
@@ -66,7 +66,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/films_login_added/{id}")
-    public String AñadirFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
+    public String addFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
             Model model) {
         Film film = filmService.getFilmById(id);
         cartservice.createFilm(film);
@@ -82,7 +82,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/films/{id}")
-    public String mostrarFilm(@PathVariable("id") Long id, Model model) {
+    public String showFilm(@PathVariable("id") Long id, Model model) {
         Film film = filmService.getFilmById(id);
         model.addAttribute("film", film);
         return "film_template";
@@ -100,7 +100,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/films_added/{id}")
-    public String AñadirFilm(@PathVariable("id") Long id, Model model) {
+    public String addFilm(@PathVariable("id") Long id, Model model) {
         Film film = filmService.getFilmById(id);
         cartservice.createFilm(film);
         model.addAttribute("film", film);
@@ -109,14 +109,14 @@ public class ApplicationController {
     }
 
     @GetMapping("/register")
-    public String application_resgistro(Model model) {
+    public String application_resgister(Model model) {
         model.addAttribute("includeCSS", "register.css");
         model.addAttribute("includeJS", "register.js");
         return "register";
     }
 
     @GetMapping("/access")
-    public String application_acceso(Model model) {
+    public String application_access(Model model) {
         model.addAttribute("includeCSS", "access.css");
         model.addAttribute("includeJS", "access.js");
         return "access";
@@ -128,14 +128,14 @@ public class ApplicationController {
     }
 
     @GetMapping("/user_page")
-    public String paginaUsuario(@RequestParam(required = false, defaultValue = "") String name, Model model) {
+    public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("films", cartservice.getAll());
         model.addAttribute("name", name);
         return "user_page";
     }
 
     @GetMapping("/user_page/delete/{id}")
-    public String paginaUsuario(@RequestParam(required = false, defaultValue = "") String name,
+    public String userPage(@RequestParam(required = false, defaultValue = "") String name,
             @PathVariable("id") Long id, Model model) {
         cartservice.deleteFilmById(id);
         model.addAttribute("films", cartservice.getAll());

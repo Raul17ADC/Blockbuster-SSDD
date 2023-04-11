@@ -2,6 +2,7 @@ package es.urjc.grupo10.blockbuster;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Pelicula {
 
@@ -130,6 +131,25 @@ public class Pelicula {
         this.reviews = reviews;
     }
 
+    @Override
+public boolean equals(Object obj) {
+    if (obj == null) {
+        return false;
+    }
+    if (getClass() != obj.getClass()) {
+        return false;
+    }
+    final Pelicula other = (Pelicula) obj;
+    if (!Objects.equals(this.titulo, other.titulo)) {
+        return false;
+    }
+    if (!Objects.equals(this.director, other.director)) {
+        return false;
+    }
+    
+    // comparar los demás atributos relevantes para determinar si dos películas son iguales
+    return true;
+}
     // Métodos
     @Override
     public String toString() {

@@ -13,6 +13,8 @@ public class GreetingController {
 
     @Autowired
     private PeliculaService peliculaService;
+    @Autowired
+    private CarritoService carritoservice ;
 
     @GetMapping("/home")
     public String greeting(Model model) {
@@ -44,10 +46,20 @@ public class GreetingController {
     @GetMapping("/peliculas_login/{id}")
     public String mostrarPeliculaPeliculas(@PathVariable Long id,@RequestParam(required = false, defaultValue = "") String name, Model model) {
         Pelicula pelicula = peliculaService.getFilmById(id);
+        carritoservice.createPelicula(pelicula);
         model.addAttribute("name", name);
         model.addAttribute("pelicula", pelicula);
         return "pelicula_login_template";
     }
+
+    @GetMapping("/peliculas_login_added/{id}")
+    public String AñadirPelicula(@PathVariable Long id,@RequestParam(required = false, defaultValue = "") String name, Model model) {
+        Pelicula pelicula = peliculaService.getFilmById(id);
+        model.addAttribute("name", name);
+        model.addAttribute("pelicula", pelicula);
+        return "pelicula_login_template";
+    }
+
 
     @GetMapping("/peliculas")
     public String greeting_peliculas(Model model) {
@@ -58,6 +70,15 @@ public class GreetingController {
     @GetMapping("/peliculas/{id}")
     public String mostrarPelicula( @PathVariable("id") Long id, Model model) {
         Pelicula pelicula = peliculaService.getFilmById(id);
+        model.addAttribute("pelicula", pelicula);
+        return "pelicula_template";
+
+    }
+
+    @GetMapping("/peliculas_added/{id}")
+    public String AñadirPelicula( @PathVariable("id") Long id, Model model) {
+        Pelicula pelicula = peliculaService.getFilmById(id);
+        carritoservice.createPelicula(pelicula);
         model.addAttribute("pelicula", pelicula);
         return "pelicula_template";
 
@@ -84,6 +105,7 @@ public class GreetingController {
 
     @GetMapping("/pagina_usuario")
     public String paginaUsuario(@RequestParam(required = false, defaultValue = "") String name, Model model) {
+        model.addAttribute("peliculas", carritoservice.getAll());
         model.addAttribute("name", name);
         return "pagina_usuario";
     }

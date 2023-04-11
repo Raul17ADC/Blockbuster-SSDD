@@ -80,8 +80,13 @@
                 <li class="list-group-item fs-3"
                     style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Carrito: </li>
                 <li class="list-group-item fs-3"
-                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Películas
-                    añadidas al carrito </li>
+                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Películas:
+                    {{#peliculas}}
+                    <li class="list-group-item fs-3"
+                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">
+                    {{titulo}} </li>
+                    {{/peliculas}}                
+                </li>
             </ul>
         </div>
     </div>

@@ -53,6 +53,16 @@ public class ApplicationController {
         model.addAttribute("film", film);
         return "film_login_template";
     }
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/films_login/{id}/")
+    public String Postcomment(@PathVariable("id") Long id,@RequestParam(required = false, defaultValue = "") String name, Model model, String comment) {
+        Film film = filmService.getFilmById(id);
+        film.getReviews().add(comment);
+        model.addAttribute("name", name);
+        model.addAttribute("film", film);
+        return "film_template";
+
+    }
 
     @GetMapping("/films_login_added/{id}")
     public String AñadirFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
@@ -72,6 +82,15 @@ public class ApplicationController {
     @GetMapping("/films/{id}")
     public String mostrarFilm(@PathVariable("id") Long id, Model model) {
         Film film = filmService.getFilmById(id);
+        model.addAttribute("film", film);
+        return "film_template";
+
+    }
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/films/{id}/")
+    public String Postcomment(@PathVariable("id") Long id, Model model, String comment) {
+        Film film = filmService.getFilmById(id);
+        film.getReviews().add(comment);
         model.addAttribute("film", film);
         return "film_template";
 

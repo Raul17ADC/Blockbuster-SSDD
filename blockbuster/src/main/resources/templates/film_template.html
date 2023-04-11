@@ -44,7 +44,7 @@
             </div>
         </div>
     </nav>
-    <div style="background-color: rgb(14, 15, 110); height: 100vh;">
+    <div>
         <div class="container-fluid" style="background-color: rgb(14, 15, 110);">
             <p class="d-flex fs-1 text-decoration-underline mx-6 my-2 justify-content-center" style="color: white;">
                 {{film.title}}</p>
@@ -62,8 +62,9 @@
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
-                    <div class="container-fluid d-flex justify-content-center "><a href="/films_added/{{id}}" type="submit"
-                            class="btn btn-primary btn-lg " style="background-color: darkorange;">Añadir al carrito</a>
+                    <div class="container-fluid d-flex justify-content-center "><a href="/films_added/{{id}}"
+                            type="submit" class="btn btn-primary btn-lg " style="background-color: darkorange;">Añadir
+                            al carrito</a>
                     </div>
                 </div>
             </div>
@@ -71,9 +72,11 @@
         <div class="container-fluid">
             <ul class="list-group list-group-flush mx-2 ">
                 <li class="list-group-item fs-3"
-                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Director: {{film.director}} </li>
+                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Director:
+                    {{film.director}} </li>
                 <li class="list-group-item fs-3"
-                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Guionista: {{film.scriptwriter}}</li>
+                    style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Guionista:
+                    {{film.scriptwriter}}</li>
                 <li class="list-group-item fs-3"
                     style="background-color: rgb(14, 15, 110); color: white;  border-color: cadetblue ;"
                     style="display: inline-flex;">Actores:
@@ -113,18 +116,22 @@
                     </div>
                 </div>
             </div>
-            <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Escribe tu reseña:</p>
-
-            <div class="input-field">
-                <textarea class="form-control" rows="10" id="comment-input"></textarea><br>
-            </div>
-            <div class="container-fluid d-flex justify-content-center mb-3"> <button type="submit"
+                          
+            <form method="post" action="/films/{{id}}/">
+                <div>
+                    <label for="comment">
+                        <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Escribe tu reseña:</p>
+                    </label><br>
+                    <input type="text" class="form-control" style="height: 200px;"   id="comment" name="comment" required>
+                </div>
+                <div class="container-fluid d-flex justify-content-center mb-3"> <button type="submit"
                     class="btn btn-primary " id="submit-button">Enviar
                     reseña</button></div>
-            <script src="/json/film.js">
-            </script>
+            </form>
         </div>
     </div>
     </div>
+
 </body>
+
 </html>

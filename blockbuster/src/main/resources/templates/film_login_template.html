@@ -44,7 +44,9 @@
         <div class="dropdown">
           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
             data-bs-toggle="dropdown" aria-expanded="false">
-            <img class="profile-image" src="https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg" alt="profile-image">
+            <img class="profile-image"
+              src="https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg"
+              alt="profile-image">
             {{name}}
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -77,12 +79,12 @@
               Valoración: {{film.rating}} / 10</p>
           </div>
         </div>
-        <div class="container-fluid"><iframe width="1020" height="630" src={{film.trailer}}
-            title="YouTube video player" frameborder="0"
+        <div class="container-fluid"><iframe width="1020" height="630" src={{film.trailer}} title="YouTube video player"
+            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
-          <div class="container-fluid d-flex justify-content-center "><a  href="/films_login_added/{{id}}?name={{name}}" type="submit" class="btn btn-primary btn-lg "
-              style="background-color: darkorange;">Añadir al carrito</a>
+          <div class="container-fluid d-flex justify-content-center "><a href="/films_login_added/{{id}}?name={{name}}"
+              type="submit" class="btn btn-primary btn-lg " style="background-color: darkorange;">Añadir al carrito</a>
           </div>
         </div>
       </div>
@@ -90,9 +92,11 @@
     <div class="container-fluid">
       <ul class="list-group list-group-flush mx-2 ">
         <li class="list-group-item fs-3"
-          style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Director: {{film.director}} </li>
+          style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Director: {{film.director}}
+        </li>
         <li class="list-group-item fs-3"
-          style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Guionista: {{film.scriptwriter}}</li>
+          style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Guionista:
+          {{film.scriptwriter}}</li>
         <li class="list-group-item fs-3"
           style="background-color: rgb(14, 15, 110); color: white;  border-color: cadetblue ;"
           style="display: inline-flex;">Actores:
@@ -132,18 +136,20 @@
           </div>
         </div>
       </div>
-      <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Escribe tu reseña:</p>
-
-      <div class="input-field">
-        <textarea class="form-control" rows="10" id="comment-input"></textarea><br>
-      </div>
-      <div class="container-fluid d-flex justify-content-center mb-3"> <button type="submit" class="btn btn-primary "
-          id="submit-button">Enviar
-          reseña</button></div>
-      <script src="/json/film.js">
-      </script>
+      <form method="post" action="/films_login/{{id}}/">
+        <div>
+          <label for="comment">
+            <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Escribe tu reseña:</p>
+          </label><br>
+          <input type="text" class="form-control" style="height: 200px;" id="comment" name="comment" required>
+        </div>
+        <div class="container-fluid d-flex justify-content-center mb-3"> <button type="submit" class="btn btn-primary "
+            id="submit-button">Enviar
+            reseña</button></div>
+      </form>
     </div>
   </div>
   </div>
 </body>
+
 </html>

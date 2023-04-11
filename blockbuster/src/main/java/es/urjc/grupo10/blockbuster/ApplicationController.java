@@ -86,18 +86,18 @@ public class ApplicationController {
 
     }
 
-    @GetMapping("/registro")
+    @GetMapping("/register")
     public String application_resgistro(Model model) {
-        model.addAttribute("includeCSS", "registro.css");
-        model.addAttribute("includeJS", "registro.js");
-        return "registro";
+        model.addAttribute("includeCSS", "register.css");
+        model.addAttribute("includeJS", "register.js");
+        return "register";
     }
 
-    @GetMapping("/acceso")
+    @GetMapping("/access")
     public String application_acceso(Model model) {
-        model.addAttribute("includeCSS", "acceso.css");
-        model.addAttribute("includeJS", "acceso.js");
-        return "acceso";
+        model.addAttribute("includeCSS", "access.css");
+        model.addAttribute("includeJS", "access.js");
+        return "access";
     }
 
     @GetMapping("/error")
@@ -105,19 +105,19 @@ public class ApplicationController {
         return "error";
     }
 
-    @GetMapping("/pagina_usuario")
+    @GetMapping("/user_page")
     public String paginaUsuario(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("films", cartservice.getAll());
         model.addAttribute("name", name);
-        return "pagina_usuario";
+        return "user_page";
     }
 
-    @GetMapping("/pagina_usuario/delete/{id}")
+    @GetMapping("/user_page/delete/{id}")
     public String paginaUsuario(@RequestParam(required = false, defaultValue = "") String name,
             @PathVariable("id") Long id, Model model) {
         cartservice.deleteFilmById(id);
         model.addAttribute("films", cartservice.getAll());
         model.addAttribute("name", name);
-        return "pagina_usuario";
+        return "user_page";
     }
 }

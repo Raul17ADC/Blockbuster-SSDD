@@ -40,8 +40,7 @@ input[type="password"] {
   border: 1px solid #0b486b;
   font-size: 16px;
 }
-
-button[id="login-button"] {
+#login-button {
   display: block;
   width: 100%;
   padding: 10px;

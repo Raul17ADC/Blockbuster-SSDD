@@ -48,7 +48,6 @@ public class ApplicationController {
     public String mostrarFilmFilms(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model) {
         Film film = filmService.getFilmById(id);
-        cartservice.createFilm(film);
         model.addAttribute("name", name);
         model.addAttribute("film", film);
         return "film_login_template";
@@ -70,6 +69,7 @@ public class ApplicationController {
     public String AñadirFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
             Model model) {
         Film film = filmService.getFilmById(id);
+        cartservice.createFilm(film);
         model.addAttribute("name", name);
         model.addAttribute("film", film);
         return "film_login_template";

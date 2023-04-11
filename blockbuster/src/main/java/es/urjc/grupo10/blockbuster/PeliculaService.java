@@ -84,7 +84,7 @@ public class PeliculaService {
         createPelicula(pelicula6);
 
     }
-    public Collection<Pelicula> getRecomendada(int i) {
+    public Collection<Pelicula> getNum(int i) {
         return peliculaHashMap.values()
                 .stream()
                 .limit(i)

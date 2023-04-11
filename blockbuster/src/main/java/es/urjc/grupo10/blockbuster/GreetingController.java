@@ -24,7 +24,7 @@ public class GreetingController {
     @PostMapping("/home_login")
     public String greeting_home_login(Model model, @RequestParam String username) {
         model.addAttribute("name", username);
-        model.addAttribute("peliculas", peliculaService.getRecomendada(5));
+        model.addAttribute("peliculas", peliculaService.getNum(5));
         return "home_login_template";
     }
 

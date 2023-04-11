@@ -62,7 +62,7 @@ public class ApplicationController {
         film.getReviews().add(comment);
         model.addAttribute("name", name);
         model.addAttribute("film", film);
-        return "film_template";
+        return "film_login_template";
 
     }
 

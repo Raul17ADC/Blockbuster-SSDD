@@ -6,7 +6,7 @@ import java.util.Objects;
 
 public class Film {
 
-    private Long id;
+    private Long code;
     private String title;
     private String director;
     private String scriptwriter;
@@ -23,7 +23,7 @@ public class Film {
 
     public Film(Long id, String title, String director, String scriptwriter, String trailer, String description,
             String image, double rating) {
-        this.id = id;
+        this.code = id;
         this.title = title;
         this.director = director;
         this.scriptwriter = scriptwriter;
@@ -35,11 +35,11 @@ public class Film {
 
     // Getters and setters
     public Long getId() {
-        return id;
+        return code;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.code = id;
     }
 
     public String getTitle() {
@@ -144,7 +144,7 @@ public class Film {
 
     @Override
     public String toString() {
-        return "Film [id=" + id + ", title=" + title + ", director=" + director + ", scriptwriter=" + scriptwriter
+        return "Film [id=" + code + ", title=" + title + ", director=" + director + ", scriptwriter=" + scriptwriter
                 + ", trailer=" + trailer + ", rating=" + rating + ", actors=" + actors + ", genres="
                 + genres + ", reviews=" + reviews + "]";
     }

@@ -15,7 +15,7 @@ import java.util.concurrent.atomic.AtomicLong;
 public class CartService {
 
     private Map<Long, Film> filmHashMap = new ConcurrentHashMap<>();
-    private AtomicLong id2 = new AtomicLong();
+    private AtomicLong id = new AtomicLong();
 
     public CartService() {
     }
@@ -32,7 +32,7 @@ public class CartService {
     }
 
     public Film getFilmById(Long id) {
-        return filmHashMap.get(id2);
+        return filmHashMap.get(id);
     }
 
     public Collection<Film> getFilmsByGenre(String genero) {
@@ -47,7 +47,7 @@ public class CartService {
     }
 
     public Film deleteFilmById(Long id) {
-        return filmHashMap.remove(id2);
+        return filmHashMap.remove(id);
     }
 
     public Film createFilm(Film film) {
@@ -60,7 +60,7 @@ public class CartService {
             // was already in the collection is returned
             return optionalFilm.get();
         } else {
-            long tem = id2.incrementAndGet();
+            long tem = id.incrementAndGet();
             film.setId(tem);
             filmHashMap.put(tem, film);
             return film;

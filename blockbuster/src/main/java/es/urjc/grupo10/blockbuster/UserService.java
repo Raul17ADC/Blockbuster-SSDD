@@ -19,9 +19,7 @@ public class UserService {
 
         public UserService() {
                 long tem = id.incrementAndGet();
-                User user = new User();
-                                      
-                      
+                User user = new User();           
         }
 
         public Collection<User> getNum(int i) {
@@ -29,6 +27,9 @@ public class UserService {
                                 .stream()
                                 .limit(i)
                                 .collect(Collectors.toList());
+        }
+        public Long getId(){
+                return this.id.incrementAndGet();
         }
 
         public Collection<User> getAll() {

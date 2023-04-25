@@ -1,5 +1,7 @@
 package es.urjc.grupo10.blockbuster;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import es.urjc.grupo10.blockbuster.CartService;
 
 @Controller
 public class ApplicationController {
@@ -15,6 +18,8 @@ public class ApplicationController {
     private FilmService filmService;
     @Autowired
     private CartService cartservice;
+    @Autowired
+    private UserService userservice;
 
     @GetMapping("/home")
     public String application(Model model) {
@@ -63,6 +68,15 @@ public class ApplicationController {
         model.addAttribute("film", film);
         return "film_login_template";
 
+    }
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/home/")
+    public String Postuser(
+            @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password) {
+        Long id_aux = userservice.getId() ; 
+        User user = new User(id_aux, email, name, password);
+        userservice.createFilm(user);
+        return "home_template";
     }
 
     @GetMapping("/films_login_added/{id}")

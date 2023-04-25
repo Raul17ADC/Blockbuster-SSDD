@@ -2,23 +2,26 @@ package es.urjc.grupo10.blockbuster;
 
 import java.util.Objects;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class User {
     private Long usercode;
     private String email;
     private String name;
     private String password;
+    @Autowired
     private CartService cartservice;
 
     public User(){
 
     }
 
-    public User(Long usercode ,String email, String name, String password, CartService cartservice) {
+    public User(Long usercode ,String email, String name, String password) {
         this.usercode = usercode;
         this.email = email;
         this.name = name;
         this.password = password;
-        this.cartservice = cartservice;
+        
     }
 
     public Long getId() {

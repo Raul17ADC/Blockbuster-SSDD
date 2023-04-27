@@ -109,12 +109,23 @@
       <a href="https://www.tiktok.com/@blockbusterdistri?is_from_webapp=1&sender_device=pc" target="_blank"><img
           src="logo_tiktok.png" alt="Red social 3"></a>
     </div>
-    <nav>
-      <ul>
-          <li><a href="/users">Usuarios</a></li>
-      </ul>
-  </nav>
-
+      
+      {{#users}}
+      <p>
+        {{.}}
+      </p>
+      {{/users}}
+      {{#aux}}
+      <p>
+        {{.}}
+      </p>
+      {{/aux}}
+      {{#name}}
+      <p>
+        {{.}}
+      </p>
+      {{/name}}
+      
 </body>
 
 </html>

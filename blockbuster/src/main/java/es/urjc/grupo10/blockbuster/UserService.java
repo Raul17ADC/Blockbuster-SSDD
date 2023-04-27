@@ -36,10 +36,10 @@ public class UserService {
         return userHashMap.get(id);
     }
 
-    public User getUserByEmail(String email) {
+    public User getUserByName(String name) {
         Collection<User> users = getAll();
         for (User user : users) {
-            if (user.getEmail().equals(email)) {
+            if (user.getName().equals(name)) {
                 return user;
             }
         }
@@ -47,8 +47,20 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        userHashMap.put(user.getId(), user);
-        return user;
+        Optional<User> optionalFilm = userHashMap.values()
+                .stream()
+                .filter(p -> p.equals(user))                  
+                .findFirst();
+        if (optionalFilm.isPresent()) {
+            // If a movie of the same type already exists, it is not added and the one that
+            // was already in the collection is returned
+            return optionalFilm.get();
+        } else {
+            long tem = id.incrementAndGet();
+            user.setId(tem);
+            userHashMap.put(tem, user);
+            return user;
+        }
     }
     public Map<Long, User> getUserHashMap() {
         return userHashMap;

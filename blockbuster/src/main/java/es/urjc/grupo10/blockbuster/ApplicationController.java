@@ -22,15 +22,17 @@ public class ApplicationController {
     private CartService cartservice;
     @Autowired
     private UserService userService;
+    private User CurrentUser ;
 
     @GetMapping("/home")
     public String application(Model model) {
+        model.addAttribute("users", userService);
         return "home_template";
     }
 
     @PostMapping("/home_login")
     public String application_home_login(Model model, @RequestParam String username) {
-        model.addAttribute("name", username);
+        model.addAttribute("user", CurrentUser.getName());
         model.addAttribute("films", filmService.getNum(5));
         return "home_login_template";
     }
@@ -55,7 +57,7 @@ public class ApplicationController {
     public String showFilmFilms(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model) {
         Film film = filmService.getFilmById(id);
-        model.addAttribute("name", name);
+        model.addAttribute("name", CurrentUser.getName());
         model.addAttribute("film", film);
         return "film_login_template";
     }
@@ -71,14 +73,30 @@ public class ApplicationController {
         return "film_login_template";
 
     }
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/home_login/")
+    public String Log(
+            @RequestParam(required = false, defaultValue = "") String username, @RequestParam(required = false, defaultValue = "") String password, Model model) {
+            model.addAttribute("users", userService.getAll());
+            User aux = userService.getUserByName(username);           
+            if (aux == null){
+                return "home_template";
+            }else{
+                CurrentUser = aux ;
+                model.addAttribute("name", CurrentUser.getName());
+                model.addAttribute("films", filmService.getNum(5));
+                model.addAttribute("user", CurrentUser);
+                return "home_login_template";
+            }               
+    }
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/home/")
     public String postUser(
-        @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password) {
+        @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password, Model model) {
     Long id_aux = userService.getId() ; 
-    User user = new User(id_aux, email, name, password);
+    User user = new User(id_aux, email, name, password); 
+    model.addAttribute("user", user);
     userService.createUser(user);
-    userService.printUserHashMap();
     return "home_template";
 }
 
@@ -87,7 +105,7 @@ public class ApplicationController {
             Model model) {
         Film film = filmService.getFilmById(id);
         cartservice.createFilm(film);
-        model.addAttribute("name", name);
+        
         model.addAttribute("film", film);
         return "film_login_template";
     }
@@ -147,7 +165,7 @@ public class ApplicationController {
     @GetMapping("/user_page")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("films", cartservice.getAll());
-        model.addAttribute("name", name);
+        model.addAttribute("name", CurrentUser.getName());
         return "user_page";
     }
 

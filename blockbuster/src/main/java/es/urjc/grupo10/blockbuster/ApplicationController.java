@@ -1,6 +1,7 @@
 package es.urjc.grupo10.blockbuster;
 
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import es.urjc.grupo10.blockbuster.CartService;
+import es.urjc.grupo10.blockbuster.UserService;
 
 @Controller
 public class ApplicationController {
@@ -19,7 +21,7 @@ public class ApplicationController {
     @Autowired
     private CartService cartservice;
     @Autowired
-    private UserService userservice;
+    private UserService userService;
 
     @GetMapping("/home")
     public String application(Model model) {
@@ -71,13 +73,14 @@ public class ApplicationController {
     }
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/home/")
-    public String Postuser(
-            @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password) {
-        Long id_aux = userservice.getId() ; 
-        User user = new User(id_aux, email, name, password);
-        userservice.createFilm(user);
-        return "home_template";
-    }
+    public String postUser(
+        @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password) {
+    Long id_aux = userService.getId() ; 
+    User user = new User(id_aux, email, name, password);
+    userService.createUser(user);
+    userService.printUserHashMap();
+    return "home_template";
+}
 
     @GetMapping("/films_login_added/{id}")
     public String addFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,

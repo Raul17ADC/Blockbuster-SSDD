@@ -36,10 +36,10 @@ public class UserService {
         return userHashMap.get(id);
     }
 
-    public User getUserByName(String name) {
+    public User getUserByNameAndPassword(String name,String password) {
         Collection<User> users = getAll();
         for (User user : users) {
-            if (user.getName().equals(name)) {
+            if (user.getName().equals(name) && user.getPassword().equals(password)) {
                 return user;
             }
         }

@@ -9,8 +9,7 @@ public class User {
     private String email;
     private String name;
     private String password;
-    @Autowired
-    private CartService cartservice;
+    
 
     public User(){
 
@@ -55,13 +54,9 @@ public class User {
         this.password = password;
     }
 
-    public CartService getCartService() {
-        return cartservice;
-    }
+    
 
-    public void setCartService(CartService cartservice) {
-        this.cartservice = cartservice;
-    }
+   
 
     @Override
     public String toString() {
@@ -69,7 +64,7 @@ public class User {
                 "email='" + email + '\'' +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
-                ", cartservice=" + cartservice +
+                
                 '}';
     }
 
@@ -83,6 +78,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, name, password, cartservice);
+        return Objects.hash(email, name, password);
     }
 }

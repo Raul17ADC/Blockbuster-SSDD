@@ -26,13 +26,17 @@ public class ApplicationController {
 
     @GetMapping("/home")
     public String application(Model model) {
-        model.addAttribute("users", userService);
+
         return "home_template";
     }
-
+    @GetMapping("/home_out")
+    public String application_out(Model model) {
+        cartservice.deleteAllFilms();      
+        return "home_template";
+    }
     @PostMapping("/home_login")
     public String application_home_login(Model model, @RequestParam String username) {
-        model.addAttribute("user", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getName());
         model.addAttribute("films", filmService.getNum(5));
         return "home_login_template";
     }
@@ -41,14 +45,14 @@ public class ApplicationController {
     public String showFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String username,
             Model model) {
         Film film = filmService.getFilmById(id);
-        model.addAttribute("name", username);
+        model.addAttribute("name", CurrentUser.getName());
         model.addAttribute("film", film);
         return "film_login_template";
     }
 
     @GetMapping("/films_login")
     public String films_login(@RequestParam(required = false, defaultValue = "") String name, Model model) {
-        model.addAttribute("name", name);
+        model.addAttribute("name", CurrentUser.getName());
         model.addAttribute("films", filmService.getAll());
         return "films_login_template";
     }
@@ -68,7 +72,7 @@ public class ApplicationController {
             @RequestParam(required = false, defaultValue = "") String name, Model model, String comment) {
         Film film = filmService.getFilmById(id);
         film.getReviews().add(comment);
-        model.addAttribute("name", name);
+        model.addAttribute("name", CurrentUser.getName());
         model.addAttribute("film", film);
         return "film_login_template";
 
@@ -78,7 +82,7 @@ public class ApplicationController {
     public String Log(
             @RequestParam(required = false, defaultValue = "") String username, @RequestParam(required = false, defaultValue = "") String password, Model model) {
             model.addAttribute("users", userService.getAll());
-            User aux = userService.getUserByName(username);           
+            User aux = userService.getUserByNameAndPassword(username,password);           
             if (aux == null){
                 return "home_template";
             }else{
@@ -95,7 +99,6 @@ public class ApplicationController {
         @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password, Model model) {
     Long id_aux = userService.getId() ; 
     User user = new User(id_aux, email, name, password); 
-    model.addAttribute("user", user);
     userService.createUser(user);
     return "home_template";
 }
@@ -105,7 +108,7 @@ public class ApplicationController {
             Model model) {
         Film film = filmService.getFilmById(id);
         cartservice.createFilm(film);
-        
+        model.addAttribute("name", CurrentUser.getName());       
         model.addAttribute("film", film);
         return "film_login_template";
     }

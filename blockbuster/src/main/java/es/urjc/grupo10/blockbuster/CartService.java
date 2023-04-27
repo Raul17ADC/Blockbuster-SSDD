@@ -34,7 +34,9 @@ public class CartService {
     public Film getFilmById(Long id) {
         return filmHashMap.get(id);
     }
-
+     public void deleteAllFilms() {
+        filmHashMap.clear();
+    }
     public Collection<Film> getFilmsByGenre(String genero) {
         Collection<Film> films = getAll();
         Collection<Film> filmsByGenre = new ArrayList<>();

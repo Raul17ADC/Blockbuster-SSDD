@@ -16,8 +16,7 @@ import java.util.List;
 @Controller
 public class ApplicationController {
     
-    @Autowired
-    private CartRepository cartService;
+    
     @Autowired
     private FilmService filmService;
     @Autowired
@@ -32,18 +31,18 @@ public class ApplicationController {
     }
     @GetMapping("/prueba")
     public String prueba(Model model) {
-        model.addAttribute("baba", clientService.clientRepository.findByUserNameAndPassword("aaa","aaa"));
+        model.addAttribute("baba", clientService.clientRepository.findAll());
         return "prueba";
     }
     @GetMapping("/home_out")
-    public String application_out(Model model) {
-        cartService.deleteAll();    
+    public String application_out(Model model) {   
         return "home_template";
     }
     @PostMapping("/home_login")
     public String application_home_login(Model model, @RequestParam String username) {
         model.addAttribute("name", CurrentUser.getUserName());
-       // model.addAttribute("films", filmService.getNum(5));
+        List<Film> aux = filmService.filmRepository.findAll();
+        model.addAttribute("films", aux.subList(0, 5));
         return "home_login_template";
     }
 
@@ -78,6 +77,7 @@ public class ApplicationController {
             @RequestParam(required = false, defaultValue = "") String name, Model model, String comment) {
         Film film = filmService.filmRepository.getById(id);
         film.getReviews().add(comment);
+        filmService.filmRepository.save(film);
         model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
@@ -93,7 +93,8 @@ public class ApplicationController {
             }else{ 
                 CurrentUser = aux.get(0);
                 model.addAttribute("name", CurrentUser.getUserName());
-                //model.addAttribute("films", filmService.getNum(5));
+                List<Film> aux2 = filmService.filmRepository.findAll();
+                model.addAttribute("films", aux2.subList(0, 5));
                 model.addAttribute("user", CurrentUser);
                 return "home_login_template";
             }               
@@ -111,7 +112,8 @@ public class ApplicationController {
     public String addFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
             Model model) {
         Film film = filmService.filmRepository.getById(id);
-        cartService.save(film);
+        CurrentUser.getCart().add(film.getTitle());
+        clientService.clientRepository.save(CurrentUser);
         model.addAttribute("name", CurrentUser.getUserName());       
         model.addAttribute("film", film);
         return "film_login_template";
@@ -142,14 +144,6 @@ public class ApplicationController {
 
     }
 
-    @GetMapping("/films_added/{id}")
-    public String addFilm(@PathVariable("id") Long id, Model model) {
-        Film film = filmService.filmRepository.getById(id);
-        cartService.save(film);
-        model.addAttribute("film", film);
-        return "film_template";
-
-    }
 
     @GetMapping("/register")
     public String application_resgister(Model model) {
@@ -172,17 +166,18 @@ public class ApplicationController {
 
     @GetMapping("/user_page")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model) {
-        model.addAttribute("cart", cartService.findAll());
+        model.addAttribute("cart", CurrentUser.getCart());
         model.addAttribute("name", CurrentUser.getUserName());
         return "user_page";
     }
 
-    @GetMapping("/user_page/delete/{id}")
-    public String userPage(@RequestParam(required = false, defaultValue = "") String name,
-            @PathVariable("id") Long id, Model model) {
-        cartService.deleteById(id);
-        model.addAttribute("cart", cartService.findAll());
-        model.addAttribute("name", name);
+    @GetMapping("/user_page/delete/{title}")
+    public String userPaged(
+            @PathVariable("title") String title, Model model) {
+            CurrentUser.getCart().remove(title);
+            clientService.clientRepository.save(CurrentUser);
+        model.addAttribute("cart", CurrentUser.getCart());
+        model.addAttribute("name", CurrentUser.getUserName());
         return "user_page";
     }
 }

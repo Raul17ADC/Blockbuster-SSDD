@@ -1,5 +1,7 @@
 package es.urjc.grupo10.blockbuster;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +21,7 @@ public class Client {
     private String email;
     private String userName;
     private String password;
+    private List<String> cart = new ArrayList<>();
     
     public Client() {
     }
@@ -57,9 +60,9 @@ public class Client {
         this.password = password;
     }
 
-    
-
-   
+    public List<String> getCart() {
+        return this.cart;
+    }
 
     @Override
     public String toString() {
@@ -67,7 +70,7 @@ public class Client {
                 "email='" + email + '\'' +
                 ", username='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                
+                ", carrito='" + cart + '\'' +
                 '}';
     }
 

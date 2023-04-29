@@ -132,6 +132,7 @@ public class ApplicationController {
     public String Postcomment(@PathVariable("id") Long id, Model model, String comment) {
         Film film = filmService.filmRepository.getById(id);
         film.getReviews().add(comment);
+        filmService.filmRepository.save(film);
         model.addAttribute("film", film);
         return "film_template";
 

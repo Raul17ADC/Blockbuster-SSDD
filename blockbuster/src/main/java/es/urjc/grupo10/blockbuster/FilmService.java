@@ -81,6 +81,6 @@ film6.setReviews(new ArrayList<String>(Arrays.asList("Me encanta")));
 filmRepository.save(film6);
     
     Client user = new Client( "aaa@aaaa", "aaa", "aaa");
-
+    userRepository.save(user);
     }
 }

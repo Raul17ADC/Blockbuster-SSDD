@@ -14,10 +14,10 @@ import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class UserService {
 
-    private Map<Long, User> userHashMap = new ConcurrentHashMap<>();
+    private Map<Long, Client> userHashMap = new ConcurrentHashMap<>();
     private AtomicLong id = new AtomicLong();
 
-    public Collection<User> getNum(int i) {
+    public Collection<Client> getNum(int i) {
         return userHashMap.values()
                 .stream()
                 .limit(i)
@@ -28,17 +28,17 @@ public class UserService {
         return this.id.incrementAndGet();
     }
 
-    public Collection<User> getAll() {
+    public Collection<Client> getAll() {
         return userHashMap.values();
     }
 
-    public User getUserById(Long id) {
+    public Client getUserById(Long id) {
         return userHashMap.get(id);
     }
 
-    public User getUserByNameAndPassword(String name,String password) {
-        Collection<User> users = getAll();
-        for (User user : users) {
+    public Client getUserByNameAndPassword(String name,String password) {
+        Collection<Client> users = getAll();
+        for (Client user : users) {
             if (user.getName().equals(name) && user.getPassword().equals(password)) {
                 return user;
             }
@@ -46,8 +46,8 @@ public class UserService {
         return null;
     }
 
-    public User createUser(User user) {
-        Optional<User> optionalFilm = userHashMap.values()
+    public Client createUser(Client user) {
+        Optional<Client> optionalFilm = userHashMap.values()
                 .stream()
                 .filter(p -> p.equals(user))                  
                 .findFirst();
@@ -57,12 +57,12 @@ public class UserService {
             return optionalFilm.get();
         } else {
             long tem = id.incrementAndGet();
-            user.setId(tem);
+            
             userHashMap.put(tem, user);
             return user;
         }
     }
-    public Map<Long, User> getUserHashMap() {
+    public Map<Long, Client> getUserHashMap() {
         return userHashMap;
     }
     public void printUserHashMap() {

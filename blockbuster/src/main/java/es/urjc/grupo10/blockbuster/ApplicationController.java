@@ -10,19 +10,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import es.urjc.grupo10.blockbuster.CartService;
+
 import es.urjc.grupo10.blockbuster.UserService;
 
 @Controller
 public class ApplicationController {
-
+    
+    @Autowired
+    private CartRepository cartService;
     @Autowired
     private FilmService filmService;
     @Autowired
-    private CartService cartservice;
+    private UserRepository userRepository;
     @Autowired
     private UserService userService;
-    private User CurrentUser ;
+    private Client CurrentUser ;
 
     @GetMapping("/home")
     public String application(Model model) {
@@ -31,7 +33,7 @@ public class ApplicationController {
     }
     @GetMapping("/home_out")
     public String application_out(Model model) {
-        cartservice.deleteAllFilms();      
+        cartService.deleteAll();    
         return "home_template";
     }
     @PostMapping("/home_login")
@@ -82,7 +84,7 @@ public class ApplicationController {
     public String Log(
             @RequestParam(required = false, defaultValue = "") String username, @RequestParam(required = false, defaultValue = "") String password, Model model) {
             model.addAttribute("users", userService.getAll());
-            User aux = userService.getUserByNameAndPassword(username,password);           
+            Client aux = userService.getUserByNameAndPassword(username,password);           
             if (aux == null){
                 return "home_template";
             }else{
@@ -98,7 +100,7 @@ public class ApplicationController {
     public String postUser(
         @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password, Model model) {
     Long id_aux = userService.getId() ; 
-    User user = new User(id_aux, email, name, password); 
+    Client user = new Client( email, name, password); 
     userService.createUser(user);
     return "home_template";
 }
@@ -107,7 +109,7 @@ public class ApplicationController {
     public String addFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
             Model model) {
         Film film = filmService.filmRepository.getById(id);
-        cartservice.createFilm(film);
+        cartService.save(film);
         model.addAttribute("name", CurrentUser.getName());       
         model.addAttribute("film", film);
         return "film_login_template";
@@ -141,7 +143,7 @@ public class ApplicationController {
     @GetMapping("/films_added/{id}")
     public String addFilm(@PathVariable("id") Long id, Model model) {
         Film film = filmService.filmRepository.getById(id);
-        cartservice.createFilm(film);
+        cartService.save(film);
         model.addAttribute("film", film);
         return "film_template";
 
@@ -168,7 +170,7 @@ public class ApplicationController {
 
     @GetMapping("/user_page")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model) {
-        model.addAttribute("films", cartservice.getAll());
+        model.addAttribute("cart", cartService.findAll());
         model.addAttribute("name", CurrentUser.getName());
         return "user_page";
     }
@@ -176,8 +178,8 @@ public class ApplicationController {
     @GetMapping("/user_page/delete/{id}")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name,
             @PathVariable("id") Long id, Model model) {
-        cartservice.deleteFilmById(id);
-        model.addAttribute("films", cartservice.getAll());
+        cartService.deleteById(id);
+        model.addAttribute("cart", cartService.findAll());
         model.addAttribute("name", name);
         return "user_page";
     }

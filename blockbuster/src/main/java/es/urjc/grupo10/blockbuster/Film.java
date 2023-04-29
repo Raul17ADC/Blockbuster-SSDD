@@ -6,7 +6,7 @@ import java.util.Objects;
 import lombok.Data;
 import jakarta.persistence.*;
 
-
+@Data
 @Entity
 public class Film {
     @Id
@@ -27,6 +27,7 @@ public class Film {
     
     private List<String> reviews = new ArrayList<>();
 
+    
     public Film() {
     }
 

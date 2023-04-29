@@ -1,11 +1,17 @@
 package es.urjc.grupo10.blockbuster;
 
 import java.util.Objects;
+import lombok.Data;
+import jakarta.persistence.*;
+import lombok.Data;
+import jakarta.persistence.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)  
     private Long usercode;
+
     private String email;
     private String name;
     private String password;

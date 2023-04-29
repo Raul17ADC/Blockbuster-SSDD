@@ -3,10 +3,16 @@ package es.urjc.grupo10.blockbuster;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import lombok.Data;
+import jakarta.persistence.*;
 
+
+@Entity
 public class Film {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)  
     private Long code;
+
     private String title;
     private String director;
     private String scriptwriter;
@@ -14,16 +20,19 @@ public class Film {
     private String description;
     private String image;
     private double rating;
+    
     private List<String> actors = new ArrayList<>();
+    
     private List<String> genres = new ArrayList<>();
+    
     private List<String> reviews = new ArrayList<>();
 
     public Film() {
     }
 
-    public Film(Long id, String title, String director, String scriptwriter, String trailer, String description,
+    public Film( String title, String director, String scriptwriter, String trailer, String description,
             String image, double rating) {
-        this.code = id;
+        
         this.title = title;
         this.director = director;
         this.scriptwriter = scriptwriter;

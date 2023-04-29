@@ -37,14 +37,14 @@ public class ApplicationController {
     @PostMapping("/home_login")
     public String application_home_login(Model model, @RequestParam String username) {
         model.addAttribute("name", CurrentUser.getName());
-        model.addAttribute("films", filmService.getNum(5));
+       // model.addAttribute("films", filmService.getNum(5));
         return "home_login_template";
     }
 
     @GetMapping("/home_login/{id}")
     public String showFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String username,
             Model model) {
-        Film film = filmService.getFilmById(id);
+        Film film = filmService.filmRepository.getById(id);
         model.addAttribute("name", CurrentUser.getName());
         model.addAttribute("film", film);
         return "film_login_template";
@@ -53,14 +53,14 @@ public class ApplicationController {
     @GetMapping("/films_login")
     public String films_login(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", CurrentUser.getName());
-        model.addAttribute("films", filmService.getAll());
+        model.addAttribute("films", filmService.filmRepository.findAll());
         return "films_login_template";
     }
 
     @GetMapping("/films_login/{id}")
     public String showFilmFilms(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model) {
-        Film film = filmService.getFilmById(id);
+        Film film = filmService.filmRepository.getById(id);
         model.addAttribute("name", CurrentUser.getName());
         model.addAttribute("film", film);
         return "film_login_template";
@@ -70,7 +70,7 @@ public class ApplicationController {
     @PostMapping("/films_login/{id}/")
     public String Postcomment(@PathVariable("id") Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model, String comment) {
-        Film film = filmService.getFilmById(id);
+        Film film = filmService.filmRepository.getById(id);
         film.getReviews().add(comment);
         model.addAttribute("name", CurrentUser.getName());
         model.addAttribute("film", film);
@@ -88,7 +88,7 @@ public class ApplicationController {
             }else{
                 CurrentUser = aux ;
                 model.addAttribute("name", CurrentUser.getName());
-                model.addAttribute("films", filmService.getNum(5));
+                //model.addAttribute("films", filmService.getNum(5));
                 model.addAttribute("user", CurrentUser);
                 return "home_login_template";
             }               
@@ -106,7 +106,7 @@ public class ApplicationController {
     @GetMapping("/films_login_added/{id}")
     public String addFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
             Model model) {
-        Film film = filmService.getFilmById(id);
+        Film film = filmService.filmRepository.getById(id);
         cartservice.createFilm(film);
         model.addAttribute("name", CurrentUser.getName());       
         model.addAttribute("film", film);
@@ -115,13 +115,13 @@ public class ApplicationController {
 
     @GetMapping("/films")
     public String application_films(Model model) {
-        model.addAttribute("films", filmService.getAll());
+        model.addAttribute("films", filmService.filmRepository.findAll());
         return "films_template";
     }
 
     @GetMapping("/films/{id}")
     public String showFilm(@PathVariable("id") Long id, Model model) {
-        Film film = filmService.getFilmById(id);
+        Film film = filmService.filmRepository.getById(id);
         model.addAttribute("film", film);
         return "film_template";
 
@@ -130,7 +130,7 @@ public class ApplicationController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/films/{id}/")
     public String Postcomment(@PathVariable("id") Long id, Model model, String comment) {
-        Film film = filmService.getFilmById(id);
+        Film film = filmService.filmRepository.getById(id);
         film.getReviews().add(comment);
         model.addAttribute("film", film);
         return "film_template";
@@ -139,7 +139,7 @@ public class ApplicationController {
 
     @GetMapping("/films_added/{id}")
     public String addFilm(@PathVariable("id") Long id, Model model) {
-        Film film = filmService.getFilmById(id);
+        Film film = filmService.filmRepository.getById(id);
         cartservice.createFilm(film);
         model.addAttribute("film", film);
         return "film_template";

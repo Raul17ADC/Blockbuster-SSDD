@@ -19,9 +19,9 @@ import es.urjc.grupo10.blockbuster.*;
 public class FilmRestController {
 
     @Autowired
-    private FilmService filmService;
+    private FilmRepository filmService;
 
-    @GetMapping("/")
+    /*/@GetMapping("/")
     public Collection<Film> getFilms() {
         return filmService.getAll();
     }
@@ -53,5 +53,5 @@ public class FilmRestController {
         }
         film.getReviews().add(review.toStringReview());
         return ResponseEntity.ok(film);
-    }
+    }/*/ 
 }

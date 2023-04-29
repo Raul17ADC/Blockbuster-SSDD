@@ -81,16 +81,16 @@ public class ApplicationController {
     @PostMapping("/home_login/")
     public String Log(
             @RequestParam(required = false, defaultValue = "") String username, @RequestParam(required = false, defaultValue = "") String password, Model model) {
-            List<Client> aux = filmService.userRepository.findByName(username);           
+            /*List<Client> aux = filmService.userRepository.findByName(username);           
             if (aux.isEmpty()){
                 return "home_template";
-            }else{
-                
-                model.addAttribute("name", "CurrentUser.getName()");
+            }else{ */
+                CurrentUser = new Client( "aaa@aaaa", "aaa", "aaa");
+                model.addAttribute("name", CurrentUser.getName());
                 //model.addAttribute("films", filmService.getNum(5));
-                model.addAttribute("user", "CurrentUser");
+                model.addAttribute("user", CurrentUser);
                 return "home_login_template";
-            }               
+           // }               
     }
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/home/")

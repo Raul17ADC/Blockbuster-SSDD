@@ -159,14 +159,5 @@ public class Film {
                 + genres + ", reviews=" + reviews + "]";
     }
 
-    // public String getReviewById(Long reviewId) {
-    // for (String review : reviews) {
-    // String[] parts = review.split(":");
-    // int id = Integer.parseInt(parts[0].trim());
-    // if (id == reviewId) {
-    // return parts[1].trim();
-    // }
-    // }
-    // return null;
-    // }
+   
 }

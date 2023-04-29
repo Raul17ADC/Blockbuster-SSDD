@@ -8,5 +8,6 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface ClientRepository extends JpaRepository<Client, Long>{
-    List<Client> findByName(String name);
+    List<Client> findByUserName(String userName);
+    List<Client> findByUserNameAndPassword(String userName,String password);
 }

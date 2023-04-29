@@ -20,7 +20,8 @@ public class ApplicationController {
     private CartRepository cartService;
     @Autowired
     private FilmService filmService;
-    
+    @Autowired
+    private ClientService clientService;
     
     private Client CurrentUser ;
 
@@ -29,6 +30,11 @@ public class ApplicationController {
 
         return "home_template";
     }
+    @GetMapping("/prueba")
+    public String prueba(Model model) {
+        model.addAttribute("baba", clientService.clientRepository.findByUserNameAndPassword("aaa","aaa"));
+        return "prueba";
+    }
     @GetMapping("/home_out")
     public String application_out(Model model) {
         cartService.deleteAll();    
@@ -36,7 +42,7 @@ public class ApplicationController {
     }
     @PostMapping("/home_login")
     public String application_home_login(Model model, @RequestParam String username) {
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
        // model.addAttribute("films", filmService.getNum(5));
         return "home_login_template";
     }
@@ -45,14 +51,14 @@ public class ApplicationController {
     public String showFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String username,
             Model model) {
         Film film = filmService.filmRepository.getById(id);
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
     }
 
     @GetMapping("/films_login")
     public String films_login(@RequestParam(required = false, defaultValue = "") String name, Model model) {
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("films", filmService.filmRepository.findAll());
         return "films_login_template";
     }
@@ -61,7 +67,7 @@ public class ApplicationController {
     public String showFilmFilms(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model) {
         Film film = filmService.filmRepository.getById(id);
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
     }
@@ -72,7 +78,7 @@ public class ApplicationController {
             @RequestParam(required = false, defaultValue = "") String name, Model model, String comment) {
         Film film = filmService.filmRepository.getById(id);
         film.getReviews().add(comment);
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
 
@@ -81,23 +87,23 @@ public class ApplicationController {
     @PostMapping("/home_login/")
     public String Log(
             @RequestParam(required = false, defaultValue = "") String username, @RequestParam(required = false, defaultValue = "") String password, Model model) {
-            /*List<Client> aux = filmService.userRepository.findByName(username);           
+            List<Client> aux = clientService.clientRepository.findByUserNameAndPassword(username, password);           
             if (aux.isEmpty()){
                 return "home_template";
-            }else{ */
-                CurrentUser = new Client( "aaa@aaaa", "aaa", "aaa");
-                model.addAttribute("name", CurrentUser.getName());
+            }else{ 
+                CurrentUser = aux.get(0);
+                model.addAttribute("name", CurrentUser.getUserName());
                 //model.addAttribute("films", filmService.getNum(5));
                 model.addAttribute("user", CurrentUser);
                 return "home_login_template";
-           // }               
+            }               
     }
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/home/")
     public String postUser(
         @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password, Model model) {   
         Client user = new Client( email, name, password); 
-        filmService.userRepository.save(user);
+        clientService.clientRepository.save(user);
     return "home_template";
 }
 
@@ -106,7 +112,7 @@ public class ApplicationController {
             Model model) {
         Film film = filmService.filmRepository.getById(id);
         cartService.save(film);
-        model.addAttribute("name", CurrentUser.getName());       
+        model.addAttribute("name", CurrentUser.getUserName());       
         model.addAttribute("film", film);
         return "film_login_template";
     }
@@ -167,7 +173,7 @@ public class ApplicationController {
     @GetMapping("/user_page")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("cart", cartService.findAll());
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
         return "user_page";
     }
 

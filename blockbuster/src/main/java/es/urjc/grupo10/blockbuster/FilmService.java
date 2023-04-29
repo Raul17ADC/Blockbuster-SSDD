@@ -9,9 +9,7 @@ import java.util.Arrays;
 public class FilmService {
     @Autowired
     FilmRepository filmRepository;
-    @Autowired
-    ClientRepository userRepository;
-
+    
     @PostConstruct
     public void init()
     {
@@ -80,7 +78,6 @@ film6.setGenres(new ArrayList<String>(Arrays.asList("Comedia")));
 film6.setReviews(new ArrayList<String>(Arrays.asList("Me encanta")));
 filmRepository.save(film6);
     
-    Client user = new Client( "aaa@aaaa", "aaa", "aaa");
-    userRepository.save(user);
+    
     }
 }

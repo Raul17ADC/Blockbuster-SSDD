@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import es.urjc.grupo10.blockbuster.UserService;
+import java.util.List;
 
 @Controller
 public class ApplicationController {
@@ -20,10 +20,8 @@ public class ApplicationController {
     private CartRepository cartService;
     @Autowired
     private FilmService filmService;
-    @Autowired
-    private UserRepository userRepository;
-    @Autowired
-    private UserService userService;
+    
+    
     private Client CurrentUser ;
 
     @GetMapping("/home")
@@ -83,25 +81,23 @@ public class ApplicationController {
     @PostMapping("/home_login/")
     public String Log(
             @RequestParam(required = false, defaultValue = "") String username, @RequestParam(required = false, defaultValue = "") String password, Model model) {
-            model.addAttribute("users", userService.getAll());
-            Client aux = userService.getUserByNameAndPassword(username,password);           
-            if (aux == null){
+            List<Client> aux = filmService.userRepository.findByName(username);           
+            if (aux.isEmpty()){
                 return "home_template";
             }else{
-                CurrentUser = aux ;
-                model.addAttribute("name", CurrentUser.getName());
+                
+                model.addAttribute("name", "CurrentUser.getName()");
                 //model.addAttribute("films", filmService.getNum(5));
-                model.addAttribute("user", CurrentUser);
+                model.addAttribute("user", "CurrentUser");
                 return "home_login_template";
             }               
     }
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/home/")
     public String postUser(
-        @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password, Model model) {
-    Long id_aux = userService.getId() ; 
-    Client user = new Client( email, name, password); 
-    userService.createUser(user);
+        @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password, Model model) {   
+        Client user = new Client( email, name, password); 
+        filmService.userRepository.save(user);
     return "home_template";
 }
 

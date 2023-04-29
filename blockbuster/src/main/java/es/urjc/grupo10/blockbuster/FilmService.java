@@ -10,7 +10,7 @@ public class FilmService {
     @Autowired
     FilmRepository filmRepository;
     @Autowired
-    UserRepository userRepository;
+    ClientRepository userRepository;
 
     @PostConstruct
     public void init()

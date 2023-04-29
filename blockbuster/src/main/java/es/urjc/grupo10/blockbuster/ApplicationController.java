@@ -168,13 +168,17 @@ public class ApplicationController {
     public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("cart", CurrentUser.getCart());
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         return "user_page";
     }
-    @GetMapping("/user_page/profile")
-    public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model,@RequestParam(required = false, defaultValue = "") String logo) {
-        model.addAttribute("cart", cartService.findAll());
-        model.addAttribute("name", CurrentUser.getUserName());
+
+    @PostMapping("/user_page/")
+    public String userPage(@RequestParam(required = false, defaultValue = "") String name, String logo, Model model) {
         CurrentUser.setLogo(logo);
+        clientService.clientRepository.save(CurrentUser); 
+        model.addAttribute("cart", CurrentUser.getCart());
+        model.addAttribute("logo", CurrentUser.getLogo());
+        model.addAttribute("name", CurrentUser.getUserName());    
         return "user_page";
     }
 
@@ -183,6 +187,8 @@ public class ApplicationController {
             @PathVariable("title") String title, Model model) {
             CurrentUser.getCart().remove(title);
             clientService.clientRepository.save(CurrentUser);
+
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("cart", CurrentUser.getCart());
         model.addAttribute("name", CurrentUser.getUserName());
         return "user_page";

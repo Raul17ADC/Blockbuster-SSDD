@@ -36,7 +36,7 @@ public class Client {
         this.logo = "https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg";
     }
 
-   
+    
 
     public String getEmail() {
         return email;
@@ -78,7 +78,8 @@ public class Client {
                 "email='" + email + '\'' +
                 ", username='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                ", carrito='" + cart + '\'' +
+                ", cart='" + cart + '\'' +
+                ", logo='" + logo + '\'' +
                 '}';
     }
 

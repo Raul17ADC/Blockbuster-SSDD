@@ -21,6 +21,8 @@ public class Client {
     private String email;
     private String userName;
     private String password;
+    private String logo;
+
     private List<String> cart = new ArrayList<>();
     
     public Client() {
@@ -31,7 +33,7 @@ public class Client {
         this.email = email;
         this.userName = UserName;
         this.password = password;
-        
+        this.logo = "https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg";
     }
 
    
@@ -62,6 +64,12 @@ public class Client {
 
     public List<String> getCart() {
         return this.cart;
+    }
+    public String getLogo() {
+        return logo;
+    }
+    public void setLogo(String logo) {
+        this.logo = logo;
     }
 
     @Override

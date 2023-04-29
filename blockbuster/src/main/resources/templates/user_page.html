@@ -77,6 +77,17 @@
                 </div>
             </div>
         </div>
+        <div class="form-container">
+            <form method="post" action="/user_page/">
+              <div class="form-group">
+                <label for="user_logo" style="color: aliceblue;">Introduzca el enlace de la nueva foto de perfil</label>
+                <input type="user_logo" id="user_logo" name="user_logo" required />
+              </div>
+            </form>
+            <h1 id="confirm-message"></h1>
+            <div style="margin-top: 10px"></div>
+            <a href="/user_page" id="edit_profile"><button type="submit" class="btn btn-outline-light ms-3">cambiar foto de perfil</button></a>
+        </div>
         <div class="container-fluid">
             <ul class="list-group list-group-flush mx-2 ">
                 <li class="list-group-item fs-3"

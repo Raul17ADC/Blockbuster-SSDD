@@ -170,6 +170,13 @@ public class ApplicationController {
         model.addAttribute("name", CurrentUser.getUserName());
         return "user_page";
     }
+    @GetMapping("/user_page/profile")
+    public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model,@RequestParam(required = false, defaultValue = "") String logo) {
+        model.addAttribute("cart", cartService.findAll());
+        model.addAttribute("name", CurrentUser.getUserName());
+        CurrentUser.setLogo(logo);
+        return "user_page";
+    }
 
     @GetMapping("/user_page/delete/{title}")
     public String userPaged(
@@ -180,4 +187,5 @@ public class ApplicationController {
         model.addAttribute("name", CurrentUser.getUserName());
         return "user_page";
     }
+   
 }

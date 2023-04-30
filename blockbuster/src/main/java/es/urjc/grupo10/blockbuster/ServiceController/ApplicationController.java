@@ -35,7 +35,8 @@ public class ApplicationController {
     }
     @GetMapping("/prueba")
     public String prueba(Model model) {
-        model.addAttribute("baba", filmService.filmRepository.findAll());
+        List<Film> aux = filmService.filmRepository.findAll();
+        model.addAttribute("baba", aux.get(1));
         return "prueba";
     }
     @GetMapping("/home_out")

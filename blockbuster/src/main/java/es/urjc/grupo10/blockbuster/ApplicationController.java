@@ -31,7 +31,7 @@ public class ApplicationController {
     }
     @GetMapping("/prueba")
     public String prueba(Model model) {
-        model.addAttribute("baba", clientService.clientRepository.findAll());
+        model.addAttribute("baba", filmService.filmRepository.findAll());
         return "prueba";
     }
     @GetMapping("/home_out")
@@ -95,7 +95,8 @@ public class ApplicationController {
     public String Postcomment(@PathVariable("id") Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model, String comment) {
         Film film = filmService.filmRepository.getById(id);
-        film.getReviews().add(comment);
+        Review aux_comment = new Review(comment);
+        film.addReview(aux_comment);
         filmService.filmRepository.save(film);
         model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
@@ -173,7 +174,9 @@ public class ApplicationController {
     @PostMapping("/films/{id}/")
     public String Postcomment(@PathVariable("id") Long id, Model model, String comment) {
         Film film = filmService.filmRepository.getById(id);
-        film.getReviews().add(comment);
+        Review aux_comment = new Review(comment);
+        film.addReview(aux_comment);
+        
         filmService.filmRepository.save(film);
         model.addAttribute("film", film);
         return "film_template";

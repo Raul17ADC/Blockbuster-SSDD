@@ -1,15 +1,28 @@
 package es.urjc.grupo10.blockbuster;
 
+import java.time.LocalDate;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@Entity
 public class Review {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private String nombre;
-    private String comentario;
+    private LocalDate date;
+    private String info;
 
-    public Review(Long id, String nombre, String comentario) {
-        this.id = id;
-        this.nombre = nombre;
-        this.comentario = comentario;
+    public Review( String info) {
+        
+        this.info = info;
+        this.date = LocalDate.now();
     }
 
     // Getters and setters
@@ -21,29 +34,21 @@ public class Review {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    
+
+    public String getInfo() {
+        return info;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
+    public void setInfo(String comentario) {
+        this.info = comentario;
     }
 
     // Methods
     @Override
     public String toString() {
-        return "Review [nombre=" + nombre + ", comentario=" + comentario + "]";
+        return "Review [Fecha=" + date + ", comentario=" + info + "]";
     }
 
-    public String toStringReview() {
-        return comentario;
-    }
+    
 }

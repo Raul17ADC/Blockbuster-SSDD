@@ -25,7 +25,8 @@ public class Film {
     
     private List<String> genres = new ArrayList<>();
     
-    private List<String> reviews = new ArrayList<>();
+    @OneToMany(cascade=CascadeType.ALL)
+    private List<Review> reviews = new ArrayList<>();
 
     
     public Film() {
@@ -124,11 +125,20 @@ public class Film {
         this.genres = genres;
     }
 
-    public List<String> getReviews() {
+    public List<Review> getReviews() {
         return reviews;
     }
 
-    public void setReviews(List<String> reviews) {
+    public void addReview(Review review) {
+        reviews.add(review);
+        
+    }
+
+    public void removeReview(Review review) {
+        reviews.remove(review);
+        
+    }
+    public void setReviews(List<Review> reviews) {
         this.reviews = reviews;
     }
 

@@ -9,7 +9,8 @@ import java.util.Arrays;
 public class FilmService {
     @Autowired
     FilmRepository filmRepository;
-    
+    @Autowired
+    ReviewRepository reviewRepository;
     @PostConstruct
     public void init()
     {
@@ -19,7 +20,10 @@ public class FilmService {
             "https://www.lahiguera.net/cinemania/pelicula/10524/oso_vicioso-cartel-10824.jpg", 6.0);
             film.setActors(new ArrayList<String>(Arrays.asList("Keri Russell", "Alden Ehrenreich","O'Shea Jackson Jr")));
             film.setGenres(new ArrayList<String>(Arrays.asList("Comedia", "Suspense")));
-            film.setReviews(new ArrayList<String>(Arrays.asList("Me encanta")));
+            Review aux =new Review("ta chido") ;
+            reviewRepository.save(aux);
+            filmRepository.save(film);
+            film.addReview(aux);
             filmRepository.save(film);
                            
 
@@ -32,7 +36,7 @@ Film film2 = new Film( "John Wick 3", "Chad Stahelski", "Derek Kolstad",
 film2.setActors(new ArrayList<String>(Arrays.asList("Keanu Reeves", "Halle Berry", "Ian McShane",
             "Anjelica Huston", "Mark Dacascos", "Laurence Fishburne", "Lance Reddick")));
 film2.setGenres(new ArrayList<String>(Arrays.asList("Accion", "Crimen", "Suspense")));
-film2.setReviews(new ArrayList<String>(Arrays.asList("Me encanta")));
+
 filmRepository.save(film2);
 
 Film film3 = new Film( "Karate a muerte en Torremolinos", "Pedro Temboury", "Pedro Temboury",
@@ -42,7 +46,7 @@ Film film3 = new Film( "Karate a muerte en Torremolinos", "Pedro Temboury", "Ped
             3.4);
 film3.setActors(new ArrayList<String>(Arrays.asList("Curro Cruz", "Sonia Okomo", "Julio Sanjuán")));
 film3.setGenres(new ArrayList<String>(Arrays.asList("Accion", "Comedia", "Fantasia")));
-film3.setReviews(new ArrayList<String>(Arrays.asList("Me encanta")));
+
 filmRepository.save(film3);
 
 Film film4 = new Film( "The Equalizer 2", "Antoine Fuqua", "Richard Wenk",
@@ -53,7 +57,7 @@ Film film4 = new Film( "The Equalizer 2", "Antoine Fuqua", "Richard Wenk",
 film4.setActors(new ArrayList<String>(Arrays.asList("Denzel Washington", "Pedro Pascal", "Bill Pullman",
             "Melissa Leo", "Ashton Sanders", "Jonathan Scarfe")));
 film4.setGenres(new ArrayList<String>(Arrays.asList("Accion", "Crimen", "Suspense")));
-film4.setReviews(new ArrayList<String>(Arrays.asList("Me encanta")));
+
 filmRepository.save(film4);
 
 Film film5 = new Film( "Resacón en Las Vegas", "Todd Phillips", "Jon Lucas",
@@ -64,7 +68,7 @@ Film film5 = new Film( "Resacón en Las Vegas", "Todd Phillips", "Jon Lucas",
 film5.setActors(new ArrayList<String>(Arrays.asList("Bradley Cooper", "Ed Helms", "Zach Galifianakis",
             "Justin Bartha", "Heather Graham", "Sasha Barrese", "Jeffrey Tambor")));
 film5.setGenres(new ArrayList<String>(Arrays.asList("Drama", "Depeorte")));
-film5.setReviews(new ArrayList<String>(Arrays.asList("Me encanta")));
+
 filmRepository.save(film5);
 
 Film film6 = new Film("AIR", "Ben Affleck", "Alex Convery",
@@ -75,7 +79,7 @@ Film film6 = new Film("AIR", "Ben Affleck", "Alex Convery",
 film6.setActors(new ArrayList<String>(Arrays.asList("Matt Damon", "Ben Affleck", "Viola Davis",
             "Chris Messina", "Marlon Wayans", "Chris Tucker", "Jason Bateman")));
 film6.setGenres(new ArrayList<String>(Arrays.asList("Comedia")));
-film6.setReviews(new ArrayList<String>(Arrays.asList("Me encanta")));
+
 filmRepository.save(film6);
     
     

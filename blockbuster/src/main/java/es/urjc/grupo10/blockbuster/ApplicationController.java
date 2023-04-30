@@ -61,6 +61,25 @@ public class ApplicationController {
         model.addAttribute("films", filmService.filmRepository.findAll());
         return "films_login_template";
     }
+    @GetMapping("/films_login/Director")
+    public String films_login_director(@RequestParam(required = false, defaultValue = "") String name, Model model) {
+        model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("films", filmService.filmRepository.findAllOrderByDirector());
+        return "films_login_template";
+    }
+    @GetMapping("/films_login/rating")
+    public String films_login_rating(@RequestParam(required = false, defaultValue = "") String name, Model model) {
+        model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("films", filmService.filmRepository.findAllOrderByRating());
+        return "films_login_template";
+    }
+    @GetMapping("/films_login/title")
+    public String films_login_title(@RequestParam(required = false, defaultValue = "") String name, Model model) {
+        model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("films", filmService.filmRepository.findAllOrderByTitle());
+        return "films_login_template";
+    }
+
 
     @GetMapping("/films_login/{id}")
     public String showFilmFilms(@PathVariable Long id,
@@ -124,7 +143,24 @@ public class ApplicationController {
         model.addAttribute("films", filmService.filmRepository.findAll());
         return "films_template";
     }
-
+    @GetMapping("/films/Director")
+    public String films_director(@RequestParam(required = false, defaultValue = "") String name, Model model) {
+        
+        model.addAttribute("films", filmService.filmRepository.findAllOrderByDirector());
+        return "films_template";
+    }
+    @GetMapping("/films/rating")
+    public String films_rating(@RequestParam(required = false, defaultValue = "") String name, Model model) {
+        
+        model.addAttribute("films", filmService.filmRepository.findAllOrderByRating());
+        return "films_template";
+    }
+    @GetMapping("/films/title")
+    public String films_title(@RequestParam(required = false, defaultValue = "") String name, Model model) {
+        
+        model.addAttribute("films", filmService.filmRepository.findAllOrderByTitle());
+        return "films_template";
+    }
     @GetMapping("/films/{id}")
     public String showFilm(@PathVariable("id") Long id, Model model) {
         Film film = filmService.filmRepository.getById(id);

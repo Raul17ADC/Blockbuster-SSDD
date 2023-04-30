@@ -62,7 +62,7 @@
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
-                    
+
                 </div>
             </div>
         </div>
@@ -107,28 +107,51 @@
                 <div class="container-fluid d-flex justify-content-center my-2 " style="color: rgb(255, 255, 255);">
 
                     <div id="comments-container">
-                        {{#film.reviews}}
-                        <p>{{.}}</p>
-                        {{/film.reviews}}
+                        {{#reviews}}
+                        <div>
+                            <p>{{date}} -- {{{info}}}</p>
+                        </div>
+                        {{/reviews}}
                     </div>
                 </div>
             </div>
 
-            <form method="post" action="/films/{{id}}/">
+            <form method="post" action="/films/{{id}}/" onsubmit="saveContent()">
                 <div>
                     <label for="comment">
                         <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Escribe tu reseña:</p>
                     </label><br>
-                    <input type="text" class="form-control" style="height: 200px;" id="comment" name="comment" required>
+                    <div>
+                        <button type="button" onclick="format('bold')">Negrita</button>
+                        <button type="button" onclick="format('italic')">Cursiva</button>
+                        <button type="button" onclick="format('foreColor', 'red')">Rojo</button>
+                        <button type="button" onclick="format('removeFormat')">Borrar Formato</button>
+                    </div>
+                    <div style="border: 1px solid; background-color: aliceblue;
+                    min-height: 100px;
+                    padding: 10px;" id="editor" contenteditable="true"></div>
+                    <input type="hidden" name="comment" id="content">
+
                 </div>
                 <div class="container-fluid d-flex justify-content-center mb-3"> <button type="submit"
                         class="btn btn-primary " id="submit-button">Enviar
                         reseña</button></div>
             </form>
+            <script>
+                function format(cmd, value) {
+                    document.execCommand(cmd, false, value);
+                }
+
+                function saveContent() {
+                    const inputContent = document.querySelector('#content');
+                    const editor = document.querySelector('#editor');
+                    inputContent.value = editor.innerHTML;
+                }
+            </script>
         </div>
     </div>
     </div>
-
+                        
 </body>
 
 </html>

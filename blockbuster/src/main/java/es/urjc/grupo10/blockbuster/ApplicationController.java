@@ -85,6 +85,7 @@ public class ApplicationController {
     public String showFilmFilms(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model) {
         Film film = filmService.filmRepository.getById(id);
+        model.addAttribute("reviews", film.getReviews());
         model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
@@ -98,6 +99,7 @@ public class ApplicationController {
         Review aux_comment = new Review(comment);
         film.addReview(aux_comment);
         filmService.filmRepository.save(film);
+        model.addAttribute("reviews", film.getReviews());
         model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
@@ -134,6 +136,7 @@ public class ApplicationController {
         Film film = filmService.filmRepository.getById(id);
         CurrentUser.getCart().add(film.getTitle());
         clientService.clientRepository.save(CurrentUser);
+        model.addAttribute("reviews", film.getReviews());
         model.addAttribute("name", CurrentUser.getUserName());       
         model.addAttribute("film", film);
         return "film_login_template";
@@ -165,6 +168,7 @@ public class ApplicationController {
     @GetMapping("/films/{id}")
     public String showFilm(@PathVariable("id") Long id, Model model) {
         Film film = filmService.filmRepository.getById(id);
+        model.addAttribute("reviews", film.getReviews());
         model.addAttribute("film", film);
         return "film_template";
 
@@ -175,9 +179,10 @@ public class ApplicationController {
     public String Postcomment(@PathVariable("id") Long id, Model model, String comment) {
         Film film = filmService.filmRepository.getById(id);
         Review aux_comment = new Review(comment);
-        film.addReview(aux_comment);
-        
+        film.addReview(aux_comment);  
         filmService.filmRepository.save(film);
+        film.getReviews();
+        model.addAttribute("reviews", film.getReviews());
         model.addAttribute("film", film);
         return "film_template";
 

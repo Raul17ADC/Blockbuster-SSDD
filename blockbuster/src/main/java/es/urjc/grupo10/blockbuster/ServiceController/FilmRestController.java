@@ -1,4 +1,4 @@
-package es.urjc.grupo10.blockbuster;
+package es.urjc.grupo10.blockbuster.ServiceController;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

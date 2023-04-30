@@ -22,7 +22,8 @@ public class Film {
     private String image;
     private double rating;
     
-    private List<String> actors = new ArrayList<>();
+    @ManyToMany
+    private List<Actor> actors = new ArrayList<>();
     
     private List<String> genres = new ArrayList<>();
     
@@ -110,12 +111,12 @@ public class Film {
         this.rating = rating;
     }
 
-    public List<String> getActors() {
+    public List<Actor> getActors() {
         return actors;
     }
 
-    public void setActors(List<String> actors) {
-        this.actors = actors;
+    public void addActors(Actor actor) {
+        this.actors.add(actor);
     }
 
     public List<String> getGenres() {

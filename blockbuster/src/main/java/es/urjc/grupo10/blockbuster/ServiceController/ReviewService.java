@@ -1,4 +1,4 @@
-package es.urjc.grupo10.blockbuster.Service;
+package es.urjc.grupo10.blockbuster.ServiceController;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

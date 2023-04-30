@@ -1,4 +1,4 @@
-package es.urjc.grupo10.blockbuster.Service;
+package es.urjc.grupo10.blockbuster.ServiceController;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;

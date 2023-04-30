@@ -1,4 +1,4 @@
-package es.urjc.grupo10.blockbuster.Service&Controller;
+package es.urjc.grupo10.blockbuster.ServiceController;
 
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.Collection;

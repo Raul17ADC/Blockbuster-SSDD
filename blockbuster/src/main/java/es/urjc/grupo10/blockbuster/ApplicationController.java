@@ -42,6 +42,7 @@ public class ApplicationController {
     public String application_home_login(Model model, @RequestParam String username) {
         model.addAttribute("name", CurrentUser.getUserName());
         List<Film> aux = filmService.filmRepository.findAll();
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("films", aux.subList(0, 5));
         return "home_login_template";
     }
@@ -51,6 +52,7 @@ public class ApplicationController {
             Model model) {
         Film film = filmService.filmRepository.getById(id);
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("film", film);
         return "film_login_template";
     }
@@ -58,24 +60,28 @@ public class ApplicationController {
     @GetMapping("/films_login")
     public String films_login(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("films", filmService.filmRepository.findAll());
         return "films_login_template";
     }
     @GetMapping("/films_login/Director")
     public String films_login_director(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("films", filmService.filmRepository.findAllOrderByDirector());
         return "films_login_template";
     }
     @GetMapping("/films_login/rating")
     public String films_login_rating(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("films", filmService.filmRepository.findAllOrderByRating());
         return "films_login_template";
     }
     @GetMapping("/films_login/title")
     public String films_login_title(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("films", filmService.filmRepository.findAllOrderByTitle());
         return "films_login_template";
     }
@@ -86,6 +92,7 @@ public class ApplicationController {
             @RequestParam(required = false, defaultValue = "") String name, Model model) {
         Film film = filmService.filmRepository.getById(id);
         model.addAttribute("reviews", film.getReviews());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
@@ -100,6 +107,7 @@ public class ApplicationController {
         film.addReview(aux_comment);
         filmService.filmRepository.save(film);
         model.addAttribute("reviews", film.getReviews());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
@@ -117,6 +125,7 @@ public class ApplicationController {
                 model.addAttribute("name", CurrentUser.getUserName());
                 List<Film> aux2 = filmService.filmRepository.findAll();
                 model.addAttribute("films", aux2.subList(0, 5));
+                model.addAttribute("logo", CurrentUser.getLogo());
                 model.addAttribute("user", CurrentUser);
                 return "home_login_template";
             }               
@@ -137,6 +146,7 @@ public class ApplicationController {
         CurrentUser.getCart().add(film.getTitle());
         clientService.clientRepository.save(CurrentUser);
         model.addAttribute("reviews", film.getReviews());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("name", CurrentUser.getUserName());       
         model.addAttribute("film", film);
         return "film_login_template";

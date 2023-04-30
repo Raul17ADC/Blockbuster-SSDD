@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import es.urjc.grupo10.blockbuster.*;
+import es.urjc.grupo10.blockbuster.Repository.FilmRepository;
 
 @RestController
 @RequestMapping("/api")

@@ -1,9 +1,11 @@
-package es.urjc.grupo10.blockbuster;
+package es.urjc.grupo10.blockbuster.Repository;
 
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
+import es.urjc.grupo10.blockbuster.Class.Client;
 
 import java.util.List;
 

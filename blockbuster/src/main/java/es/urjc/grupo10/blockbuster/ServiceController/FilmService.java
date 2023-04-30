@@ -1,8 +1,14 @@
-package es.urjc.grupo10.blockbuster;
+package es.urjc.grupo10.blockbuster.Service;
 
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import es.urjc.grupo10.blockbuster.Class.Film;
+import es.urjc.grupo10.blockbuster.Class.Review;
+import es.urjc.grupo10.blockbuster.Repository.FilmRepository;
+import es.urjc.grupo10.blockbuster.Repository.ReviewRepository;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 @Service

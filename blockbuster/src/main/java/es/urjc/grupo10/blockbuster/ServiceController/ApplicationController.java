@@ -1,4 +1,4 @@
-package es.urjc.grupo10.blockbuster;
+package es.urjc.grupo10.blockbuster.Service&Controller;
 
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.Collection;
@@ -10,6 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import es.urjc.grupo10.blockbuster.Class.Client;
+import es.urjc.grupo10.blockbuster.Class.Film;
+import es.urjc.grupo10.blockbuster.Class.Review;
 
 import java.util.List;
 

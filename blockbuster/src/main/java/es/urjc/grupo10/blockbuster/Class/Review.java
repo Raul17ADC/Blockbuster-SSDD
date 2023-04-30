@@ -1,4 +1,4 @@
-package es.urjc.grupo10.blockbuster;
+package es.urjc.grupo10.blockbuster.Class;
 
 import java.time.LocalDate;
 

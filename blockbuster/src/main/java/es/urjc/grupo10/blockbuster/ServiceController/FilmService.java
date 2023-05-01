@@ -143,7 +143,6 @@ public class FilmService {
         Actor actor33 = new Actor("Bill Pullman");
         Actor actor34 = new Actor("Melissa Leo");
         Actor actor35 = new Actor("Ashton Sanders");
-        Actor actor36 = new Actor("Jonathan Scarfe");
         
         film4.setGenres(new ArrayList<String>(Arrays.asList("Accion", "Crimen", "Suspense")));
 
@@ -254,5 +253,172 @@ public class FilmService {
         actorRepository.save(actor55);
         actorRepository.save(actor56);
 
+        Film film7 = new Film("Trasformers", "Michael Bay", "Alex Kurtzman",
+        "https://www.youtube.com/embed/B_CzSjhOGzM",
+        "Dos razas de robots extraterrestres transformables (los villanos decepticons y los amistosos autobots ) llegan a la Tierra en busca de una misteriosa fuente de poder.",
+        "https://upload.wikimedia.org/wikipedia/en/thumb/6/66/Transformers07.jpg/220px-Transformers07.jpg",
+        5.7);
+
+        Actor actor57 = new Actor("Shia LaBeouf");
+        Actor actor58 = new Actor("Megan Fox");
+        Actor actor59 = new Actor("Josh Duhamel");
+        Actor actor60 = new Actor("Tyrese Gibson");
+        Actor actor61 = new Actor("Jon Voight");
+        Actor actor62 = new Actor("John Turturro");
+
+        film7.setGenres(new ArrayList<String>(Arrays.asList("Ciencia ficcion", "Accion")));
+
+        filmRepository.save(film7); 
+        actorRepository.save(actor57);
+        actorRepository.save(actor58);
+        actorRepository.save(actor59);
+        actorRepository.save(actor60);
+        actorRepository.save(actor61);
+        actorRepository.save(actor62);
+        film7.addActors(actor57);
+        film7.addActors(actor58);
+        film7.addActors(actor59);
+        film7.addActors(actor60);
+        film7.addActors(actor61);
+        film7.addActors(actor62);
+        actor57.addFilm(film7);
+        actor58.addFilm(film7);
+        actor59.addFilm(film7);
+        actor60.addFilm(film7);
+        actor61.addFilm(film7);
+        actor62.addFilm(film7);
+        filmRepository.save(film7);
+        actorRepository.save(actor57);
+        actorRepository.save(actor58);
+        actorRepository.save(actor59);
+        actorRepository.save(actor60);
+        actorRepository.save(actor61);
+        actorRepository.save(actor62);
+
+        Film film8 = new Film("Tenet", "Christopher Nolan", "Christopher Nolan",
+        "https://www.youtube.com/embed/QxhDXmb2O3k",
+        "Armado con tan solo una palabra –Tenet– el protagonista de esta historia deberá pelear por la supervivencia del mundo entero en una misión que le lleva a viajar a través del oscuro mundo del espionaje internacional.",
+        "https://www.enter.co/wp-content/uploads/2020/12/POSTER-MAIN.jpg",
+        9.8);
+
+        Actor actor67 = new Actor("John David Washington");
+        Actor actor68 = new Actor("Robert Pattinson");
+        Actor actor69 = new Actor("Elizabeth Debicki");
+        Actor actor70 = new Actor("Dimple Kapadia");
+        Actor actor71 = new Actor("Kenneth Branagh");
+        Actor actor72 = new Actor("Aaron Taylor-Johnson");
+
+        film8.setGenres(new ArrayList<String>(Arrays.asList("Ciencia ficcion", "Accion")));
+
+        filmRepository.save(film8); 
+        actorRepository.save(actor67);
+        actorRepository.save(actor68);
+        actorRepository.save(actor69);
+        actorRepository.save(actor70);
+        actorRepository.save(actor71);
+        actorRepository.save(actor72);
+        film8.addActors(actor67);
+        film8.addActors(actor68);
+        film8.addActors(actor69);
+        film8.addActors(actor70);
+        film8.addActors(actor71);
+        film8.addActors(actor72);
+        actor67.addFilm(film8);
+        actor68.addFilm(film8);
+        actor69.addFilm(film8);
+        actor70.addFilm(film8);
+        actor71.addFilm(film8);
+        actor72.addFilm(film8);
+        filmRepository.save(film8);
+        actorRepository.save(actor67);
+        actorRepository.save(actor68);
+        actorRepository.save(actor69);
+        actorRepository.save(actor70);
+        actorRepository.save(actor71);
+        actorRepository.save(actor72);
+
+        Film film9 = new Film("La llegaga", "Denis Villeneuve", "Eric Heisserer",
+        "https://www.youtube.com/embed/uWs5lsWXLbo",
+        "Cuando naves extraterrestres comienzan a llegar a la Tierra, los altos mandos militares piden ayuda a una experta lingüista (Amy Adams) para intentar averiguar si los alienígenas vienen en son de paz o suponen una amenaza.",
+        "https://www.cinemaperaestudiants.cat/admin/web/uploaddir//pelicules/arrival.jpg",
+        9.9);
+
+        Actor actor77 = new Actor("Amy Adams");
+        Actor actor78 = new Actor("Jeremy Renner");
+        Actor actor79 = new Actor("Forest Whitakeri");
+        Actor actor80 = new Actor("Michael Stuhlbarg");
+        Actor actor81 = new Actor("Mark O'Brien");
+        Actor actor82 = new Actor("Nathaly Thibault");
+
+        film9.setGenres(new ArrayList<String>(Arrays.asList("Ciencia ficcion", "Suspense")));
+
+        filmRepository.save(film9); 
+        actorRepository.save(actor77);
+        actorRepository.save(actor78);
+        actorRepository.save(actor79);
+        actorRepository.save(actor80);
+        actorRepository.save(actor81);
+        actorRepository.save(actor82);
+        film9.addActors(actor77);
+        film9.addActors(actor78);
+        film9.addActors(actor79);
+        film9.addActors(actor80);
+        film9.addActors(actor81);
+        film9.addActors(actor82);
+        actor77.addFilm(film9);
+        actor78.addFilm(film9);
+        actor79.addFilm(film9);
+        actor80.addFilm(film9);
+        actor81.addFilm(film9);
+        actor82.addFilm(film9);
+        filmRepository.save(film9);
+        actorRepository.save(actor77);
+        actorRepository.save(actor78);
+        actorRepository.save(actor79);
+        actorRepository.save(actor80);
+        actorRepository.save(actor81);
+        actorRepository.save(actor82);
+
+        Film film10 = new Film("El ataque del tiburon de tres cabezas", "Christopher Ray", "Jacob Cooney",
+        "https://www.youtube.com/embed/X2vZJ7tvuyw",
+        "La mayor máquina de matar del mundo es tres veces más mortal cuando un mutado, de tres cabezas, gran tiburón blanco amenaza a un crucero.",
+        "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ0wA95z1oDqahbGbOo_d0mFuDbcM75JpGOFGXrQsky7FUqvRCw",
+        2.2);
+
+        Actor actor87 = new Actor("Jena Sims");
+        Actor actor88 = new Actor("Danny Trejo");
+        Actor actor89 = new Actor("Jaason Simmons");
+        Actor actor90 = new Actor("Kimberly Battista");
+        Actor actor91 = new Actor("Dawn Hamil");
+        Actor actor92 = new Actor("Cristalle C. Leonard");
+
+        film10.setGenres(new ArrayList<String>(Arrays.asList("Ciencia ficcion", "Suspense")));
+
+        filmRepository.save(film10); 
+        actorRepository.save(actor87);
+        actorRepository.save(actor88);
+        actorRepository.save(actor89);
+        actorRepository.save(actor90);
+        actorRepository.save(actor91);
+        actorRepository.save(actor92);
+        film10.addActors(actor87);
+        film10.addActors(actor88);
+        film10.addActors(actor89);
+        film10.addActors(actor90);
+        film10.addActors(actor91);
+        film10.addActors(actor92);
+        actor87.addFilm(film10);
+        actor88.addFilm(film10);
+        actor89.addFilm(film10);
+        actor90.addFilm(film10);
+        actor91.addFilm(film10);
+        actor92.addFilm(film10);
+        filmRepository.save(film10);
+        actorRepository.save(actor87);
+        actorRepository.save(actor88);
+        actorRepository.save(actor89);
+        actorRepository.save(actor90);
+        actorRepository.save(actor91);
+        actorRepository.save(actor92);
     }
 }

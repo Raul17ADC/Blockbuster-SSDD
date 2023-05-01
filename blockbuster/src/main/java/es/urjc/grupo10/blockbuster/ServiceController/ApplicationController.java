@@ -46,7 +46,7 @@ public class ApplicationController {
     @PostMapping("/home_login")
     public String application_home_login(Model model, @RequestParam String username) {
         model.addAttribute("name", CurrentUser.getUserName());
-        List<Film> aux = filmService.filmRepository.findAll();
+        List<Film> aux = filmService.filmRepository.findAllOrderByRating();
         model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("films", aux.subList(0, 5));
         return "home_login_template";
@@ -128,7 +128,7 @@ public class ApplicationController {
             }else{ 
                 CurrentUser = aux.get(0);
                 model.addAttribute("name", CurrentUser.getUserName());
-                List<Film> aux2 = filmService.filmRepository.findAll();
+                List<Film> aux2 = filmService.filmRepository.findAllOrderByRating();
                 model.addAttribute("films", aux2.subList(0, 5));
                 model.addAttribute("logo", CurrentUser.getLogo());
                 model.addAttribute("user", CurrentUser);

@@ -3,56 +3,39 @@ package es.urjc.grupo10.blockbuster.ServiceController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import es.urjc.grupo10.blockbuster.*;
-import es.urjc.grupo10.blockbuster.Repository.FilmRepository;
+import es.urjc.grupo10.blockbuster.Class.Film;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/films")
 public class FilmRestController {
 
     @Autowired
-    private FilmRepository filmService;
+    FilmService filmService;
 
-    /*/@GetMapping("/")
-    public Collection<Film> getFilms() {
-        return filmService.getAll();
+    @GetMapping("/")
+    public ResponseEntity<List<Film>> getAllFilms() {
+        return new ResponseEntity<>(filmService.filmRepository.findAll(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public Film getFilmById(@PathVariable Long id) {
-        return filmService.getFilmById(id);
+    @GetMapping("/director")
+    public ResponseEntity<List<Film>> getAllFilmsOrderByDirector() {
+        return new ResponseEntity<List<Film>>(filmService.filmRepository.findAllOrderByDirector(), HttpStatus.OK);
     }
 
-    @GetMapping("/genero/{genero}")
-    public Collection<Film> getFilmsByGenre(@PathVariable String genero) {
-        return filmService.getFilmsByGenre(genero);
+    @GetMapping("/title")
+    public ResponseEntity<List<Film>> getAllFilmsOrderByTitle() {
+        return new ResponseEntity<List<Film>>(filmService.filmRepository.findAllOrderByTitle(), HttpStatus.OK);
     }
 
-    @GetMapping("/{id}/reviews")
-    public ResponseEntity<Object> getReviewsByFilmId(@PathVariable Long id) {
-        Film film = filmService.getFilmById(id);
-        if (film == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(film.getReviews());
+    @GetMapping("/rating")
+    public ResponseEntity<List<Film>> getAllFilmsOrderByRating() {
+        return new ResponseEntity<List<Film>>(filmService.filmRepository.findAllOrderByRating(), HttpStatus.OK);
     }
-
-    @PostMapping("/{id}/reviews")
-    public ResponseEntity<Film> addReview(@PathVariable Long id, @RequestBody Review review) {
-        Film film = filmService.getFilmById(id);
-        if (film == null) {
-            return ResponseEntity.notFound().build();
-        }
-        film.getReviews().add(review.toStringReview());
-        return ResponseEntity.ok(film);
-    }/*/ 
 }

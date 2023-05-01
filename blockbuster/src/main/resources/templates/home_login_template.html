@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+  <link href="/css/home_login.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/carrusel.css" />
+  <link rel="stylesheet" href="/css/cards.css" />
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="/css/social_media.css" />
+  <title>Página inicio</title>
+</head>
+
+<body style="background-color: rgb(14, 15, 110)">
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(41, 82, 172)">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/home_login"
+        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+        <img src="https://bendblockbuster.com/wp-content/themes/blockbuster/assets/images/blockbuster-logo.svg"
+          width="300" height="50" />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <form method="post" action="/home_login">
+            <input type="hidden" name="username" value="{{name}}" />
+            <li class="nav-item me-md-4">
+              <button type="submit" class="btn btn-link nav-link active fs-2 text-decoration-underline"
+                style="color: white">
+                Home
+              </button>
+            </li>
+          </form>
+
+          <li class="nav-item me-md-4">
+            <a class="nav-link fs-2" href="/films_login?name={{name}}" style="color: white">Películas</a>
+          </li>
+        </ul>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img class="profile-image"
+              src="{{logo}}"
+              alt="profile-image" />          
+              {{name}}           
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+            <li>
+              <a class="dropdown-item" href="/user_page?name={{name}}"><span class="fas fa-pencil-alt"></span>Perfil</a>
+            </li>
+            <li>
+              <a class="dropdown-item" href="/home_out"
+                onclick="return confirm('¿Estás seguro de que quieres cerrar sesión? Volverás a la página principal.')"><span
+                  class="fas fa-door-open"></span> Cerrar Sesión</a>
+            </li>
+            <form id="logout-form" action="/home_login" method="POST" style="display: none">
+              <input type="hidden" name="_method" value="POST" />
+              <input type="hidden" name="username" value="{{name}}" />
+              @csrf
+            </form>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <div>
+    <p class="d-flex fs-1 mx-6 my-2 justify-content-center" style="color: white">Próximamente:</p>
+    <div class="section" id="carousel">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="col-md-8 mr-auto ml-auto">
+            <!-- Carousel Card -->
+            <div class="card card-raised card-carousel d-flex justify-content-center">
+              <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+                <ol class="carousel-indicators">
+                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="1" class=""></li>
+                  <li data-target="#carouselExampleIndicators" data-slide-to="2" class=""></li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="d-block w-100" src="/Proximo1.jpg" alt="First slide" />
+                    <div class="carousel-caption d-none d-md-block"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="/Proximo2.jpg" alt="Second slide" />
+                    <div class="carousel-caption d-none d-md-block"></div>
+                  </div>
+                  <div class="carousel-item">
+                    <img class="d-block w-100" src="/Proximo3.jpg" alt="Third slide" />
+                    <div class="carousel-caption d-none d-md-block"></div>
+                  </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                  <img src="/previous_arrow.png" alt="Imagen anterior" style="width: 100px; height: 100px;">
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                  <img src="/next_arrow.png" alt="Imagen siguiente" style="width: 100px; height: 100px;">
+                </a>
+              </div>
+            </div>
+            <!-- End Carousel Card -->
+            <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+              integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+              crossorigin="anonymous"></script>
+            <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js"
+              integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U"
+              crossorigin="anonymous"></script>
+            <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js"
+              integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9"
+              crossorigin="anonymous"></script>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid">
+      <p class="d-flex fs-1 mx-6 my-2" style="color: white">Recomendaciones:</p>
+      <div class="container-fluid d-flex justify-content-center">
+        <div class="wrapper">
+          {{#films}}
+
+          <div class="card" style="flex-direction: row">
+            <img src="{{image}}" id="card" />
+            <div class="descriptions">
+              <h1>{{title}}</h1>
+              <p>{{description}}</p>
+              <a href="/films_login/{{id}}?name={{name}}" class="btn btn-primary">Ver película</a>
+            </div>
+          </div>
+
+          {{/films}}
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="social-media">
+    <h2>Nuestras redes sociales</h2>
+    <a href="https://www.instagram.com/blockbuster_sd/?igshid=YmMyMTA2M2Y%3D" target="_blank"><img
+        src="/logo_instagram.png" alt="Red social 1" /></a>
+    <a href="https://twitter.com/blockbuster_sd?s=11" target="_blank"><img src="/logo_twitter.png"
+        alt="Red social 2" /></a>
+    <a href="https://www.tiktok.com/@blockbusterdistri?is_from_webapp=1&sender_device=pc" target="_blank"><img
+        src="/logo_tiktok.png" alt="Red social 3" /></a>
+  </div>
+</body>
+
+</html>

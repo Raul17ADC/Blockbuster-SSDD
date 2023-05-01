@@ -107,6 +107,25 @@
   background-color: #95a5a6;
   color: #fff;
 }
+#underline {
+  background-color: #2e38cc;
+  color: #fff;
+}
+
+#strikethrough {
+  background-color: #153815;
+  color: #fff;
+}
+
+#highlight {
+  background-color: #57150e;
+  color: #fff;
+}
+
+#align-right {
+  background-color: #db2fd3;
+  color: #fff;
+}
 
 button {
   border: none;

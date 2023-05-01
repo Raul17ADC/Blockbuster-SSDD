@@ -33,12 +33,7 @@ public class ApplicationController {
 
         return "home_template";
     }
-    @GetMapping("/prueba")
-    public String prueba(Model model) {
-        List<Film> aux = filmService.filmRepository.findAll();
-        model.addAttribute("baba", aux.get(1));
-        return "prueba";
-    }
+
     @GetMapping("/home_out")
     public String application_out(Model model) {   
         return "home_template";

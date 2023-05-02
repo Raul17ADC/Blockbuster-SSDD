@@ -19,9 +19,6 @@ public class ClientService {
     @PostConstruct
     public void init()
     {
-    Client client = new Client( "aaa@aaaa", "aaa", "aaa");
-    clientRepository.save(client);
-    Client client2 = new Client( "bbb@bbb", "bbb", "bbb");
-    clientRepository.save(client2);
+    
     }
 }

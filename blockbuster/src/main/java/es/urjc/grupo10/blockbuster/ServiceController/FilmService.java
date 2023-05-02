@@ -299,7 +299,7 @@ public class FilmService {
         "https://www.youtube.com/embed/QxhDXmb2O3k",
         "Armado con tan solo una palabra –Tenet– el protagonista de esta historia deberá pelear por la supervivencia del mundo entero en una misión que le lleva a viajar a través del oscuro mundo del espionaje internacional.",
         "https://www.enter.co/wp-content/uploads/2020/12/POSTER-MAIN.jpg",
-        9.8);
+        7.3);
 
         Actor actor67 = new Actor("John David Washington");
         Actor actor68 = new Actor("Robert Pattinson");
@@ -337,11 +337,11 @@ public class FilmService {
         actorRepository.save(actor71);
         actorRepository.save(actor72);
 
-        Film film9 = new Film("La llegaga", "Denis Villeneuve", "Eric Heisserer",
+        Film film9 = new Film("La llegada", "Denis Villeneuve", "Eric Heisserer",
         "https://www.youtube.com/embed/uWs5lsWXLbo",
         "Cuando naves extraterrestres comienzan a llegar a la Tierra, los altos mandos militares piden ayuda a una experta lingüista (Amy Adams) para intentar averiguar si los alienígenas vienen en son de paz o suponen una amenaza.",
         "https://www.cinemaperaestudiants.cat/admin/web/uploaddir//pelicules/arrival.jpg",
-        9.9);
+        7.9);
 
         Actor actor77 = new Actor("Amy Adams");
         Actor actor78 = new Actor("Jeremy Renner");
@@ -379,9 +379,9 @@ public class FilmService {
         actorRepository.save(actor81);
         actorRepository.save(actor82);
 
-        Film film10 = new Film("El ataque del tiburon de tres cabezas", "Christopher Ray", "Jacob Cooney",
+        Film film10 = new Film("El ataque del tiburon de 3 cabezas", "Christopher Ray", "Jacob Cooney",
         "https://www.youtube.com/embed/X2vZJ7tvuyw",
-        "La mayor máquina de matar del mundo es tres veces más mortal cuando un mutado, de tres cabezas, gran tiburón blanco amenaza a un crucero.",
+        "La mayor máquina de matar del mundo es tres veces más mortal cuando un mutado, de tres cabezas, tiburón blanco amenaza un crucero.",
         "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ0wA95z1oDqahbGbOo_d0mFuDbcM75JpGOFGXrQsky7FUqvRCw",
         2.2);
 

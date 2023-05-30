@@ -32,7 +32,7 @@ public class ApplicationController {
     @GetMapping("/home_out")
     public String application_out(Model model) {
         cartservice.deleteAllFilms();      
-        return "home_template";
+        return "/home_template";
     }
     @PostMapping("/home_login")
     public String application_home_login(Model model, @RequestParam String username) {

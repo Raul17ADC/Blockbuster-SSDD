@@ -102,5 +102,18 @@ public class FilmRestController {
         return new ResponseEntity<>("Film deleted", HttpStatus.OK);
     }
     
+    @PutMapping("/films/{id}/{name}")
+    public ResponseEntity<String> updateFilmName(@PathVariable Long id, @RequestBody String newName) {
+        Film film = filmService.getFilmById(id);
+
+        if (film == null) {
+            return new ResponseEntity<>("Film not found", HttpStatus.NOT_FOUND);
+        }
+
+        film.setTitle(newName);
+        filmService.updateFilm(film);
+
+        return new ResponseEntity<>("Film name updated successfully", HttpStatus.OK);
+    }
 
 }

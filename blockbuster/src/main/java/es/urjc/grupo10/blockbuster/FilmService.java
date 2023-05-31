@@ -118,4 +118,9 @@ public class FilmService {
                 filmHashMap.put(tem, film);
                 return film;
         }
+
+        public void deleteFilm(Film film) {
+                filmHashMap.remove(film.getId());
+            }            
+            
 }

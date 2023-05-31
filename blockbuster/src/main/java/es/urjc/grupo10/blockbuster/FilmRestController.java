@@ -54,7 +54,7 @@ public class FilmRestController {
         }
     }
     
-    @DeleteMapping("/{username}")
+    @DeleteMapping("users/{username}")
     public ResponseEntity<String> deleteUserByUsername(@PathVariable String username) {
         User user = userService.getUserName(username);
 
@@ -90,5 +90,17 @@ public class FilmRestController {
         }
     }
 
+    @DeleteMapping("films/{id}")
+    public ResponseEntity<String> deleteFilmById(@PathVariable Long id) {
+        Film film = filmService.getFilmById(id);
+    
+        if (film == null) {
+            return new ResponseEntity<>("Film not found", HttpStatus.NOT_FOUND);
+        }
+    
+        filmService.deleteFilm(film);
+        return new ResponseEntity<>("Film deleted", HttpStatus.OK);
+    }
+    
 
 }

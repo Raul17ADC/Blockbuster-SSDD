@@ -102,7 +102,7 @@ public class FilmRestController {
         return new ResponseEntity<>("Film deleted", HttpStatus.OK);
     }
     
-    @PutMapping("/films/{id}/{name}")
+    @PutMapping("/films/{id}/name")
     public ResponseEntity<String> updateFilmName(@PathVariable Long id, @RequestBody String newName) {
         Film film = filmService.getFilmById(id);
 
@@ -113,7 +113,7 @@ public class FilmRestController {
         film.setTitle(newName);
         filmService.updateFilm(film);
 
-        return new ResponseEntity<>("Film name updated successfully", HttpStatus.OK);
+        return new ResponseEntity<>("Film name updated successfully",HttpStatus.OK);
     }
 
 }

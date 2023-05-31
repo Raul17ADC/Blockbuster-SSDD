@@ -21,6 +21,9 @@ public class FilmRestController {
     @Autowired
     private FilmService filmService;
 
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/")
     public Collection<Film> getFilms() {
         return filmService.getAll();
@@ -36,5 +39,31 @@ public class FilmRestController {
         return filmService.getFilmsByGenre(genero);
     }
 
-    
+    @GetMapping("/users")
+    public Collection<User> getUsers() {
+        return userService.getAll();
+    }
+
+    @PostMapping("/users")
+    public ResponseEntity<User> addUser(@RequestBody User user) {
+        User newUser = userService.createUser(user);
+        if (newUser != null) {
+            return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    /* 
+    @DeleteMapping("/{username}")
+    public ResponseEntity<String> deleteUserByUsername(@PathVariable String username) {
+        User user = userService.getUserByUsername(username);
+
+        if (user == null) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+
+        userService.deleteUser(user);
+        return new ResponseEntity<>("User deleted", HttpStatus.OK);
+    }
+    */
 }

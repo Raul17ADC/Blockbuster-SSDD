@@ -66,4 +66,29 @@ public class FilmRestController {
         return new ResponseEntity<>("User deleted", HttpStatus.OK);
     }
 
+    @PutMapping("/users/{username}/password")
+    public ResponseEntity<String> updateUserPassword(@PathVariable String username, @RequestBody String newPassword) {
+        User user = userService.getUserName(username);
+
+        if (user == null) {
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        }
+
+        user.setPassword(newPassword);
+        userService.updateUser(user);
+
+        return new ResponseEntity<>("Password updated successfully", HttpStatus.OK);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<Film> createFilm(@RequestBody Film film) {
+        Film newFilm = filmService.createFilm(film);
+        if (newFilm != null) {
+            return new ResponseEntity<>(newFilm, HttpStatus.CREATED);
+        } else {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
 }

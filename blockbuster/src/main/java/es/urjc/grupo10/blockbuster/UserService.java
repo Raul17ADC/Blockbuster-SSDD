@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -76,6 +77,30 @@ public class UserService {
     public void deleteUser(User user) {
         userHashMap.values().removeIf(u -> u.getUserName().equals(user.getUserName()));
     }
+
+    public void updateUser(User user) {
+        User existingUser = userHashMap.values()
+                .stream()
+                .filter(u -> u.getUserName().equals(user.getUserName()))
+                .findFirst()
+                .orElse(null);
+    
+        if (existingUser != null) {
+            Long userCode = userHashMap.entrySet()
+                    .stream()
+                    .filter(entry -> Objects.equals(entry.getValue(), existingUser))
+                    .map(Map.Entry::getKey)
+                    .findFirst()
+                    .orElse(null);
+    
+            if (userCode != null) {
+                userHashMap.remove(userCode);
+                user.setUserCode(userCode);
+                userHashMap.put(userCode, user);
+            }
+        }
+    }
+    
     
     
     public Map<Long, User> getUserHashMap() {

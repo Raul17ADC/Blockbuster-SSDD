@@ -78,7 +78,7 @@ public class UserService {
         userHashMap.values().removeIf(u -> u.getUserName().equals(user.getUserName()));
     }
 
-    /*public void updateUser(User user) {
+    public void updateUser(User user) {
         User existingUser = userHashMap.values()
                 .stream()
                 .filter(u -> u.getUserName().equals(user.getUserName()))
@@ -99,7 +99,7 @@ public class UserService {
                 userHashMap.put(userCode, user);
             }
         }
-    }*/
+    }
     
     
     

@@ -36,22 +36,5 @@ public class FilmRestController {
         return filmService.getFilmsByGenre(genero);
     }
 
-    @GetMapping("/{id}/reviews")
-    public ResponseEntity<Object> getReviewsByFilmId(@PathVariable Long id) {
-        Film film = filmService.getFilmById(id);
-        if (film == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(film.getReviews());
-    }
-
-    @PostMapping("/{id}/reviews")
-    public ResponseEntity<Film> addReview(@PathVariable Long id, @RequestBody Review review) {
-        Film film = filmService.getFilmById(id);
-        if (film == null) {
-            return ResponseEntity.notFound().build();
-        }
-        film.getReviews().add(review.toStringReview());
-        return ResponseEntity.ok(film);
-    }
+    
 }

@@ -1,35 +1,37 @@
 package es.urjc.grupo10.blockbuster;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+
+
 
 public class User {
+    
     private Long usercode;
+
     private String email;
-    private String name;
+    private String userName;
     private String password;
+    private String logo;
+
+    private List<String> cart = new ArrayList<>();
+    
+    public User() {
+    }
+    
+    public User(String email, String UserName, String password) {
+        
+        this.email = email;
+        this.userName = UserName;
+        this.password = password;
+        this.logo = "https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg";
+    }
+
     
 
-    public User(){
-
-    }
-
-    public User(Long usercode ,String email, String name, String password) {
-        this.usercode = usercode;
-        this.email = email;
-        this.name = name;
-        this.password = password;
-        
-    }
-
-    public Long getId() {
-        return usercode;
-    }
-
-    public void setId(Long id) {
-        this.usercode = id;
-    }
     public String getEmail() {
         return email;
     }
@@ -38,12 +40,16 @@ public class User {
         this.email = email;
     }
 
-    public String getName() {
-        return name;
+    public void setUserCode(long tem) {
+        this.usercode = tem;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUserName() {
+        return this.userName;
+    }
+
+    public void setUserName(String UserName) {
+        this.userName = UserName;
     }
 
     public String getPassword() {
@@ -54,17 +60,24 @@ public class User {
         this.password = password;
     }
 
-    
-
-   
+    public List<String> getCart() {
+        return this.cart;
+    }
+    public String getLogo() {
+        return logo;
+    }
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Client{" +
                 "email='" + email + '\'' +
-                ", name='" + name + '\'' +
+                ", username='" + userName + '\'' +
                 ", password='" + password + '\'' +
-                
+                ", cart='" + cart + '\'' +
+                ", logo='" + logo + '\'' +
                 '}';
     }
 
@@ -72,12 +85,12 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(name, user.name) ;
+        User client = (User) o;
+        return Objects.equals(userName, client.userName) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(email, name, password);
+        return Objects.hash(email, userName, password);
     }
 }

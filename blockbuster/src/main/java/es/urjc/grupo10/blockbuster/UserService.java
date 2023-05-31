@@ -39,7 +39,7 @@ public class UserService {
     public User getUserByNameAndPassword(String name,String password) {
         Collection<User> users = getAll();
         for (User user : users) {
-            if (user.getName().equals(name) && user.getPassword().equals(password)) {
+            if (user.getUserName().equals(name) && user.getPassword().equals(password)) {
                 return user;
             }
         }
@@ -57,7 +57,7 @@ public class UserService {
             return optionalFilm.get();
         } else {
             long tem = id.incrementAndGet();
-            user.setId(tem);
+            user.setUserCode(tem);
             userHashMap.put(tem, user);
             return user;
         }

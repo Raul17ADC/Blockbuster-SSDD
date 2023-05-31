@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import es.urjc.grupo10.blockbuster.CartService;
+
 import es.urjc.grupo10.blockbuster.UserService;
 
 @Controller
@@ -18,8 +18,7 @@ public class ApplicationController {
 
     @Autowired
     private FilmService filmService;
-    @Autowired
-    private CartService cartservice;
+    
     @Autowired
     private UserService userService;
     private User CurrentUser ;
@@ -29,14 +28,15 @@ public class ApplicationController {
 
         return "home_template";
     }
+
     @GetMapping("/home_out")
-    public String application_out(Model model) {
-        cartservice.deleteAllFilms();      
+    public String application_out(Model model) {    
         return "/home_template";
     }
+
     @PostMapping("/home_login")
     public String application_home_login(Model model, @RequestParam String username) {
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("films", filmService.getNum(5));
         return "home_login_template";
     }
@@ -45,14 +45,14 @@ public class ApplicationController {
     public String showFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String username,
             Model model) {
         Film film = filmService.getFilmById(id);
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
     }
 
     @GetMapping("/films_login")
     public String films_login(@RequestParam(required = false, defaultValue = "") String name, Model model) {
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("films", filmService.getAll());
         return "films_login_template";
     }
@@ -61,7 +61,7 @@ public class ApplicationController {
     public String showFilmFilms(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model) {
         Film film = filmService.getFilmById(id);
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
     }
@@ -72,7 +72,7 @@ public class ApplicationController {
             @RequestParam(required = false, defaultValue = "") String name, Model model, String comment) {
         Film film = filmService.getFilmById(id);
         film.getReviews().add(comment);
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
 
@@ -87,7 +87,7 @@ public class ApplicationController {
                 return "home_template";
             }else{
                 CurrentUser = aux ;
-                model.addAttribute("name", CurrentUser.getName());
+                model.addAttribute("name", CurrentUser.getUserName());
                 model.addAttribute("films", filmService.getNum(5));
                 model.addAttribute("user", CurrentUser);
                 return "home_login_template";
@@ -97,8 +97,8 @@ public class ApplicationController {
     @PostMapping("/home/")
     public String postUser(
         @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password, Model model) {
-    Long id_aux = userService.getId() ; 
-    User user = new User(id_aux, email, name, password); 
+    
+    User user = new User(email, name, password); 
     userService.createUser(user);
     return "home_template";
 }
@@ -107,8 +107,10 @@ public class ApplicationController {
     public String addFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
             Model model) {
         Film film = filmService.getFilmById(id);
-        cartservice.createFilm(film);
-        model.addAttribute("name", CurrentUser.getName());       
+        CurrentUser.getCart().add(film.getTitle());
+        model.addAttribute("reviews", film.getReviews());
+        model.addAttribute("logo", CurrentUser.getLogo());
+        model.addAttribute("name", CurrentUser.getUserName());       
         model.addAttribute("film", film);
         return "film_login_template";
     }
@@ -131,20 +133,14 @@ public class ApplicationController {
     @PostMapping("/films/{id}/")
     public String Postcomment(@PathVariable("id") Long id, Model model, String comment) {
         Film film = filmService.getFilmById(id);
-        film.getReviews().add(comment);
+        film.getReviews().add(comment); 
+        model.addAttribute("reviews", film.getReviews());
         model.addAttribute("film", film);
         return "film_template";
 
     }
 
-    @GetMapping("/films_added/{id}")
-    public String addFilm(@PathVariable("id") Long id, Model model) {
-        Film film = filmService.getFilmById(id);
-        cartservice.createFilm(film);
-        model.addAttribute("film", film);
-        return "film_template";
-
-    }
+    
 
     @GetMapping("/register")
     public String application_resgister(Model model) {
@@ -167,16 +163,16 @@ public class ApplicationController {
 
     @GetMapping("/user_page")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model) {
-        model.addAttribute("films", cartservice.getAll());
-        model.addAttribute("name", CurrentUser.getName());
+        model.addAttribute("films", CurrentUser.getCart());
+        model.addAttribute("name", CurrentUser.getUserName());
         return "user_page";
     }
 
     @GetMapping("/user_page/delete/{id}")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name,
             @PathVariable("id") Long id, Model model) {
-        cartservice.deleteFilmById(id);
-        model.addAttribute("films", cartservice.getAll());
+            CurrentUser.getCart().remove( id.intValue() - 1);
+        model.addAttribute("films", CurrentUser.getCart());
         model.addAttribute("name", name);
         return "user_page";
     }

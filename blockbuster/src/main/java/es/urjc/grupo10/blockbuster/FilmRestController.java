@@ -53,10 +53,10 @@ public class FilmRestController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    /* 
+    
     @DeleteMapping("/{username}")
     public ResponseEntity<String> deleteUserByUsername(@PathVariable String username) {
-        User user = userService.getUserByUsername(username);
+        User user = userService.getUserName(username);
 
         if (user == null) {
             return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
@@ -65,5 +65,5 @@ public class FilmRestController {
         userService.deleteUser(user);
         return new ResponseEntity<>("User deleted", HttpStatus.OK);
     }
-    */
+
 }

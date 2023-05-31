@@ -36,6 +36,16 @@ public class UserService {
         return userHashMap.get(id);
     }
 
+    public User getUserName(String name){
+        Collection<User> users = getAll();
+        for (User user : users) {
+            if (user.getUserName().equals(name)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
     public User getUserByNameAndPassword(String name,String password) {
         Collection<User> users = getAll();
         for (User user : users) {
@@ -62,6 +72,12 @@ public class UserService {
             return user;
         }
     }
+
+    public void deleteUser(User user) {
+        userHashMap.values().removeIf(u -> u.getUserName().equals(user.getUserName()));
+    }
+    
+    
     public Map<Long, User> getUserHashMap() {
         return userHashMap;
     }

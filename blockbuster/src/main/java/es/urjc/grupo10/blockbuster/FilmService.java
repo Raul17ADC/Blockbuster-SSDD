@@ -97,6 +97,11 @@ public class FilmService {
                 return filmHashMap.values();
         }
 
+        public void addLike(Long id){
+                Film film = filmHashMap.get(id);
+                film.addLike();
+            } 
+
         public Film getFilmById(Long id) {
                 return filmHashMap.get(id);
         }

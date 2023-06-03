@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -114,6 +116,20 @@ public class FilmRestController {
         filmService.updateFilm(film);
 
         return new ResponseEntity<>("Film name updated successfully",HttpStatus.OK);
+    }
+
+    @PostMapping("/addLike/{id}/")
+    public ResponseEntity<Map<String, Object>> addLike(@PathVariable Long id) {
+        Film film = filmService.getFilmById(id);
+        Map<String, Object> response = new HashMap<>();
+        if(film == null){
+            response.put("mensaje", "No se ha podido agregar un like al anuncio con ID " + id);
+            return ResponseEntity.badRequest().body(response);
+        }
+        filmService.addLike(id);
+        response.put("likes", film.getLikes());
+        response.put("mensaje", "Like agreagado al anuncio con ID " + id + " correctamente");
+        return ResponseEntity.ok().body(response);
     }
 
 }

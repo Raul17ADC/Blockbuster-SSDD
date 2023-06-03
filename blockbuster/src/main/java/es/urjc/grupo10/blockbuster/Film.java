@@ -13,6 +13,7 @@ public class Film {
     private String trailer;
     private String description;
     private String image;
+    private int likes;
     private double rating;
     private List<String> actors = new ArrayList<>();
     private List<String> genres = new ArrayList<>();
@@ -31,6 +32,7 @@ public class Film {
         this.description = description;
         this.image = image;
         this.rating = rating;
+        this.likes = 0 ;
     }
 
     // Getters and setters
@@ -46,8 +48,15 @@ public class Film {
         return title;
     }
 
+    public int getLikes() {
+        return likes;
+    }
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void addLike(){
+        this.likes++;
     }
 
     public String getDirector() {

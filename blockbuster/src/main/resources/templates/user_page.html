@@ -47,7 +47,7 @@
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         <img class="profile-image"
-                            src="https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg"
+                            src="{{logo}}"
                             alt="profile-image">
                         {{name}}
                     </button>
@@ -71,11 +71,23 @@
             <div class=" d-flex container-fluid justify-content-evenly justify-content-lg-center my-4">
                 <div class="container-fluid " width="600" height="900">
                     <figure class="d-flex justify-content-center"><img
-                            src="https://img1.freepng.es/20180319/row/kisspng-computer-icons-google-account-user-profile-iconfin-png-icons-download-profile-5ab0301d8907a6.3404305715214960935613.jpg"
+                            src="{{logo}}"
                             class="img-fluid mx-5 my-2" width="400" height="800">
                     </figure>
                 </div>
             </div>
+        </div>
+        <div class="form-container">
+            <form method="post" action="/user_page/">
+                <div>
+                    <label for="logo">
+                        <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Escribe la direccion de tu nueva foto de perfil</p>
+                    </label><br>
+                    <input type="text" class="form-control" style="height: 50px;" id="logo" name="logo" required>
+                </div>
+                <div class="container-fluid d-flex justify-content-center mb-3"> <button type="submit"
+                        class="btn btn-primary " id="submit-button">Aceptar</button></div>
+            </form>
         </div>
         <div class="container-fluid">
             <ul class="list-group list-group-flush mx-2 ">

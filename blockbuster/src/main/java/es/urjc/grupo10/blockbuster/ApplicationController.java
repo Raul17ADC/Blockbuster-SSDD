@@ -37,6 +37,7 @@ public class ApplicationController {
     @PostMapping("/home_login")
     public String application_home_login(Model model, @RequestParam String username) {
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("films", filmService.getNum(5));
         return "home_login_template";
     }
@@ -46,6 +47,7 @@ public class ApplicationController {
             Model model) {
         Film film = filmService.getFilmById(id);
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("film", film);
         return "film_login_template";
     }
@@ -53,6 +55,7 @@ public class ApplicationController {
     @GetMapping("/films_login")
     public String films_login(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("films", filmService.getAll());
         return "films_login_template";
     }
@@ -62,6 +65,7 @@ public class ApplicationController {
             @RequestParam(required = false, defaultValue = "") String name, Model model) {
         Film film = filmService.getFilmById(id);
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("film", film);
         return "film_login_template";
     }
@@ -73,6 +77,7 @@ public class ApplicationController {
         Film film = filmService.getFilmById(id);
         film.getReviews().add(comment);
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("film", film);
         return "film_login_template";
 
@@ -89,6 +94,7 @@ public class ApplicationController {
                 CurrentUser = aux ;
                 model.addAttribute("name", CurrentUser.getUserName());
                 model.addAttribute("films", filmService.getNum(5));
+                model.addAttribute("logo", CurrentUser.getLogo());
                 model.addAttribute("user", CurrentUser);
                 return "home_login_template";
             }               
@@ -165,6 +171,7 @@ public class ApplicationController {
     public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model) {
         model.addAttribute("films", CurrentUser.getCart());
         model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
         return "user_page";
     }
 
@@ -172,8 +179,17 @@ public class ApplicationController {
     public String userPage(@RequestParam(required = false, defaultValue = "") String name,
             @PathVariable("id") Long id, Model model) {
             CurrentUser.getCart().remove( id.intValue() - 1);
+        model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("films", CurrentUser.getCart());
         model.addAttribute("name", name);
+        return "user_page";
+    }
+    @PostMapping("/user_page/")
+    public String userPage(@RequestParam(required = false, defaultValue = "") String name, String logo, Model model) {
+        CurrentUser.setLogo(logo);
+        model.addAttribute("cart", CurrentUser.getCart());
+        model.addAttribute("logo", CurrentUser.getLogo());
+        model.addAttribute("name", CurrentUser.getUserName());    
         return "user_page";
     }
 }

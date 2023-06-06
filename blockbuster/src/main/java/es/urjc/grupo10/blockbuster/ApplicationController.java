@@ -84,7 +84,7 @@ public class ApplicationController {
 
     }
     @ResponseStatus(HttpStatus.OK)
-    @GetMapping("/home_login/")
+    @PostMapping("/home_login/")
     public String Log(
             @RequestParam(required = false, defaultValue = "") String username, @RequestParam(required = false, defaultValue = "") String password, Model model) {
             model.addAttribute("users", userService.getAll());

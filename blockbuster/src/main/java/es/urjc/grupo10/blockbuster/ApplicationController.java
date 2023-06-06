@@ -29,6 +29,11 @@ public class ApplicationController {
         return "home_template";
     }
 
+    @GetMapping("/users")
+    public String users(Model model) {
+        model.addAttribute("users", userService.getAll());
+        return "users";
+    }
     @GetMapping("/home_out")
     public String application_out(Model model) {    
         return "/home_template";

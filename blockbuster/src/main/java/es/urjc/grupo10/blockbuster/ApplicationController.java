@@ -69,6 +69,7 @@ public class ApplicationController {
         model.addAttribute("film", film);
         return "film_login_template";
     }
+    
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/films_login/{id}/")
@@ -83,7 +84,7 @@ public class ApplicationController {
 
     }
     @ResponseStatus(HttpStatus.OK)
-    @PostMapping("/home_login/")
+    @GetMapping("/home_login/")
     public String Log(
             @RequestParam(required = false, defaultValue = "") String username, @RequestParam(required = false, defaultValue = "") String password, Model model) {
             model.addAttribute("users", userService.getAll());
@@ -99,6 +100,21 @@ public class ApplicationController {
                 return "home_login_template";
             }               
     }
+
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping("/user_deleted/{username}/")
+    public String deleteUser(@PathVariable("username") String username, Model model) {
+            model.addAttribute("users", userService.getAll());
+            User aux = userService.getUserName(username);           
+            if (aux == null){
+                return "home_template";
+            }else{
+                userService.deleteUser(aux);
+                return "home_template";
+            }               
+    }
+    
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/home/")
     public String postUser(
@@ -132,6 +148,14 @@ public class ApplicationController {
         Film film = filmService.getFilmById(id);
         model.addAttribute("film", film);
         return "film_template";
+
+    }
+    @GetMapping("/Delete_film/{id}")
+    public String deleteFilm(@PathVariable("id") Long id, Model model) {
+        Film film = filmService.getFilmById(id);
+        filmService.deleteFilm(film);
+        model.addAttribute("films", filmService.getAll());
+        return "films_template";
 
     }
 

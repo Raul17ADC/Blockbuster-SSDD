@@ -132,15 +132,15 @@
         <div class="container-fluid d-flex justify-content-center my-2 " style="color: rgb(255, 255, 255);">
 
           <div id="comments-container">
-            {{#reviews}}
+            {{#film.reviews}}
             <div>
               <p>{{{.}}}</p>
             </div>
-            {{/reviews}}
+            {{/film.reviews}}
           </div>
         </div>
       </div>
-      {{#film}}
+      
       <form method="post" action="/films_login/{{id}}/" onsubmit="saveContent()">
         <div>
           <label for="comment">
@@ -166,7 +166,7 @@
             id="submit-button">Enviar
             reseña</button></div>
       </form>
-      {{/film}}
+      
       <script>
         function format(cmd, value) {
           document.execCommand(cmd, false, value);

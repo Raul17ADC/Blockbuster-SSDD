@@ -91,7 +91,7 @@ public class FilmRestController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    //borrar película por id
     @DeleteMapping("films/{id}")
     public ResponseEntity<String> deleteFilmById(@PathVariable Long id) {
         Film film = filmService.getFilmById(id);

@@ -18,10 +18,10 @@ public class ApplicationController {
 
     @Autowired
     private FilmService filmService;
-    
+
     @Autowired
     private UserService userService;
-    private User CurrentUser ;
+    private User CurrentUser;
 
     @GetMapping("/home")
     public String application(Model model) {
@@ -34,8 +34,9 @@ public class ApplicationController {
         model.addAttribute("users", userService.getAll());
         return "users";
     }
+
     @GetMapping("/home_out")
-    public String application_out(Model model) {    
+    public String application_out(Model model) {
         return "/home_template";
     }
 
@@ -74,7 +75,6 @@ public class ApplicationController {
         model.addAttribute("film", film);
         return "film_login_template";
     }
-    
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/films_login/{id}/")
@@ -88,47 +88,50 @@ public class ApplicationController {
         return "film_login_template";
 
     }
+
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/home_login/")
     public String Log(
-            @RequestParam(required = false, defaultValue = "") String username, @RequestParam(required = false, defaultValue = "") String password, Model model) {
-            model.addAttribute("users", userService.getAll());
-            User aux = userService.getUserByNameAndPassword(username,password);           
-            if (aux == null){
-                return "home_template";
-            }else{
-                CurrentUser = aux ;
-                model.addAttribute("name", CurrentUser.getUserName());
-                model.addAttribute("films", filmService.getNum(5));
-                model.addAttribute("logo", CurrentUser.getLogo());
-                model.addAttribute("user", CurrentUser);
-                return "home_login_template";
-            }               
+            @RequestParam(required = false, defaultValue = "") String username,
+            @RequestParam(required = false, defaultValue = "") String password, Model model) {
+        model.addAttribute("users", userService.getAll());
+        User aux = userService.getUserByNameAndPassword(username, password);
+        if (aux == null) {
+            return "home_template";
+        } else {
+            CurrentUser = aux;
+            model.addAttribute("name", CurrentUser.getUserName());
+            model.addAttribute("films", filmService.getNum(5));
+            model.addAttribute("logo", CurrentUser.getLogo());
+            model.addAttribute("user", CurrentUser);
+            return "home_login_template";
+        }
     }
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/user_deleted/{username}/")
     public String deleteUser(@PathVariable("username") String username, Model model) {
-            model.addAttribute("users", userService.getAll());
-            User aux = userService.getUserName(username);           
-            if (aux == null){
-                return "home_template";
-            }else{
-                userService.deleteUser(aux);
-                return "home_template";
-            }               
+        model.addAttribute("users", userService.getAll());
+        User aux = userService.getUserName(username);
+        if (aux == null) {
+            return "home_template";
+        } else {
+            userService.deleteUser(aux);
+            return "home_template";
+        }
     }
-    
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/home/")
     public String postUser(
-        @RequestParam(required = false, defaultValue = "") String email,@RequestParam(required = false, defaultValue = "") String name,@RequestParam(required = false, defaultValue = "") String password, Model model) {
-    
-    User user = new User(email, name, password); 
-    userService.createUser(user);
-    return "home_template";
-}
+            @RequestParam(required = false, defaultValue = "") String email,
+            @RequestParam(required = false, defaultValue = "") String name,
+            @RequestParam(required = false, defaultValue = "") String password, Model model) {
+
+        User user = new User(email, name, password);
+        userService.createUser(user);
+        return "home_template";
+    }
 
     @GetMapping("/films_login_added/{id}")
     public String addFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
@@ -137,7 +140,7 @@ public class ApplicationController {
         CurrentUser.getCart().add(film.getTitle());
         model.addAttribute("reviews", film.getReviews());
         model.addAttribute("logo", CurrentUser.getLogo());
-        model.addAttribute("name", CurrentUser.getUserName());       
+        model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
     }
@@ -151,31 +154,33 @@ public class ApplicationController {
     @GetMapping("/films/{id}")
     public String showFilm(@PathVariable("id") Long id, Model model) {
         Film film = filmService.getFilmById(id);
-        model.addAttribute("film", film);
-        return "film_template";
-
-    }
-    @GetMapping("/Delete_film/{id}")
-    public String deleteFilm(@PathVariable("id") Long id, Model model) {
-        Film film = filmService.getFilmById(id);
-        filmService.deleteFilm(film);
-        model.addAttribute("films", filmService.getAll());
-        return "films_template";
-
-    }
-
-    @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/films/{id}/")
-    public String Postcomment(@PathVariable("id") Long id, Model model, String comment) {
-        Film film = filmService.getFilmById(id);
-        film.getReviews().add(comment); 
         model.addAttribute("reviews", film.getReviews());
         model.addAttribute("film", film);
         return "film_template";
 
     }
 
-    
+    @GetMapping("/delete_film/{id}")
+    public String deleteFilm(@PathVariable("id") Long id, Model model) {
+        Film film = filmService.getFilmById(id);
+        filmService.deleteFilm(film);
+        model.addAttribute("films", filmService.getAll());
+        model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", CurrentUser.getLogo());
+        return "films_login_template";
+
+    }
+
+    @ResponseStatus(HttpStatus.OK)
+    @PostMapping("/films/{id}/")
+    public String Postcomment(@PathVariable("id") Long id, Model model, String comment) {
+        Film film = filmService.getFilmById(id);
+        film.getReviews().add(comment);
+        model.addAttribute("reviews", film.getReviews());
+        model.addAttribute("film", film);
+        return "film_template";
+
+    }
 
     @GetMapping("/register")
     public String application_resgister(Model model) {
@@ -207,18 +212,19 @@ public class ApplicationController {
     @GetMapping("/user_page/delete/{id}")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name,
             @PathVariable("id") Long id, Model model) {
-            CurrentUser.getCart().remove( id.intValue() - 1);
+        CurrentUser.getCart().remove(id.intValue() - 1);
         model.addAttribute("logo", CurrentUser.getLogo());
         model.addAttribute("films", CurrentUser.getCart());
         model.addAttribute("name", name);
         return "user_page";
     }
+
     @PostMapping("/user_page/")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name, String logo, Model model) {
         CurrentUser.setLogo(logo);
         model.addAttribute("cart", CurrentUser.getCart());
         model.addAttribute("logo", CurrentUser.getLogo());
-        model.addAttribute("name", CurrentUser.getUserName());    
+        model.addAttribute("name", CurrentUser.getUserName());
         return "user_page";
     }
 }

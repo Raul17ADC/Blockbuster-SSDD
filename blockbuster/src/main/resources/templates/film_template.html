@@ -57,8 +57,8 @@
                         <p class="d-flex fs-1  my-2 justify-content-center" style="color: white;">
                             Valoración: {{film.rating}} / 10</p>
                     </div>
-                    <span id="likes-{{id}}" class="d-flex fs-1  my-2 justify-content-center" style="color: white;" >Likes: {{film.likes}}</span><br>
-                    <button onclick="addLikeToAd({{film.id}})">Agregar Like</button><br>
+                    <span id="likes-{{id}}" class="d-flex fs-1  my-2 justify-content-center" style="color: rgb(255, 255, 255);" >Likes: {{film.likes}}</span><br>
+                    <button id="likeaction" type="button"  onclick="addLikeToAd({{film.id}})">Agregar Like</button><br>
                 </div>
                 <div class="container-fluid"><iframe width="1020" height="630" src={{film.trailer}}
                         title="YouTube video player" frameborder="0"

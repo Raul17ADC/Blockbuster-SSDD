@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Objects;
 
 public class Film {
-
     private Long code;
     private String title;
     private String director;
@@ -13,8 +12,9 @@ public class Film {
     private String trailer;
     private String description;
     private String image;
-    private int likes;
     private double rating;
+    private int likes;
+
     private List<String> actors = new ArrayList<>();
     private List<String> genres = new ArrayList<>();
     private List<String> reviews = new ArrayList<>();
@@ -22,9 +22,9 @@ public class Film {
     public Film() {
     }
 
-    public Film(Long id, String title, String director, String scriptwriter, String trailer, String description,
-            String image, double rating) {
-        this.code = id;
+    public Film(Long code, String title, String director, String scriptwriter, String trailer,
+                String description, String image, double rating) {
+        this.code = code;
         this.title = title;
         this.director = director;
         this.scriptwriter = scriptwriter;
@@ -32,7 +32,7 @@ public class Film {
         this.description = description;
         this.image = image;
         this.rating = rating;
-        this.likes = 0 ;
+        this.likes = 0 ;;
     }
 
     // Getters and setters

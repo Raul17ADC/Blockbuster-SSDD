@@ -133,6 +133,27 @@ public class ApplicationController {
         return "home_template";
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping("/films/create")
+    public String createFilm(
+        @RequestParam(required = false, defaultValue = "") String title,
+        @RequestParam(required = false, defaultValue = "") String director,
+        @RequestParam(required = false, defaultValue = "") String scriptwriter,
+        @RequestParam(required = false, defaultValue = "") String trailer,
+        @RequestParam(required = false, defaultValue = "") String description,
+        @RequestParam(required = false, defaultValue = "") String image,
+        @RequestParam(required = false, defaultValue = "0") double rating,
+        Model model) {
+
+    Film film = new Film(null, title, director, scriptwriter,
+                                trailer,
+                                description,
+                                image,
+                                rating);
+    filmService.createFilm(film);
+    return "home_template";
+}
+
     @GetMapping("/films_login_added/{id}")
     public String addFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
             Model model) {
@@ -143,6 +164,11 @@ public class ApplicationController {
         model.addAttribute("name", CurrentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
+    }
+    @GetMapping("/add_film")
+    public String add_films(Model model) {
+        model.addAttribute("films", filmService.getAll());
+        return "add_film";
     }
 
     @GetMapping("/films")

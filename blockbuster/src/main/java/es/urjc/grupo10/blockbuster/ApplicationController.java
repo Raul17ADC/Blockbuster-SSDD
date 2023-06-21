@@ -1,17 +1,10 @@
 package es.urjc.grupo10.blockbuster;
 
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-
-import es.urjc.grupo10.blockbuster.UserService;
 
 @Controller
 public class ApplicationController {
@@ -21,7 +14,7 @@ public class ApplicationController {
 
     @Autowired
     private UserService userService;
-    private User CurrentUser;
+    private User currentUser;
 
     @GetMapping("/home")
     public String application(Model model) {
@@ -42,8 +35,8 @@ public class ApplicationController {
 
     @PostMapping("/home_login")
     public String application_home_login(Model model, @RequestParam String username) {
-        model.addAttribute("name", CurrentUser.getUserName());
-        model.addAttribute("logo", CurrentUser.getLogo());
+        model.addAttribute("name", currentUser.getUserName());
+        model.addAttribute("logo", currentUser.getLogo());
         model.addAttribute("films", filmService.getNum(5));
         return "home_login_template";
     }
@@ -52,16 +45,16 @@ public class ApplicationController {
     public String showFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String username,
             Model model) {
         Film film = filmService.getFilmById(id);
-        model.addAttribute("name", CurrentUser.getUserName());
-        model.addAttribute("logo", CurrentUser.getLogo());
+        model.addAttribute("name", currentUser.getUserName());
+        model.addAttribute("logo", currentUser.getLogo());
         model.addAttribute("film", film);
         return "film_login_template";
     }
 
     @GetMapping("/films_login")
     public String films_login(@RequestParam(required = false, defaultValue = "") String name, Model model) {
-        model.addAttribute("name", CurrentUser.getUserName());
-        model.addAttribute("logo", CurrentUser.getLogo());
+        model.addAttribute("name", currentUser.getUserName());
+        model.addAttribute("logo", currentUser.getLogo());
         model.addAttribute("films", filmService.getAll());
         return "films_login_template";
     }
@@ -70,20 +63,20 @@ public class ApplicationController {
     public String showFilmFilms(@PathVariable Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model) {
         Film film = filmService.getFilmById(id);
-        model.addAttribute("name", CurrentUser.getUserName());
-        model.addAttribute("logo", CurrentUser.getLogo());
+        model.addAttribute("name", currentUser.getUserName());
+        model.addAttribute("logo", currentUser.getLogo());
         model.addAttribute("film", film);
         return "film_login_template";
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/films_login/{id}/")
-    public String Postcomment(@PathVariable("id") Long id,
+    public String postcomment(@PathVariable("id") Long id,
             @RequestParam(required = false, defaultValue = "") String name, Model model, String comment) {
         Film film = filmService.getFilmById(id);
         film.getReviews().add(comment);
-        model.addAttribute("name", CurrentUser.getUserName());
-        model.addAttribute("logo", CurrentUser.getLogo());
+        model.addAttribute("name", currentUser.getUserName());
+        model.addAttribute("logo", currentUser.getLogo());
         model.addAttribute("film", film);
         return "film_login_template";
 
@@ -91,7 +84,7 @@ public class ApplicationController {
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/home_login/")
-    public String Log(
+    public String log(
             @RequestParam(required = false, defaultValue = "") String username,
             @RequestParam(required = false, defaultValue = "") String password, Model model) {
         model.addAttribute("users", userService.getAll());
@@ -99,11 +92,11 @@ public class ApplicationController {
         if (aux == null) {
             return "home_template";
         } else {
-            CurrentUser = aux;
-            model.addAttribute("name", CurrentUser.getUserName());
+            currentUser = aux;
+            model.addAttribute("name", currentUser.getUserName());
             model.addAttribute("films", filmService.getNum(5));
-            model.addAttribute("logo", CurrentUser.getLogo());
-            model.addAttribute("user", CurrentUser);
+            model.addAttribute("logo", currentUser.getLogo());
+            model.addAttribute("user", currentUser);
             return "home_login_template";
         }
     }
@@ -136,35 +129,36 @@ public class ApplicationController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/films/create")
     public String createFilm(
-        @RequestParam(required = false, defaultValue = "") String title,
-        @RequestParam(required = false, defaultValue = "") String director,
-        @RequestParam(required = false, defaultValue = "") String scriptwriter,
-        @RequestParam(required = false, defaultValue = "") String trailer,
-        @RequestParam(required = false, defaultValue = "") String description,
-        @RequestParam(required = false, defaultValue = "") String image,
-        @RequestParam(required = false, defaultValue = "0") double rating,
-        Model model) {
+            @RequestParam(required = false, defaultValue = "") String title,
+            @RequestParam(required = false, defaultValue = "") String director,
+            @RequestParam(required = false, defaultValue = "") String scriptwriter,
+            @RequestParam(required = false, defaultValue = "") String trailer,
+            @RequestParam(required = false, defaultValue = "") String description,
+            @RequestParam(required = false, defaultValue = "") String image,
+            @RequestParam(required = false, defaultValue = "0") double rating,
+            Model model) {
 
-    Film film = new Film(null, title, director, scriptwriter,
-                                trailer,
-                                description,
-                                image,
-                                rating);
-    filmService.createFilm(film);
-    return "home_template";
-}
+        Film film = new Film(null, title, director, scriptwriter,
+                trailer,
+                description,
+                image,
+                rating);
+        filmService.createFilm(film);
+        return "home_template";
+    }
 
     @GetMapping("/films_login_added/{id}")
     public String addFilm(@PathVariable Long id, @RequestParam(required = false, defaultValue = "") String name,
             Model model) {
         Film film = filmService.getFilmById(id);
-        CurrentUser.getCart().add(film.getTitle());
+        currentUser.getCart().add(film.getTitle());
         model.addAttribute("reviews", film.getReviews());
-        model.addAttribute("logo", CurrentUser.getLogo());
-        model.addAttribute("name", CurrentUser.getUserName());
+        model.addAttribute("logo", currentUser.getLogo());
+        model.addAttribute("name", currentUser.getUserName());
         model.addAttribute("film", film);
         return "film_login_template";
     }
+
     @GetMapping("/add_film")
     public String add_films(Model model) {
         model.addAttribute("films", filmService.getAll());
@@ -191,15 +185,15 @@ public class ApplicationController {
         Film film = filmService.getFilmById(id);
         filmService.deleteFilm(film);
         model.addAttribute("films", filmService.getAll());
-        model.addAttribute("name", CurrentUser.getUserName());
-        model.addAttribute("logo", CurrentUser.getLogo());
+        model.addAttribute("name", currentUser.getUserName());
+        model.addAttribute("logo", currentUser.getLogo());
         return "films_login_template";
 
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PostMapping("/films/{id}/")
-    public String Postcomment(@PathVariable("id") Long id, Model model, String comment) {
+    public String postcomment(@PathVariable("id") Long id, Model model, String comment) {
         Film film = filmService.getFilmById(id);
         film.getReviews().add(comment);
         model.addAttribute("reviews", film.getReviews());
@@ -229,28 +223,28 @@ public class ApplicationController {
 
     @GetMapping("/user_page")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name, Model model) {
-        model.addAttribute("films", CurrentUser.getCart());
-        model.addAttribute("name", CurrentUser.getUserName());
-        model.addAttribute("logo", CurrentUser.getLogo());
+        model.addAttribute("films", currentUser.getCart());
+        model.addAttribute("name", currentUser.getUserName());
+        model.addAttribute("logo", currentUser.getLogo());
         return "user_page";
     }
 
     @GetMapping("/user_page/delete/{id}")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name,
             @PathVariable("id") Long id, Model model) {
-        CurrentUser.getCart().remove(id.intValue() - 1);
-        model.addAttribute("logo", CurrentUser.getLogo());
-        model.addAttribute("films", CurrentUser.getCart());
+        currentUser.getCart().remove(id.intValue() - 1);
+        model.addAttribute("logo", currentUser.getLogo());
+        model.addAttribute("films", currentUser.getCart());
         model.addAttribute("name", name);
         return "user_page";
     }
 
     @PostMapping("/user_page/")
     public String userPage(@RequestParam(required = false, defaultValue = "") String name, String logo, Model model) {
-        CurrentUser.setLogo(logo);
-        model.addAttribute("cart", CurrentUser.getCart());
-        model.addAttribute("logo", CurrentUser.getLogo());
-        model.addAttribute("name", CurrentUser.getUserName());
+        currentUser.setLogo(logo);
+        model.addAttribute("cart", currentUser.getCart());
+        model.addAttribute("logo", currentUser.getLogo());
+        model.addAttribute("name", currentUser.getUserName());
         return "user_page";
     }
 }

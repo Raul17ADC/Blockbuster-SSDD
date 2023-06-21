@@ -10,11 +10,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import es.urjc.grupo10.blockbuster.*;
 
 @RestController
 @RequestMapping("/api")
@@ -55,7 +51,7 @@ public class FilmRestController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @DeleteMapping("users/{username}")
     public ResponseEntity<String> deleteUserByUsername(@PathVariable String username) {
         User user = userService.getUserName(username);
@@ -91,19 +87,19 @@ public class FilmRestController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    
+
     @DeleteMapping("films/{id}")
     public ResponseEntity<String> deleteFilmById(@PathVariable Long id) {
         Film film = filmService.getFilmById(id);
-    
+
         if (film == null) {
             return new ResponseEntity<>("Film not found", HttpStatus.NOT_FOUND);
         }
-    
+
         filmService.deleteFilm(film);
         return new ResponseEntity<>("Film deleted", HttpStatus.OK);
     }
-    
+
     @PutMapping("/films/{id}/name")
     public ResponseEntity<String> updateFilmName(@PathVariable Long id, @RequestBody String newName) {
         Film film = filmService.getFilmById(id);
@@ -115,14 +111,14 @@ public class FilmRestController {
         film.setTitle(newName);
         filmService.updateFilm(film);
 
-        return new ResponseEntity<>("Film name updated successfully",HttpStatus.OK);
+        return new ResponseEntity<>("Film name updated successfully", HttpStatus.OK);
     }
 
     @PostMapping("/addLike/{id}/")
     public ResponseEntity<Map<String, Object>> addLike(@PathVariable Long id) {
         Film film = filmService.getFilmById(id);
         Map<String, Object> response = new HashMap<>();
-        if(film == null){
+        if (film == null) {
             response.put("mensaje", "No se ha podido agregar un like al anuncio con ID " + id);
             return ResponseEntity.badRequest().body(response);
         }

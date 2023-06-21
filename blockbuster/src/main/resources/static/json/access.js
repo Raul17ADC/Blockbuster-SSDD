@@ -22,6 +22,6 @@ const goHomeButton = document.getElementById("go-home");
 
 registerForm.addEventListener("submit", (event) => {
   event.preventDefault();
-  confirmMessage.innerHTML = "¡ Has accedido con exito !";
+  confirmMessage.innerHTML = "¡Has accedido con exito!";
   goHomeButton.style.display = "block";
 });

@@ -21,23 +21,23 @@ createFilmForm.addEventListener("submit", (event) => {
     trailer,
     description,
     image,
-    rating
+    rating,
   };
 
   fetch("/films/create", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(filmData)
+    body: JSON.stringify(filmData),
   })
-  .then(response => response.json())
-  .then(data => {
-    confirmMessage.innerHTML = "¡Película creada exitosamente!";
-    goHomeButton.style.display = "block";
-    console.log(data);
-  })
-  .catch(error => {
-    console.error("Error:", error);
-  });
+    .then((response) => response.json())
+    .then((data) => {
+      confirmMessage.innerHTML = "¡Película creada exitosamente!";
+      goHomeButton.style.display = "block";
+      console.log(data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 });

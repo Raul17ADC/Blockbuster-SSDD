@@ -1,11 +1,8 @@
 package es.urjc.grupo10.blockbuster;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.stream.Collectors;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
@@ -37,7 +34,7 @@ public class UserService {
         return userHashMap.get(id);
     }
 
-    public User getUserName(String name){
+    public User getUserName(String name) {
         Collection<User> users = getAll();
         for (User user : users) {
             if (user.getUserName().equals(name)) {
@@ -47,7 +44,7 @@ public class UserService {
         return null;
     }
 
-    public User getUserByNameAndPassword(String name,String password) {
+    public User getUserByNameAndPassword(String name, String password) {
         Collection<User> users = getAll();
         for (User user : users) {
             if (user.getUserName().equals(name) && user.getPassword().equals(password)) {
@@ -60,7 +57,7 @@ public class UserService {
     public User createUser(User user) {
         Optional<User> optionalFilm = userHashMap.values()
                 .stream()
-                .filter(p -> p.equals(user))                  
+                .filter(p -> p.equals(user))
                 .findFirst();
         if (optionalFilm.isPresent()) {
             // If a movie of the same type already exists, it is not added and the one that
@@ -84,7 +81,7 @@ public class UserService {
                 .filter(u -> u.getUserName().equals(user.getUserName()))
                 .findFirst()
                 .orElse(null);
-    
+
         if (existingUser != null) {
             Long userCode = userHashMap.entrySet()
                     .stream()
@@ -92,7 +89,7 @@ public class UserService {
                     .map(Map.Entry::getKey)
                     .findFirst()
                     .orElse(null);
-    
+
             if (userCode != null) {
                 userHashMap.remove(userCode);
                 user.setUserCode(userCode);
@@ -100,12 +97,11 @@ public class UserService {
             }
         }
     }
-    
-    
-    
+
     public Map<Long, User> getUserHashMap() {
         return userHashMap;
     }
+
     public void printUserHashMap() {
         System.out.println("Contenido del HashMap de usuarios: " + userHashMap.toString());
     }

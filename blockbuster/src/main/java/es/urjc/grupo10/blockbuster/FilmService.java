@@ -5,9 +5,7 @@ import java.util.Arrays;
 import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.stream.Collectors;
-import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -97,10 +95,10 @@ public class FilmService {
                 return filmHashMap.values();
         }
 
-        public void addLike(Long id){
+        public void addLike(Long id) {
                 Film film = filmHashMap.get(id);
                 film.addLike();
-            } 
+        }
 
         public Film getFilmById(Long id) {
                 return filmHashMap.get(id);
@@ -126,10 +124,10 @@ public class FilmService {
 
         public void deleteFilm(Film film) {
                 filmHashMap.remove(film.getId());
-            }           
-            
+        }
+
         public void updateFilm(Film film) {
                 filmHashMap.put(film.getId(), film);
         }
-            
+
 }

@@ -1,186 +1,230 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<head>
-  <!-- Required meta tags -->
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/css/cards.css" />
+    <link href="/css/home_login.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <title>Página Película</title>
+  </head>
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="/css/cards.css">
-  <link href="/css/home_login.css" rel="stylesheet" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-  <title>Página Película</title>
-</head>
+  <body style="background-color: rgb(14, 15, 110)">
+    <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(41, 82, 172)">
+      <div class="container-fluid">
+        <a
+          class="navbar-brand"
+          href="/home_login"
+          onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+        >
+          <img
+            src="https://bendblockbuster.com/wp-content/themes/blockbuster/assets/images/blockbuster-logo.svg"
+            width="300"
+            height="50"
+          />
+        </a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <form method="post" action="/home_login">
+              <input type="hidden" name="username" value="{{name}}" />
+              <li class="nav-item me-md-4">
+                <button type="submit" class="btn btn-link nav-link fs-2" style="color: white">Home</button>
+              </li>
+            </form>
 
-
-<body style="background-color: rgb(14, 15, 110);">
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgb(41, 82, 172)">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/home_login"
-        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-        <img src="https://bendblockbuster.com/wp-content/themes/blockbuster/assets/images/blockbuster-logo.svg"
-          width="300" height="50" />
-      </a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <form method="post" action="/home_login">
-            <input type="hidden" name="username" value="{{name}}" />
             <li class="nav-item me-md-4">
-              <button type="submit" class="btn btn-link nav-link  fs-2 " style="color: white">
-                Home
-              </button>
+              <a class="nav-link fs-2" href="/films_login?name={{name}}" style="color: white">Películas</a>
             </li>
-          </form>
+          </ul>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="dropdownMenuButton1"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <img class="profile-image" src="{{logo}}" alt="profile-image" />
+              {{name}}
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li>
+                <a class="dropdown-item" href="/user_page?name={{name}}"
+                  ><span class="fas fa-pencil-alt"></span>Perfil</a
+                >
+              </li>
+              <li>
+                <a
+                  class="dropdown-item"
+                  href="/home_out"
+                  onclick="return confirm('¿Estás seguro de que quieres cerrar sesión? Volverás a la página principal.')"
+                  ><span class="fas fa-door-open"></span>Cerrar Sesión</a
+                >
+              </li>
+              <form id="logout-form" action="/home_login" method="POST" style="display: none">
+                <input type="hidden" name="_method" value="POST" />
+                <input type="hidden" name="username" value="{{name}}" />
+                @csrf
+              </form>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div>
+      <div class="container-fluid" style="background-color: rgb(14, 15, 110)">
+        <p class="d-flex fs-1 text-decoration-underline mx-6 my-2 justify-content-center" style="color: white">
+          {{film.title}}
+        </p>
+        <div class="d-flex container-fluid justify-content-evenly justify-content-lg-center my-4">
+          <div class="container-fluid" width="600" height="900">
+            <figure class="d-flex justify-content-center"><img src="{{film.image}}" width="500" height="700" /></figure>
+            <div class="container-fluid">
+              <p class="d-flex fs-1 my-2 justify-content-center" style="color: white">
+                Valoración: {{film.rating}} / 10
+              </p>
+            </div>
+            <span id="likes-{{id}}" class="d-flex fs-1 my-2 justify-content-center" style="color: white"
+              >Likes: {{film.likes}}</span
+            ><br />
+            <button id="likeaction" type="button" onclick="addLikeToAd({{film.id}})">Agregar Like</button><br />
+          </div>
+          <div class="container-fluid">
+            <iframe
+              width="1020"
+              height="630"
+              src="{{film.trailer}}"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+            <div class="container-fluid d-flex justify-content-center">
+              <a
+                href="/films_login_added/{{id}}?name={{name}}"
+                class="btn btn-primary btn-lg"
+                style="background-color: darkorange"
+                >Añadir al carrito</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container-fluid">
+        <ul class="list-group list-group-flush mx-2">
+          <li
+            class="list-group-item fs-3"
+            style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue"
+          >
+            Director: {{film.director}}
+          </li>
+          <li
+            class="list-group-item fs-3"
+            style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue"
+          >
+            Guionista: {{film.scriptwriter}}
+          </li>
+          <li
+            class="list-group-item fs-3"
+            style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue"
+            style="display: inline-flex"
+          >
+            Actores:
 
-          <li class="nav-item me-md-4">
-            <a class="nav-link fs-2" href="/films_login?name={{name}}" style="color: white">Películas</a>
+            <ul class="list-group list-group-horizontal">
+              {{#film.actors}}
+              <li
+                class="list-group-item fs-3"
+                style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue"
+              >
+                {{.}}
+              </li>
+              {{/film.actors}}
+            </ul>
+          </li>
+          <li
+            class="list-group-item fs-3"
+            style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue"
+            style="display: inline-flex"
+          >
+            Géneros:
+            <ul class="list-group list-group-horizontal">
+              {{#film.genres}}
+              <li
+                class="list-group-item fs-3"
+                style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue"
+              >
+                {{.}}
+              </li>
+              {{/film.genres}}
+            </ul>
           </li>
         </ul>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
-            data-bs-toggle="dropdown" aria-expanded="false">
-            <img class="profile-image"
-              src="{{logo}}"
-              alt="profile-image">
-            {{name}}
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-            <li><a class="dropdown-item" href="/user_page?name={{name}}"><span
-                  class="fas fa-pencil-alt"></span>Perfil</a></li>
-            <li><a class="dropdown-item" href="/home_out"
-                onclick="return confirm('¿Estás seguro de que quieres cerrar sesión? Volverás a la página principal.')"><span
-                  class="fas fa-door-open"></span>Cerrar Sesión</a></li>
-            <form id="logout-form" action="/home_login" method="POST" style="display: none;">
-              <input type="hidden" name="_method" value="POST">
-              <input type="hidden" name="username" value="{{name}}">
-              @csrf
-            </form>
-          </ul>
-        </div>
       </div>
-    </div>
-  </nav>
-  <div>
-    <div class="container-fluid" style="background-color: rgb(14, 15, 110);">
-      <p class="d-flex fs-1 text-decoration-underline mx-6 my-2 justify-content-center" style="color: white;">
-        {{film.title}}</p>
-      <div class=" d-flex container-fluid justify-content-evenly justify-content-lg-center my-4">
-        <div class="container-fluid " width="600" height="900">
-          <figure class="d-flex justify-content-center"><img src={{film.image}} width="500" height="700">
-          </figure>
-          <div class="container-fluid">
-
-            <p class="d-flex fs-1  my-2 justify-content-center" style="color: white;">
-              Valoración: {{film.rating}} / 10</p>
-          </div>
-              <span id="likes-{{id}}" class="d-flex fs-1  my-2 justify-content-center" style="color: white;" >Likes: {{film.likes}}</span><br>
-              <button id="likeaction" type="button" onclick="addLikeToAd({{film.id}})">Agregar Like</button><br>
-        </div>
-        <div class="container-fluid"><iframe width="1020" height="630" src={{film.trailer}} title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen></iframe>
-          <div class="container-fluid d-flex justify-content-center "><a href="/films_login_added/{{id}}?name={{name}}"
-             class="btn btn-primary btn-lg " style="background-color: darkorange;">Añadir al carrito</a>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="container-fluid">
-      <ul class="list-group list-group-flush mx-2 ">
-        <li class="list-group-item fs-3"
-          style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Director: {{film.director}}
-        </li>
-        <li class="list-group-item fs-3"
-          style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">Guionista:
-          {{film.scriptwriter}}</li>
-        <li class="list-group-item fs-3"
-          style="background-color: rgb(14, 15, 110); color: white;  border-color: cadetblue ;"
-          style="display: inline-flex;">Actores:
-
-          <ul class="list-group  list-group-horizontal">
-            {{#film.actors}}
-            <li class="list-group-item fs-3"
-              style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">
-              {{.}}</li>
-            {{/film.actors}}
-          </ul>
-
-        </li>
-        <li class="list-group-item fs-3"
-          style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;"
-          style="display: inline-flex;">Géneros:
-          <ul class="list-group  list-group-horizontal">
-            {{#film.genres}}
-            <li class="list-group-item fs-3"
-              style="background-color: rgb(14, 15, 110); color: white; border-color: cadetblue;">
-              {{.}}
-            </li>
-            {{/film.genres}}
-          </ul>
-        </li>
-      </ul>
-    </div>
-    <div class="container-fluid">
-      <div id="comment-section">
-        <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Reseñas:</p>
-        <div class="container-fluid d-flex justify-content-center my-2 " style="color: rgb(255, 255, 255);">
-
-          <div id="comments-container">
-            {{#film.reviews}}
-            <div>
-              <p>{{{.}}}</p>
+      <div class="container-fluid">
+        <div id="comment-section">
+          <p class="d-flex fs-2 mx-6 my-2" style="color: white">Reseñas:</p>
+          <div class="container-fluid d-flex justify-content-center my-2" style="color: rgb(255, 255, 255)">
+            <div id="comments-container">
+              {{#film.reviews}}
+              <div>
+                <p>{{{.}}}</p>
+              </div>
+              {{/film.reviews}}
             </div>
-            {{/film.reviews}}
           </div>
         </div>
-      </div>
-      
-      <form method="post" action="/films_login/{{id}}/" onsubmit="saveContent()">
-        <div>
-          <label for="comment">
-            <p class="d-flex fs-2  mx-6 my-2 " style="color: white;">Escribe tu reseña:</p>
-          </label><br>
+
+        <form method="post" action="/films_login/{{id}}/" onsubmit="saveContent()">
           <div>
-            <button id="bold" type="button" onclick="format('bold')">Negrita</button>
-            <button id="italic" type="button" onclick="format('italic')">Cursiva</button>
-            <button id="red" type="button" onclick="format('foreColor', 'red')">Rojo</button>
-            <button id="underline" type="button" onclick="format('underline')">Subrayado</button>
-            <button id="strikethrough" type="button" onclick="format('strikethrough')">Tachado</button>
-            <button id="highlight" type="button" onclick="format('hiliteColor', 'yellow')">Resaltado</button>
-            <button id="align-right" type="button" onclick="format('justifyRight')">Alinear a la derecha</button>
-            <button id="remove" type="button" onclick="format('removeFormat')">Borrar Formato</button>
+            <label for="comment"> <p class="d-flex fs-2 mx-6 my-2" style="color: white">Escribe tu reseña:</p> </label
+            ><br />
+            <div>
+              <button id="bold" type="button" onclick="format('bold')">Negrita</button>
+              <button id="italic" type="button" onclick="format('italic')">Cursiva</button>
+              <button id="red" type="button" onclick="format('foreColor', 'red')">Rojo</button>
+              <button id="underline" type="button" onclick="format('underline')">Subrayado</button>
+              <button id="strikethrough" type="button" onclick="format('strikethrough')">Tachado</button>
+              <button id="highlight" type="button" onclick="format('hiliteColor', 'yellow')">Resaltado</button>
+              <button id="align-right" type="button" onclick="format('justifyRight')">Alinear a la derecha</button>
+              <button id="remove" type="button" onclick="format('removeFormat')">Borrar Formato</button>
+            </div>
+            <div
+              style="border: 1px solid; background-color: aliceblue; min-height: 100px; padding: 10px"
+              id="editor"
+              contenteditable="true"
+            ></div>
+            <input type="hidden" name="comment" id="content" />
           </div>
-          <div style="border: 1px solid; background-color: aliceblue;
-            min-height: 100px;
-            padding: 10px;" id="editor" contenteditable="true"></div>
-          <input type="hidden" name="comment" id="content">
+          <div class="container-fluid d-flex justify-content-center mb-3">
+            <button type="submit" class="btn btn-primary" id="submit-button">Enviar reseña</button>
+          </div>
+        </form>
 
-        </div>
-        <div class="container-fluid d-flex justify-content-center mb-3"> <button type="submit" class="btn btn-primary "
-            id="submit-button">Enviar
-            reseña</button></div>
-      </form>
-      
-      <script>
-        function format(cmd, value) {
-          document.execCommand(cmd, false, value);
-        }
+        <script>
+          function format(cmd, value) {
+            document.execCommand(cmd, false, value);
+          }
 
-        function saveContent() {
-          const inputContent = document.querySelector('#content');
-          const editor = document.querySelector('#editor');
-          inputContent.value = editor.innerHTML;
-        }
-      </script>
+          function saveContent() {
+            const inputContent = document.querySelector("#content");
+            const editor = document.querySelector("#editor");
+            inputContent.value = editor.innerHTML;
+          }
+        </script>
+      </div>
     </div>
-  </div>
-  <script src="/json/Like.js"></script>
-</body>
-
+    <script src="/json/like.js"></script>
+  </body>
 </html>

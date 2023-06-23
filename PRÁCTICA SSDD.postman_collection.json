@@ -1,0 +1,297 @@
+{
+	"info": {
+		"_postman_id": "f83762c3-4fba-44ab-9d72-fb20d30fa3a6",
+		"name": "PRÁCTICA SSDD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25847671",
+		"_collection_link": "https://cloudy-meadow-412313.postman.co/workspace/New-Team-Workspace~a01f9b2e-2153-4eb5-ad9e-a5e775b34af5/collection/25847671-f83762c3-4fba-44ab-9d72-fb20d30fa3a6?action=share&creator=25847671&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "Films",
+			"item": [
+				{
+					"name": "getAllFilms",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFilmById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getFilmsByGenre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/genero/Comedia",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"genero",
+								"Comedia"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getReviewsByFilmId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/1/reviews",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"1",
+								"reviews"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addFilm",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"PRUEBA\",\r\n    \"director\": \"Elizabeth Banks\",\r\n    \"scriptwriter\": \"Jimmy Warden\",\r\n    \"trailer\": \"https://www.youtube.com/embed/CvYGl5BESEI\",\r\n    \"description\": \"Cuenta la historia de un narcotraficante cuyo avión se estrella con un cargamento de cocaína que es encontrada por un oso negro, quien se la come.\",\r\n    \"image\": \"https://www.lahiguera.net/cinemania/pelicula/10524/oso_vicioso-cartel-10824.jpg\",\r\n    \"rating\": 6.0,\r\n    \"actors\": [\r\n        \"Keri Russell\",\r\n        \"Alden Ehrenreich\",\r\n        \"O'Shea Jackson Jr\"\r\n    ],\r\n    \"genres\": [\r\n        \"Comedia\",\r\n        \"Suspense\"\r\n    ],\r\n    \"reviews\": [\r\n        \"Me encanta\"\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteFilmById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/films/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"films",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateFilmName",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "PRUEBA",
+							"options": {
+								"raw": {
+									"language": "text"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/films/3/name",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"films",
+								"3",
+								"name"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "getAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"example@example.com\",\r\n  \"userName\": \"example_user\",\r\n  \"password\": \"example_password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteUserByUsername",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/api/users/aaa",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"aaa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateUserPassword",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "123456"
+						},
+						"url": {
+							"raw": "localhost:8080/api/users/aaa/password",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"aaa",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "addUser (aaa)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"j.lozoya.2020@alumnos.urjc.es\",\r\n  \"userName\": \"aaa\",\r\n  \"password\": \"aaa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/users",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
